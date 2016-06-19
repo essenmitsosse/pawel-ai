@@ -77,31 +77,42 @@ module.exports = function(grunt) {
 							header: '<%= assetsPath %>/html/layout/header.html',
 							footer: '<%= assetsPath %>/html/layout/footer.html'
 						}
-					},
-					// data: {
-					// 	// Data to pass to templates
-					// 	version: "0.1.0",
-					// 	title: "test",
-					// },
+					}
 				}
 			}
 		},
 		
 		// watch for changes and trigger tasks
 		watch: {
+			options: {
+				spawn: false,
+				livereload: 35729
+			},
 			scss: {
-				files: [ 'assets/_scss/*.scss', 'assets/_scss/**/*.scss', 'assets/_scss/**/**/*.scss' ],
+				files: [ 'assets/scss/**/*.scss' ],
 				tasks: [ 'sass' ],
 				options: {
 					spawn: false,
 					livereload: 35729
 				},
+			},
+			js: {
+				files: [ 'assets/js/**/*.js' ],
+				tasks: [ 'requirejs' ],
+				options: {
+					spawn: false,
+					livereload: 35729
+				},
+			},
+			html: {
+				files: [ 'assets/html/**/*.html' ],
+				tasks: [ 'htmlbuild' ]
 			}
 		},
 	});
 
 	// register task
-	grunt.registerTask( 'default', [ 'sass', 'requirejs', 'copy', 'htmlbuild' ]);
+	grunt.registerTask( 'default', [ 'sass', 'requirejs', 'htmlbuild', 'copy' ]);
 	grunt.registerTask( 'css', [ 'sass' ]);
 	grunt.registerTask( 'js', [ 'requirejs' ]);
 	grunt.registerTask( 'html', [ 'htmlbuild' ]);
