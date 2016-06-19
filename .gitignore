@@ -8,6 +8,7 @@ assets/vendor
 *.ttf
 *.woff
 *.woff2
-assets/_scss/_automatic-grid
 assets/js
+assets/css
 *.sublime-*
+/dist
