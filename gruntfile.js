@@ -116,5 +116,6 @@ module.exports = function(grunt) {
 	grunt.registerTask( 'css', [ 'sass' ]);
 	grunt.registerTask( 'js', [ 'requirejs' ]);
 	grunt.registerTask( 'html', [ 'htmlbuild' ]);
+	grunt.registerTask( 'w', [ 'default', 'watch' ]);
 
 };
