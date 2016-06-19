@@ -1,0 +1,193 @@
+@function calcPixelValue ( $value ) {
+	@return $base-font-size * $base-line-height-rel * $value;
+}
+
+@function calcRemValue ( $value ) {
+	@return $value * $base-line-height-rel + rem;
+}
+
+@function calcPixelValueByFontSize ( $value ) {
+	@return $base-font-size * $value;
+}
+
+@function calcRemValueByFontSize ( $value ) {
+	@return $value + rem;
+}
+
+@function calcRemValue-ai ( $value ) {
+	@return $ai-line-height * $value;
+}
+
+@function calcRemValueByFontSize-ai ( $value ) {
+	@return $ai-font-size * $value;
+}
+
+@mixin getRem( $value-name, $values: 1, $pixelFunction: 'calcPixelValue', $remFunction: 'calcRemValue' ) {
+	@each $function in ( $remFunction ) {
+		$value-list: (); // create list
+		@each $value in $values {
+			$value-list: append( $value-list, call( $function, $value ) );
+		}
+		#{$value-name}: $value-list;
+	}
+}
+
+@mixin getFontRem( $value-name, $values: 1 ) {
+	@include getRem( $value-name, $values, 'calcPixelValueByFontSize', 'calcRemValueByFontSize' );
+}
+
+@mixin getAiRem( $value-name, $values: 1 ) {
+	@include getRem( $value-name, $values, false, 'calcRemValue-ai' );
+}
+
+@mixin getAiFontRem( $value-name, $values: 1 ) {
+	@include getRem( $value-name, $values, false, 'calcRemValueByFontSize-ai' );
+}
+
+@mixin bpWithRem( $max-width ) {
+	@media ( max-width: #{ call( calcRemValue, $max-width ) } ) { @content; }
+}
+
+@mixin noselect() {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+@mixin transition( $value ) {
+	-webkit-transition: unquote($value);
+	-moz-transition: unquote($value);
+	-ms-transition: unquote($value);
+	-o-transition: unquote($value);
+	transition: unquote($value);
+}
+
+@mixin transform($transforms) {
+	-moz-transform: unquote($transforms);
+	-o-transform: unquote($transforms);
+	-ms-transform: unquote($transforms);
+	-webkit-transform: unquote($transforms);
+	transform: unquote($transforms);
+}
+
+@mixin rotate ($deg) {
+  @include transform(rotate(#{$deg}deg));
+}
+
+@mixin scale ( $x, $y : false ) {
+	@include transform(scale(#{$x}));
+}
+
+@mixin filter( $filter ) { 
+	-webkit-filter: unquote($filter);
+	-moz-filter: unquote($filter);
+	-ms-filter: unquote($filter);
+	-o-filter: unquote($filter);
+	filter: unquote($filter);
+}
+
+@mixin force-acceleration {
+	@include transform( "translate3d(0,0,0)" );
+}
+
+@mixin order( $order ) {
+	-moz-box-ordinal-group: $order;
+	-webkit-box-ordinal-group: $order;
+	-webkit-order: $order;
+	-ms-flex-order: $order;
+	order: $order;
+}
+
+@mixin display-flex {
+	display: -moz-box;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+}
+
+@mixin browser-prefixes( $prop, $value, $useRem: false ) {
+	@if ( $useRem == true ) {
+		@include browser-prefixes( $prop, #{ call( "calcPixelValue", $value ) }, false );
+		@include browser-prefixes( $prop, #{ call( "calcRemValue", $value ) }, false );
+	} @else {
+		-moz-#{$prop}: $value;
+		-ms-#{$prop}: $value;
+		-webkit-#{$prop}: $value;
+		#{$prop}: $value;
+	}
+}
+
+
+@mixin flex ( $value ) {
+	@include browser-prefixes( "flex", $value );
+}
+
+@mixin flex-direction ( $direction ) {
+	@include browser-prefixes( "flex-direction", $direction );
+}
+
+@mixin flex-wrap ( $wrap ) {
+	@include browser-prefixes( "flex-wrap", $wrap );
+}
+
+@mixin flex-flow ( $flow ) {
+	@include browser-prefixes( "flex-flow", $flow );
+}
+
+@mixin justify-content ( $value ) {
+	@include browser-prefixes( "justify-content", $value );
+}
+
+@mixin align-items ( $value ) {
+	@include browser-prefixes( "align-items", $value );
+}
+
+@mixin align-content ( $value ) {
+	@include browser-prefixes( "align-content", $value );
+}
+
+@mixin order ( $value ) {
+	@include browser-prefixes( "order", $value );
+}
+
+@mixin flex-grow ( $value ) {
+	@include browser-prefixes( "flex-grow", $value );
+}
+
+@mixin flex-shrink ( $value ) {
+	@include browser-prefixes( "flex-shrink", $value );
+}
+
+@mixin flex-basis ( $value, $useRem: false ) {
+	@include browser-prefixes( "flex-basis", $value, $useRem );
+}
+
+@mixin align-self ( $value ) {
+	@include browser-prefixes( "align-self", $value );
+}
+
+@mixin box-orient ( $orient ) {
+	@include browser-prefixes( "box-orient", $orient );
+}
+
+@mixin fallback-grayscale ( $value: 100% ) {
+    filter: gray; /* IE6-9 */
+    -webkit-filter: grayscale( $value ); /* Chrome 19+, Safari 6+, Safari 6+ iOS */
+    filter: grayscale( $value );
+}
+
+@mixin filter ( $value ) {
+    -webkit-filter: $value;
+    filter: $value;
+}
+
+@mixin hyphens ( $value ){
+	-webkit-hyphens: $value;
+    -moz-hyphens: $value;
+    -ms-hyphens: $value;
+    hyphens: $value;
+}

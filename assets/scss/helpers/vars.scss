@@ -1,0 +1,45 @@
+// Font-sizes
+$base-font-size: 18px;
+$base-line-height-rel: 1.2;
+$base-relative-font-size: 1 / $base-line-height-rel;
+
+// Colors
+$background-color: #fff;
+
+// Font-colors
+$font-color: #000;
+
+// Grid
+$grid-outer-border: 3vw;
+$grid-count: 12;
+$grid-inner-area: 100vw - ( 2 * 3vw );
+$single-grid: $grid-inner-area / 12;
+$grid-ratio: 1;
+
+// AI Font Size
+$ai-line-height: $single-grid * $grid-ratio;
+$ai-line-height-rel: $base-line-height-rel;
+$ai-font-size: $ai-line-height / $ai-line-height-rel;
+
+$font-size-ai-small-rel: 0.33;
+$line-height-ai-small-rel: 0.5;
+
+// Debug
+$debug-border-color: rgba( 0, 0, 0, .25 );
+$debug-border: 1px solid $debug-border-color;
+
+$debug-span-marker-size: 0.7;
+$debug-span-marker-width: 3px;
+
+$debug-span-marker-transparency: 0.8;
+
+$debug-span-marker-color: rgba( 0, 170, 0, 1 );
+$debug-span-marker-background-color: transparentize( $debug-span-marker-color, $debug-span-marker-transparency );
+
+$debug-right-span-marker-color: rgba( 170, 0, 0, 1 );
+$debug-right-span-marker-background-color: transparentize( $debug-right-span-marker-color, $debug-span-marker-transparency );
+
+$debug-small-span-marker-color: rgba( 0, 90, 0, 1 );
+$debug-small-span-marker-background-color: transparentize( $debug-small-span-marker-color, $debug-span-marker-transparency );
+
+$debug-margin-marker-color: rgba( 0, 0, 170, 0.2 );

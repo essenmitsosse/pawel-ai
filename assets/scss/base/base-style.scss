@@ -1,0 +1,10 @@
+html {
+	font-size: $base-font-size;
+}
+
+body {
+	@include getFontRem( "font-size" );
+	@include getRem( "line-height" );
+	color: $font-color;
+	background-color: $background-color;
+}

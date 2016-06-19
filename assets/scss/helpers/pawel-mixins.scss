@@ -1,0 +1,12 @@
+@mixin debug-small-info () {
+	position: absolute;
+	@include getFontRem( "font-size", $debug-span-marker-size );
+	@include getRem( "line-height", $debug-span-marker-size );
+	@include getRem( "width", $debug-span-marker-size );
+	@include getRem( "height", $debug-span-marker-size );
+	text-align: center;
+	font-family: Arial;
+	font-weight: bold;
+	font-style: normal;
+	color: #fff;
+}
