@@ -1,0 +1,14 @@
+{
+  "name": "pawel-ai",
+  "description": "master thesis of pawel wolowitsch",
+  "version": "0.1.0",
+  "author": "Pawel Wolowitsch, Marcus Blättermann",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-sass": "~0.9.2",
+    "grunt-contrib-watch": "^1.0.0",
+    "matchdep": "~0.1.2",
+    "mkdirp": "^0.5.1"
+  },
+  "main": "gruntfile.js"
+}
