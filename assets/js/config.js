@@ -1,5 +1,9 @@
 requirejs.config({
 	include: [ 
-		"base/main"
+		"debug/keyboardHandler",
+		"debug/toggleDebug",
+		"debug/init",
+		
+		"typewritter/init"
 	]
 });
