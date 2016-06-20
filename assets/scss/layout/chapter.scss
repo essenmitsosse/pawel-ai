@@ -4,7 +4,7 @@
 		width: 100%;
 		position: relative;
 
-		&.s {
+		&.small {
 			@include getAiFontRem( "font-size", $font-size-ai-small-rel );
 			@include getAiRem( "line-height", $line-height-ai-small-rel );
 			@include getAiRem( "height", $line-height-ai-small-rel );
@@ -197,3 +197,12 @@
 
 
 }
+
+.c {
+	opacity: 0;
+
+	&.s {
+		opacity: 1;
+	}
+}
+

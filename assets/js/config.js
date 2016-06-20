@@ -4,6 +4,6 @@ requirejs.config({
 		"debug/toggleDebug",
 		"debug/init",
 		
-		"typewritter/init"
+		"typewriter/chapterFactory"
 	]
 });
