@@ -112,7 +112,7 @@ module.exports = function(grunt) {
 	});
 
 	// register task
-	grunt.registerTask( 'default', [ 'sass', 'requirejs', 'htmlbuild', 'copy' ]);
+	grunt.registerTask( 'default', [ 'copy', 'sass', 'requirejs', 'htmlbuild' ]);
 	grunt.registerTask( 'css', [ 'sass' ]);
 	grunt.registerTask( 'js', [ 'requirejs' ]);
 	grunt.registerTask( 'html', [ 'htmlbuild' ]);
