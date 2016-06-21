@@ -2,7 +2,7 @@ requirejs.config({
 	include: [ 
 		"debug/keyboardHandler",
 		"debug/toggleDebug",
-		"debug/init",
+		"debug/init-grid",
 		
 		"typewriter/chapterFactory"
 	]
