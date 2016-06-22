@@ -62,13 +62,13 @@ Shows additional information about the positioning of elements.
 Doesn’t show any animation, content is displayed immediately.
 
 #### allowScroll (false, boolean) `CTRL`+`S`
-When set to true, allows to user to scroll on their own
+When set to true, allows to user to scroll on their own. When set to false the user can’t scroll by default.
 
 #### defaultBasicTypeSpeed (50, number)
-changes the default typespeed. Doesn’t influence elements with individual typespeeds
+Changes the default typespeed. Doesn’t influence elements with individual typespeeds.
 
 #### typeSpeedMultiplyer (1, number) `CTRL`+`+` `CTRL`+`-`
-changes the default typespeed my the given multiplyer. This affects all typespeeds.
+Changes the typespeed by the given multiplyer. This affects all typespeeds.
 
 
 
