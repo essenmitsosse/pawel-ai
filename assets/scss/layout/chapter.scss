@@ -11,7 +11,7 @@
 			font-style: italic;
 
 			> span {
-				.superdebug & {
+				.superDebug & {
 					border-color: $debug-small-span-marker-color;
 					background-color: $debug-small-span-marker-background-color;
 
@@ -35,7 +35,7 @@
 				border-bottom: $debug-border;
 			}
 
-			.superdebug & {
+			.superDebug & {
 				background-color: rgba( 0, 0, 0, .02 );
 			}
 		}
@@ -45,7 +45,7 @@
 			position: absolute;
 			z-index: 100;
 
-			.superdebug & {
+			.superDebug & {
 				border-left: $debug-span-marker-width solid $debug-span-marker-color;
 				margin-left: -$debug-span-marker-width;
 				background-color: $debug-span-marker-background-color;
@@ -67,7 +67,7 @@
 			&%tr-tabstop {
 				text-align: right;
 
-				.superdebug & {
+				.superDebug & {
 					border-left: none;
 					border-right: $debug-span-marker-width solid $debug-right-span-marker-color;
 					margin-left: $debug-span-marker-width;
@@ -90,7 +90,7 @@
 					left: ( 100% / $grid-count ) * $i;
 
 					// Numbers for debug tabstops
-					.superdebug & {
+					.superDebug & {
 						&:after {
 							content: "#{$i}";
 						}
@@ -108,7 +108,7 @@
 					@extend %tr-tabstop;
 
 					// Numbers for debug tabstops
-					.superdebug & {
+					.superDebug & {
 						&:after {
 							content: "#{$i}";
 						}
@@ -121,7 +121,7 @@
 	}
 
 	%margin-top {
-		.superdebug & {
+		.superDebug & {
 			&:before {
 				@include debug-small-info;
 
@@ -148,7 +148,7 @@
 		.m#{$i} {
 			@include getAiRem( "margin-top", $i );
 			@extend %margin-top;
-			.superdebug & {
+			.superDebug & {
 				&:before {
 					@include getAiRem( "height", $i );
 					@include getAiRem( "line-height", $i );
@@ -201,7 +201,8 @@
 .c {
 	opacity: 0;
 
-	&.s {
+	&.s,
+	.noAnimation & {
 		opacity: 1;
 	}
 }

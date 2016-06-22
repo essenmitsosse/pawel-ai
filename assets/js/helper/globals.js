@@ -1,6 +1,7 @@
 define( [], function () {
 	return {
-		isDebug: false,
-		isSuperDebug: false,
+		debug: false,
+		superDebug: false,
+		noAnimation: false
 	}
 } );
