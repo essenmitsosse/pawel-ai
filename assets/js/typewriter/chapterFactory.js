@@ -1,5 +1,6 @@
 define( [ "typewriter/classes/Chapter" ], function ( Chapter ) {
-	chapterList = [];
+	var chapterList = [],
+		currentChapter = 0;
 
 	function chapterFactory ( nr, chapter ) {
 		var args = {
@@ -14,5 +15,12 @@ define( [ "typewriter/classes/Chapter" ], function ( Chapter ) {
 
 	$( ".chapter" ).each( chapterFactory );
 
-	chapterList[ 0 ].startReveal();
+	function showNextChapter () {
+		if ( currentChapter < chapterList.length ) {
+			chapterList[ currentChapter ].startReveal( showNextChapter );
+			currentChapter += 1;
+		}		
+	}
+
+	showNextChapter();
 } );
