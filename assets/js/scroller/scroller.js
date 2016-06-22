@@ -1,16 +1,16 @@
-define( [ "helper/cache" ], function ( _cache ) {
+define( [ "helper/cache", "helper/globals" ], function ( _cache, _globals ) {
 	var $htmlBody = _cache.$htmlBody,
 		$window = _cache.$window,
 		isScrolling = false;
 
 	function checkForScrollAbort () {
-		$htmlBody.on( "scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove", stopScroll );
+		// $htmlBody.on( "scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove", stopScroll );
 	}
 
 	function scrollDone () {
 		isScrolling = false;
 		$htmlBody.stop();
-		$htmlBody.off("scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove");
+		// $htmlBody.off("scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove");
 	}
 
 	function stopScroll ( event ) {
@@ -44,6 +44,13 @@ define( [ "helper/cache" ], function ( _cache ) {
 	function scrollToCenterElement( $element, duration ) {
 		scrollTo( $element, duration, ( $window.height() - $element.height() ) / 2 )
 	}
+
+	$htmlBody.on( "scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove", function( e ) {
+		if ( !_globals.allowScroll ) {
+			e.preventDefault();
+			e.stopPropagation();
+		}
+	})
 
 	return {
 		scrollTo: scrollTo,
