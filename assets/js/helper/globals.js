@@ -1,7 +1,7 @@
 define( [], function () {
 	return {
-		debug: false,
-		superDebug: false,
+		grid: false,
+		superGrid: false,
 		noAnimation: false
 	}
 } );
