@@ -3,6 +3,8 @@ define( [], function () {
 		grid: false,
 		superGrid: false,
 		noAnimation: false,
-		allowScroll: false
+		allowScroll: false,
+		defaultBasicTypeSpeed: 50,
+		typeSpeedMultiplyer: 1
 	}
 } );

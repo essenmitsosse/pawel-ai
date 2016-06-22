@@ -1,4 +1,8 @@
-define( [ "typewriter/classes/BasicTypeElement", "helper/errorMessenger" ], function ( BasicTypeElement, errorMessenger ) {
+define( [ 
+	"helper/globals", 
+	"typewriter/classes/BasicTypeElement", 
+	"helper/errorMessenger" 
+	], function ( _globals, BasicTypeElement, errorMessenger ) {
 	function Character ( args ) {
 		this.basicSetup( args );
 
@@ -13,7 +17,7 @@ define( [ "typewriter/classes/BasicTypeElement", "helper/errorMessenger" ], func
 	Character.prototype.elementName = "Single-Character";
 	Character.prototype.hasChildren = false;
 	Character.prototype.isElement = false;
-	Character.prototype.defaultDelay = 20;
+	Character.prototype.defaultDelay = _globals.defaultBasicTypeSpeed || 30;
 	Character.prototype.cursorToTheRight = true;
 
 	return Character;

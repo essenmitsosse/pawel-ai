@@ -52,17 +52,23 @@ Debug Options
 
 If you want to set a global option on startup you can add it as a query to the url. For example to set the grid flag to true and the noanimation flag to false add `?grid=1&noanimation=0`.
 
-#### grid (false, boolean) `CTRL G`
+#### grid (false, boolean) `CTRL`+`G`
 Shows the basic grid.
 
-#### superGrid (false, boolean) `CTRL SHIFT G`
+#### superGrid (false, boolean) `CTRL`+`SHIFT`+`G`
 Shows additional information about the positioning of elements.
 
-#### noAnimation (false, boolean) `CTRL A`
+#### noAnimation (false, boolean) `CTRL`+`A`
 Doesn’t show any animation, content is displayed immediately.
 
-#### allowScroll (false, boolean) `CTRL S`
+#### allowScroll (false, boolean) `CTRL`+`S`
 When set to true, allows to user to scroll on their own
+
+#### defaultBasicTypeSpeed (50, number)
+changes the default typespeed. Doesn’t influence elements with individual typespeeds
+
+#### typeSpeedMultiplyer (1, number) `CTRL`+`+` `CTRL`+`-`
+changes the default typespeed my the given multiplyer. This affects all typespeeds.
 
 
 
