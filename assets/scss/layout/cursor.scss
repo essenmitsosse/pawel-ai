@@ -9,6 +9,10 @@
 	&.idle {
 		@include animation( blinkCursor 1s infinite );
 	}
+
+	.noAnimation & {
+		display: none;
+	}
 	
 }
 
