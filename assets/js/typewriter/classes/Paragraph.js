@@ -23,5 +23,9 @@ define( [
 		scroller.scrollToCenterElement( this.$self, 500 );
 	}
 
+	Paragraph.prototype.beforeRevealCountdown = function () {
+		scroller.scrollToCenterElement( this.$self, 500 );
+	}
+
 	return Paragraph;
 } );
