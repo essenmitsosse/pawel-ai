@@ -191,3 +191,10 @@
     -ms-hyphens: $value;
     hyphens: $value;
 }
+
+@mixin animation ( $value ) {
+    -moz-animation: $value;
+    -webkit-animation: $value;
+    -o-animation: $value;
+	animation: $value;
+}
