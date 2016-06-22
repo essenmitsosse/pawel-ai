@@ -1,12 +1,12 @@
-define( [ "helper/globals", "helper/const", "helper/errorMessenger" ], function ( _globals, _const, errorMessenger ) {
+define( [ "helper/globals", "helper/cache", "helper/errorMessenger" ], function ( _globals, _cache, errorMessenger ) {
 	
 	function setGlobal ( name, value ) {
 		if ( name in _globals ) {
 			_globals[ name ] = value;
 			if ( !value ) {
-				_const.$body.removeClass( name );
+				_cache.$body.removeClass( name );
 			} else {
-				_const.$body.addClass( name );
+				_cache.$body.addClass( name );
 			}
 		} else {
 			errorMessenger.throwError( "Tried to set global \"" + name + "\", which doesn’t exist." );
