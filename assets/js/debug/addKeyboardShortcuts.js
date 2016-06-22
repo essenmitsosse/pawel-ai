@@ -1,4 +1,4 @@
-define( [ "helper/vars", "helper/globalSetter", "debug/keyboardHandler" ], function ( _vars, globalSetter, keyboardHandler ) {
+define( [ "helper/globalSetter", "debug/keyboardHandler" ], function ( globalSetter, keyboardHandler ) {
 
 	// noAnimation
 	keyboardHandler.addKeyboardShortcut( { key: 65, ctrl: true, }, globalSetter.getGlobalToggler( "noAnimation" ) );
