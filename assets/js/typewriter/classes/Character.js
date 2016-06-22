@@ -14,6 +14,7 @@ define( [ "typewriter/classes/BasicTypeElement", "helper/errorMessenger" ], func
 	Character.prototype.hasChildren = false;
 	Character.prototype.isElement = false;
 	Character.prototype.defaultDelay = 20;
+	Character.prototype.cursorToTheRight = true;
 
 	return Character;
 } );

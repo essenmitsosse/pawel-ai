@@ -1,4 +1,7 @@
-define( [ "helper/errorMessenger" ], function ( errorMessenger ) {
+define( [ 
+	"helper/errorMessenger", 
+	"cursor/cursor" 
+	], function ( errorMessenger, cursor ) {
 
 	function BasicTypeElement () {};
 
@@ -54,6 +57,7 @@ define( [ "helper/errorMessenger" ], function ( errorMessenger ) {
 
 	BasicTypeElement.prototype.reveal = function () {
 		this.$self.addClass( "s" );
+		cursor.moveToElement( this );
 		if ( this.hasChildren === true && this.revealChildren ) {
 			this.revealChildren();
 		} else {

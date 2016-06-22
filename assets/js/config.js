@@ -7,6 +7,6 @@ requirejs.config({
 		
 		"typewriter/chapterFactory",
 
-		"scroller/scroller"
+		"cursor/cursor"
 	]
 });
