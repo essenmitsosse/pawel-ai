@@ -9,7 +9,7 @@ define( [ "typewriter/classes/BasicTypeElement", "helper/errorMessenger" ], func
 	Image.prototype.name = "Image";
 	Image.prototype.elementName = "img";
 	Image.prototype.isElement = true;
-	Figure.prototype.defaultDelay = 50;
+	Image.prototype.defaultDelay = 50;
 
 	return Image;
 } );
