@@ -19,7 +19,6 @@ define( [
 		{ elementName: "figure", ClassConstructor: Figure } 
 	];
 	Chapter.prototype.isElement = true;
-	Chapter.prototype.defaultDelay = 0;
 
 	return Chapter;
 } );

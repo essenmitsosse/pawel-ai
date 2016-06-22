@@ -18,7 +18,6 @@ define( [
 		{ elementName: "span", ClassConstructor: Span } 
 	];
 	Paragraph.prototype.isElement = true;
-	Paragraph.prototype.defaultDelay = 0;
 
 	Paragraph.prototype.beforeRevealCountdown = function () {
 		scroller.scrollToCenterElement( this.$self, 500 );

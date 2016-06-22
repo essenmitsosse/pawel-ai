@@ -10,7 +10,6 @@ define( [ "typewriter/classes/ParentTypeElement", "typewriter/classes/Image", "h
 	Figure.prototype.elementName = "figure";
 	Figure.prototype.possibleChildElements = [ { elementName: "img", ClassConstructor: Image } ];
 	Figure.prototype.isElement = true;
-	Figure.prototype.defaultDelay = 50;
 
 	return Figure;
 } );

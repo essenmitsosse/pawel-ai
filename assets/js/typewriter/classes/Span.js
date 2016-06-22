@@ -17,7 +17,6 @@ define( [
 		{ elementName: "character", ClassConstructor: Character } 
 	];
 	Span.prototype.isElement = true;
-	Span.prototype.defaultDelay = 0;
 
 	Span.prototype.beforeGetChildren = function () {
 		if ( this.$self.children().length > 0 ) {
