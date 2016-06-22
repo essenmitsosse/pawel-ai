@@ -1,8 +1,9 @@
 define( [ 
 	"typewriter/classes/ParentTypeElement", 
-	"typewriter/classes/Span", 
+	"typewriter/classes/Span",
+	"scroller/scroller", 
 	"helper/errorMessenger" 
-	], function ( ParentTypeElement, Span, errorMessenger ) {
+	], function ( ParentTypeElement, Span, scroller, errorMessenger ) {
 
 	function Paragraph ( args ) {
 		this.basicSetup( args );
@@ -18,6 +19,10 @@ define( [
 	];
 	Paragraph.prototype.isElement = true;
 	Paragraph.prototype.defaultDelay = 0;
+
+	Paragraph.prototype.beforeRevealCountdown = function () {
+		scroller.scrollToCenterElement( this.$self, 500 );
+	}
 
 	return Paragraph;
 } );
