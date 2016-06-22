@@ -67,5 +67,22 @@ define( [
 		}
 	}
 
+	BasicTypeElement.prototype.getElementToMoveTo = function () {
+		return this;
+	}
+
+	BasicTypeElement.prototype.moveToStartFirst = function () {
+		this.notRevealedYet = true;
+	}
+
+	BasicTypeElement.prototype.checkIfCursorToTheRight = function () {
+		if ( this.notRevealedYet ) {
+			this.notRevealedYet = false;
+			return false;
+		} else {
+			return this.cursorToTheRight;
+		}
+	}
+
 	return BasicTypeElement;
 } );

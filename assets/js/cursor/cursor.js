@@ -17,6 +17,7 @@ define( [ "helper/cache" ], function ( _cache ) {
 	}
 
 	Cursor.prototype.afterMove = function () {
+		this.$outerCursor.removeClass( "idle" );
 		clearTimeout( this.currentTimeOut );
 		this.currentTimeOut = setTimeout( this.setToIdle.bind( this ), 100 );
 	}
@@ -24,21 +25,26 @@ define( [ "helper/cache" ], function ( _cache ) {
 	Cursor.prototype.updatePosition = function () {
 		var $currentElement = this.currentElement.$self,
 			currentElementPosition = $currentElement.offset(),
-			currentElementWidth = this.currentElement.cursorToTheRight ? $currentElement.width() : 0,
+			currentElementWidth = this.currentElement.checkIfCursorToTheRight() ? $currentElement.width() : 0,
 			left = currentElementPosition.left + currentElementWidth,
 			top = currentElementPosition.top;
 
-		this.$outerCursor.removeClass( "idle" ).css( {
+		this.$outerCursor.css( {
 			left: left,
 			top: top,
 			//width: this.currentElement.next && this.currentElement.next.cursorToTheRight ? this.currentElement.next.$self.width() : ""
 		} );
 
-		this.afterMove();
+		if ( ! ( this.currentLeft === left && this.currentTop === top ) ) {
+			this.afterMove();
+		}	
+
+		this.currentLeft = left;
+		this.currentTop = top;
 	}
 
 	Cursor.prototype.moveToElement = function ( element ) {
-		this.currentElement = element;
+		this.currentElement = element.getElementToMoveTo();
 		this.updatePosition();
 	}
 
