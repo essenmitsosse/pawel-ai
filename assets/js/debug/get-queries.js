@@ -65,6 +65,8 @@ define( [ "helper/globals", "helper/errorMessenger" ], function ( _globals, erro
 			}
 
 			errorMessenger.sendMessage( ErrorMessage );
+
+			return;
 		}
 
 		typeOfGlobal = getTypeOfGlobal( nameOfGlobal );
