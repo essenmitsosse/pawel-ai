@@ -39,3 +39,19 @@ SPAN (span)
 * **.t1 — .t12** moves the left side of that span to the given tab stop, text-align is left
 * **.tr1 — .tr12** move the right side of that span to the given tab stop, text-align is right
 
+Debug Options
+=============
+
+If you want to set a global option on startup you can add it as a query to the url. For example to set the grid flag to true and the noanimation flag to false add `?grid=1&noanimation=0`.
+
+#### grid (boolean) CTRL + G
+Shows the basic grid.
+
+#### superGrid (boolean) CTRL + SHIFT + G
+Shows additional information about the positioning of elements.
+
+#### noAnimation (boolean) CTRL + A
+Doesn’t show any animation, content is displayed immediately.
+
+
+
