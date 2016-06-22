@@ -1,14 +1,18 @@
 define( [ "helper/globalSetter", "debug/keyboardHandler" ], function ( globalSetter, keyboardHandler ) {
 
-	// noAnimation
+	// change typeSpeedMultiplyer 'CTRL +' 'Ctrl -'
+	keyboardHandler.addKeyboardShortcut( { key: 187, ctrl: true, }, globalSetter.getGlobalChanger( "typeSpeedMultiplyer", 0.1 ) );
+	keyboardHandler.addKeyboardShortcut( { key: 189, ctrl: true, }, globalSetter.getGlobalChanger( "typeSpeedMultiplyer", -0.1 ) );
+
+	// noAnimation 'CTRL A'
 	keyboardHandler.addKeyboardShortcut( { key: 65, ctrl: true, }, globalSetter.getGlobalToggler( "noAnimation" ) );
 	
-	// noScroll
+	// noScroll 'CTRL S'
 	keyboardHandler.addKeyboardShortcut( { key: 83, ctrl: true, }, globalSetter.getGlobalToggler( "allowScroll" ) );
 	
-	// debug
+	// debug 'CTRL + G'
 	keyboardHandler.addKeyboardShortcut( { key: 71, ctrl: true, }, globalSetter.getGlobalToggler( "grid" ) );
 	
-	// superdebug
+	// superdebug 'CTRL + SHIFT + G'
 	keyboardHandler.addKeyboardShortcut( { key: 71, ctrl: true, shift: true }, globalSetter.getGlobalToggler( "superGrid" ) );
 } );
