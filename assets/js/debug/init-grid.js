@@ -1,5 +1,5 @@
-define( [ "helper/vars" ], function ( _vars ) {
-	var grids = _vars.gridCount,
+define( [ "helper/cache" ], function ( _cache ) {
+	var grids = _cache.gridCount,
 		$debugWrapper = $( "<div/>", { id: "debug-wrapper" } ),
 		$innerGridWrapper = $( "<div/>", { class: "inner-grid-wrapper" } ),
 		i = 0;
@@ -18,5 +18,5 @@ define( [ "helper/vars" ], function ( _vars ) {
 	}
 
 	$innerGridWrapper.appendTo( $debugWrapper );
-	$debugWrapper.appendTo( _vars.$body );
+	$debugWrapper.appendTo( _cache.$body );
 } );
