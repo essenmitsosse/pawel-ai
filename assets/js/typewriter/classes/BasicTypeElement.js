@@ -8,6 +8,10 @@ define( [ "helper/errorMessenger" ], function ( errorMessenger ) {
 		this.next = next;
 	}
 
+	BasicTypeElement.prototype.randomizeTypeSpeed = function ( minFactor, maxFactor ) {
+		this.delay = this.delay * ( minFactor + ( Math.random() * ( maxFactor - minFactor ) ) );
+	}
+
 	BasicTypeElement.prototype.basicSetup = function ( args ) {
 		args = args || [];
 
@@ -15,10 +19,19 @@ define( [ "helper/errorMessenger" ], function ( errorMessenger ) {
 		this.nr = args.nr;
 		this.self = args.self;
 		this.prev = args.prev || false;
+		this.delay = args.delay || this.defaultDelay || false;
 
 		if ( this.isElement === true ) {
 			this.$self = $( this.self );
 		}
+
+		if ( this.$self ) {
+			this.delay = this.$self.data( "typespeed" ) || this.delay;
+		}
+
+		if ( this.delay ) {
+			this.randomizeTypeSpeed( 0.5, 2 );
+		}		
 
 		// add this as the next Element to the previous Element
 		if ( this.prev !== false ) {
@@ -33,12 +46,10 @@ define( [ "helper/errorMessenger" ], function ( errorMessenger ) {
 	}
 
 	BasicTypeElement.prototype.startReveal = function ( parentCallback ) {
-		var delay = ( this.defaultDelay || 0 ) * ( 1 + 5 * Math.random() );
-
 		this.parentCallbackAfterReveal = parentCallback;
 
 		if ( this.beforeRevealCountdown ) { this.beforeRevealCountdown(); }
-		setTimeout( this.reveal.bind( this ), delay );
+		setTimeout( this.reveal.bind( this ), this.delay );
 	}
 
 	BasicTypeElement.prototype.reveal = function () {

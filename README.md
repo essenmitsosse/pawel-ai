@@ -39,6 +39,14 @@ SPAN (span)
 * **.t1 — .t12** moves the left side of that span to the given tab stop, text-align is left
 * **.tr1 — .tr12** move the right side of that span to the given tab stop, text-align is right
 
+Element Options
+===============
+Element options are added to any element (unless otherwise stated) by giving it a data attribute. For example to set the typespeed to 1000ms you add `data-typespeed="1000"`
+
+### typespeed
+inherited: true
+value: time in miliseconds for each character. If applied to an element, that is not a character, the value will be inherited by its children, thereby setting all characters of an element to a certain typespeed
+
 Debug Options
 =============
 

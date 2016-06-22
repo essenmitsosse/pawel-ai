@@ -31,7 +31,8 @@ define( [ "typewriter/classes/BasicTypeElement", "helper/errorMessenger" ], func
 				nr: nr, 
 				self: childElement, 
 				parent: this,
-				prev: this.childList[ this.childList.length - 1 ] || false
+				prev: this.childList[ this.childList.length - 1 ] || false,
+				delay: this.delay
 			},
 			newChild = new ClassConstructor( args );
 
