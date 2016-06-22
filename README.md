@@ -1,52 +1,52 @@
 Possible Elements and Classes
-===============
+=============================
 
-SECTION (chapter)
-----------------
+`SECTION` (chapter)
+-------------------
 #### Must have
-* **class:** chapter
+* **class:** `chapter`
 
 #### possible child elements
-* P
-* FIGURE
+* `P`
+* `FIGURE`
 
-P (paragraph)
--------------
-#### possible child elements
-* SPAN
-
-#### classes
-* **.m1 — .m10** top margin with a height of 1 — 10 line-height
-* **.small** makes the font-size and line-height of that paragraph smaller, changes font-style to italic
-
-FIGURE (figure)
+`P` (paragraph)
 ---------------
 #### possible child elements
-* IMG
-* IFRAME
+* `SPAN`
 
 #### classes
-* **.w1 — .w12** sets the width of this element to the given column amoun
-* **.h1 — .h12** sets the height of that element to the given multiple of a line-height
-* **.m1 — .m10** sets the top margin to the given multiple of a line-height
+* **`.m1` — `.m10`** top margin with a height of 1 — 10 line-height
+* **`.small`** makes the font-size and line-height of that paragraph smaller, changes font-style to italic
 
-SPAN (span)
------------
+`FIGURE` (figure)
+-----------------
+#### possible child elements
+* `IMG`
+* `IFRAME`
+
+#### classes
+* **`.w1` — `.w12`** sets the width of this element to the given column amoun
+* **`.h1` — `.h12`** sets the height of that element to the given multiple of a line-height
+* **`.m1` — `.m10`** sets the top margin to the given multiple of a line-height
+
+`SPAN` (span)
+------------
 #### possible child elements
 * individual characters
 
 #### classes
-* **.t1 — .t12** moves the left side of that span to the given tab stop, text-align is left
-* **.tr1 — .tr12** move the right side of that span to the given tab stop, text-align is right
+* **`.t1` — `.t12`** moves the left side of that span to the given tab stop, text-align is left
+* **`.tr1` — `.tr12`** move the right side of that span to the given tab stop, text-align is right
 
 Element Options
 ===============
 Element options are added to any element (unless otherwise stated) by giving it a data attribute. For example to set the typespeed to 1000ms you add `data-typespeed="1000"`
 
-### typespeed
+### `typespeed`
 
-* **inherited:** true
-* **value:** time in miliseconds for each character. 
+* **inherited:** yes
+* **value:** time in miliseconds for each character.
 
 If applied to an element, that is not a character, the value will be inherited by its children, thereby setting all characters of an element to a certain typespeed
 
