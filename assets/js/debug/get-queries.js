@@ -43,7 +43,7 @@ define( [ "helper/globals", "helper/errorMessenger" ], function ( _globals, erro
 
 	function analiseVar( obj ) {
 
-		if ( typeof obj !== "Array" ) { return; }
+		if ( obj === "" ) { return; }
 
 		var objParts = obj.split( "=" ),
 			name = objParts[ 0 ],
