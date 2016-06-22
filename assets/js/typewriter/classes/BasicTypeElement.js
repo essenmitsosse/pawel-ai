@@ -53,7 +53,7 @@ define( [
 		this.parentCallbackAfterReveal = parentCallback;
 
 		if ( this.beforeRevealCountdown ) { this.beforeRevealCountdown(); }
-		setTimeout( this.reveal.bind( this ), this.delay * ( _globals.typeSpeedMultiplyer || 1 ) );
+		setTimeout( this.reveal.bind( this ), this.delay / ( _globals.typeSpeedMultiplyer || 1 ) );
 	}
 
 	BasicTypeElement.prototype.reveal = function () {
