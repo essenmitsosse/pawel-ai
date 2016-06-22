@@ -58,48 +58,48 @@ If you want to set a global option on startup you can add it as a query to the u
 #### `grid`
 
 * **type:** `boolean`
-* **default: ** `false`
-* **short-cut to toggle: ** `CTRL`+`G`
+* **default:** `false`
+* **short-cut to toggle:** `CTRL`+`G`
 
 Shows the basic grid.
 
 #### `superGrid`
 
 * **type:** `boolean`
-* **default: ** `false`
-* **short-cut to toggle: ** `CTRL`+`SHIFT`+`G`
+* **default:** `false`
+* **short-cut to toggle:** `CTRL`+`SHIFT`+`G`
 
 Shows additional information about the positioning of elements.
 
 #### `noAnimation`
 
 * **type:** `boolean`
-* **default: ** `false`
-* **short-cut to toggle: ** `CTRL`+`A`
+* **default:** `false`
+* **short-cut to toggle:** `CTRL`+`A`
 
 Doesn’t show any animation, content is displayed immediately.
 
 #### `allowScroll`
 
 * **type:** `boolean`
-* **default: ** `false`
-* **short-cut to toggle: ** `CTRL`+`S`
+* **default:** `false`
+* **short-cut to toggle:** `CTRL`+`S`
 
 When set to true, allows to user to scroll on their own. When set to false the user can’t scroll by default.
 
 #### `defaultBasicTypeSpeed`
 
 * **type:** `number`
-* **default: ** `50`
+* **default:** `50`
 
 Changes the default typespeed. Doesn’t influence elements with individual typespeeds.
 
 #### `typeSpeedMultiplyer`
 
 * **type:** `number`
-* **default: ** `1`
-* **short-cut to increase: ** `CTRL`+`+`
-* **short-cut to decrease: ** `CTRL`+`-`
+* **default:** `1`
+* **short-cut to increase:** `CTRL`+`+`
+* **short-cut to decrease:** `CTRL`+`-`
 
 Changes the typespeed by the given multiplyer. This affects all typespeeds.
 
