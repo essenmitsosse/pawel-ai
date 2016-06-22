@@ -1,4 +1,4 @@
-define( [ "debug/errorMessenger" ], function ( errorMessenger ) {
+define( [ "helper/errorMessenger" ], function ( errorMessenger ) {
 
 	function BasicTypeElement () {};
 

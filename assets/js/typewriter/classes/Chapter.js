@@ -2,7 +2,7 @@ define( [
 	"typewriter/classes/ParentTypeElement", 
 	"typewriter/classes/Paragraph", 
 	"typewriter/classes/Figure", 
-	"debug/errorMessenger" 
+	"helper/errorMessenger" 
 	], function ( ParentTypeElement, Paragraph, Figure, errorMessenger ) {
 
 	function Chapter ( args ) {

@@ -1,7 +1,7 @@
 define( [ 
 	"typewriter/classes/ParentTypeElement", 
 	"typewriter/classes/Character", 
-	"debug/errorMessenger" 
+	"helper/errorMessenger" 
 	], function ( ParentTypeElement, Character, errorMessenger ) {
 
 	function Span ( nr, self, prev, parent ) {

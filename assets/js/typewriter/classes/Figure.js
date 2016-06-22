@@ -1,4 +1,4 @@
-define( [ "typewriter/classes/ParentTypeElement", "typewriter/classes/Image", "debug/errorMessenger" ], function ( ParentTypeElement, Image, errorMessenger ) {
+define( [ "typewriter/classes/ParentTypeElement", "typewriter/classes/Image", "helper/errorMessenger" ], function ( ParentTypeElement, Image, errorMessenger ) {
 	function Figure ( args ) {
 		this.basicSetup( args );
 	}

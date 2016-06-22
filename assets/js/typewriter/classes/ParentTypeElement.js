@@ -1,4 +1,4 @@
-define( [ "typewriter/classes/BasicTypeElement", "debug/errorMessenger" ], function ( BasicTypeElement, errorMessenger ) {
+define( [ "typewriter/classes/BasicTypeElement", "helper/errorMessenger" ], function ( BasicTypeElement, errorMessenger ) {
 
 	function ParentTypeElement () {
 	};
