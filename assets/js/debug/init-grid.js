@@ -1,4 +1,4 @@
-define( [ "helper/vars", "debug/keyboardHandler" ], function ( _vars, _keyboardHandler ) {
+define( [ "helper/vars" ], function ( _vars ) {
 	var grids = _vars.gridCount,
 		$debugWrapper = $( "<div/>", { id: "debug-wrapper" } ),
 		$innerGridWrapper = $( "<div/>", { class: "inner-grid-wrapper" } ),

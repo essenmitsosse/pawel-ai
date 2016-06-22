@@ -1,4 +1,4 @@
-define( [ "helper/vars", "debug/KeyBoardShortCut" ], function ( _vars, KeyBoardShortCut ) {
+define( [ "debug/KeyBoardShortCut" ], function ( KeyBoardShortCut ) {
 	var keyBoardShortCuts = [];
 	
 	function addKeyboardShortcut ( args, callback ) {
