@@ -13,7 +13,7 @@ define( [ "typewriter/classes/BasicTypeElement", "helper/errorMessenger" ], func
 	Character.prototype.elementName = "Single-Character";
 	Character.prototype.hasChildren = false;
 	Character.prototype.isElement = false;
-	Character.prototype.defaultDelay = 50;
+	Character.prototype.defaultDelay = 20;
 
 	return Character;
 } );
