@@ -77,7 +77,7 @@ Shows additional information about the positioning of elements.
 * **default:** `false`
 * **short-cut to toggle:** `CTRL`+`A`
 
-Doesn’t show any animation, content is displayed immediately.
+Doesn’t show any animation, content is displayed immediately. NoAnimation also has the same effect as `allowScroll`.
 
 #### `allowScroll`
 

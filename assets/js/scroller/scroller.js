@@ -42,11 +42,13 @@ define( [ "helper/cache", "helper/globals" ], function ( _cache, _globals ) {
 	}
 
 	function scrollToCenterElement( $element, duration ) {
-		scrollTo( $element, duration, ( $window.height() - $element.height() ) / 2 )
+		if ( !_globals.allowScroll && !_globals.noAnimation ) {
+			scrollTo( $element, duration, ( $window.height() - $element.height() ) / 2 );
+		}
 	}
 
 	$htmlBody.on( "scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove", function( e ) {
-		if ( !_globals.allowScroll ) {
+		if ( !_globals.allowScroll && !_globals.noAnimation ) {
 			e.preventDefault();
 			e.stopPropagation();
 		}
