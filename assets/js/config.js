@@ -1,9 +1,9 @@
 requirejs.config({
 	include: [ 
 		"debug/keyboardHandler",
-		"debug/toggleDebug",
 		"debug/init-grid",
 		"debug/get-queries",
+		"debug/addKeyboardShortcuts",
 		
 		"typewriter/chapterFactory"
 	]
