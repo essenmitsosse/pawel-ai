@@ -5,6 +5,8 @@ requirejs.config({
 		"debug/get-queries",
 		"debug/addKeyboardShortcuts",
 		
-		"typewriter/chapterFactory"
+		"typewriter/chapterFactory",
+
+		"scroller/scroller"
 	]
 });

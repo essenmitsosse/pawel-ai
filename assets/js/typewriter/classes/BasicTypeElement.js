@@ -36,6 +36,8 @@ define( [ "helper/errorMessenger" ], function ( errorMessenger ) {
 		var delay = ( this.defaultDelay || 0 ) * ( 1 + 5 * Math.random() );
 
 		this.parentCallbackAfterReveal = parentCallback;
+
+		if ( this.beforeRevealCountdown ) { this.beforeRevealCountdown(); }
 		setTimeout( this.reveal.bind( this ), delay );
 	}
 
