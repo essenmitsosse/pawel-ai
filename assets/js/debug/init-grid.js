@@ -1,5 +1,5 @@
-define( [ "helper/cache" ], function ( _cache ) {
-	var grids = _cache.gridCount,
+define( [ "helper/const", "helper/cache" ], function ( _const, _cache ) {
+	var grids = _const.gridCount,
 		$debugWrapper = $( "<div/>", { id: "debug-wrapper" } ),
 		$innerGridWrapper = $( "<div/>", { class: "inner-grid-wrapper" } ),
 		i = 0;
