@@ -1,4 +1,4 @@
-define( [ "helper/cache" ], function ( _cache ) {
+define( [ "helper/cache", "timer/controller" ], function ( _cache, timerController ) {
 	function Cursor () {
 		this.createCursorElement();
 	}
@@ -9,7 +9,7 @@ define( [ "helper/cache" ], function ( _cache ) {
 
 		this.$outerCursor.append( this.$innerCursor );
 
-		_cache.$body.append( this.$outerCursor );
+		_cache.$main.append( this.$outerCursor );
 	}
 
 	Cursor.prototype.setToIdle = function () {
@@ -18,8 +18,9 @@ define( [ "helper/cache" ], function ( _cache ) {
 
 	Cursor.prototype.afterMove = function () {
 		this.$outerCursor.removeClass( "idle" );
-		clearTimeout( this.currentTimeOut );
-		this.currentTimeOut = setTimeout( this.setToIdle.bind( this ), 100 );
+
+		timerController.removeTimeout( this.currentTimeOut );
+		this.currentTimeOut = timerController.addTimeout( this.setToIdle.bind( this ), 100 );
 	}
 
 	Cursor.prototype.updatePosition = function () {
