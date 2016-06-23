@@ -1,7 +1,8 @@
 define( [ "helper/cache", "helper/globals" ], function ( _cache, _globals ) {
 	var $htmlBody = _cache.$htmlBody,
 		$window = _cache.$window,
-		isScrolling = false;
+		isScrolling = false,
+		currentPosition = 0;
 
 	function checkForScrollAbort () {
 		// $htmlBody.on( "scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove", stopScroll );
@@ -25,6 +26,12 @@ define( [ "helper/cache", "helper/globals" ], function ( _cache, _globals ) {
 		}
 	}
 
+	function scrollToCurrentPosition ( duration ) {
+		$htmlBody.animate({
+			scrollTop: currentPosition
+		}, duration || 250, scrollDone );
+	}
+
 	function scrollTo( $element, duration, offset ) {
 		duration = duration || 500;
 		offset = offset || 0;
@@ -34,21 +41,20 @@ define( [ "helper/cache", "helper/globals" ], function ( _cache, _globals ) {
 
 		isScrolling = true;
 
-		checkForScrollAbort();
+		currentPosition = $element.offset().top - offset
 
-		$htmlBody.animate({
-			scrollTop: $element.offset().top - offset
-		}, duration, scrollDone );
+		checkForScrollAbort();
+		scrollToCurrentPosition( duration );
 	}
 
 	function scrollToCenterElement( $element, duration ) {
-		if ( !_globals.allowScroll && !_globals.noAnimation ) {
+		if ( !_globals.allowScroll && !_globals.noAnimation && !_globals.isPaused ) {
 			scrollTo( $element, duration, ( $window.height() - $element.height() ) / 2 );
 		}
 	}
 
 	$htmlBody.on( "scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove", function( e ) {
-		if ( !_globals.allowScroll && !_globals.noAnimation ) {
+		if ( !_globals.allowScroll && !_globals.noAnimation && !_globals.isPaused ) {
 			e.preventDefault();
 			e.stopPropagation();
 		}
@@ -56,6 +62,7 @@ define( [ "helper/cache", "helper/globals" ], function ( _cache, _globals ) {
 
 	return {
 		scrollTo: scrollTo,
-		scrollToCenterElement: scrollToCenterElement
+		scrollToCenterElement: scrollToCenterElement,
+		scrollToCurrentPosition: scrollToCurrentPosition
 	}
 } );
