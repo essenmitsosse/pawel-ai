@@ -13,8 +13,8 @@ define( [
 		this.next = next;
 	}
 
-	BasicTypeElement.prototype.randomizeTypeSpeed = function ( minFactor, maxFactor ) {
-		this.delay = this.delay * ( minFactor + ( Math.random() * ( maxFactor - minFactor ) ) );
+	BasicTypeElement.prototype.randomize = function ( input, minFactor, maxFactor ) {
+		return input * ( minFactor + ( Math.random() * ( maxFactor - minFactor ) ) );
 	}
 
 	BasicTypeElement.prototype.basicSetup = function ( args ) {
@@ -30,11 +30,7 @@ define( [
 			this.$self = $( this.self );
 			this.$self.addClass( "ns" );
 			this.delay = this.$self.data( "typespeed" ) || this.delay;
-		}
-
-		if ( this.delay ) {
-			this.randomizeTypeSpeed( 0.5, 2 );
-		}		
+		}	
 
 		// add this as the next Element to the previous Element
 		if ( this.prev !== false ) {
@@ -48,6 +44,10 @@ define( [
 		}
 	}
 
+	BasicTypeElement.prototype.getDelay = function () {
+		return this.delay / ( _globals.typeSpeedMultiplyer || 1 );
+	}
+
 	BasicTypeElement.prototype.startReveal = function ( parentCallback ) {
 		this.parentCallbackAfterReveal = parentCallback;
 
@@ -55,7 +55,7 @@ define( [
 			this.beforeRevealCountdown(); 
 		}
 
-		timerController.addTimeout( this.reveal.bind( this ), this.delay / ( _globals.typeSpeedMultiplyer || 1 ) );
+		timerController.addTimeout( this.reveal.bind( this ), this.getDelay() );
 	}
 
 	BasicTypeElement.prototype.reveal = function () {
