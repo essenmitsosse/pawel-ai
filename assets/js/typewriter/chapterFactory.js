@@ -13,7 +13,7 @@ define( [ "typewriter/classes/Chapter" ], function ( Chapter ) {
 		chapterList.push( newElement );
 	};
 
-	$( ".chapter" ).each( chapterFactory );
+	
 
 	function showNextChapter () {
 		if ( currentChapter < chapterList.length ) {
@@ -22,5 +22,15 @@ define( [ "typewriter/classes/Chapter" ], function ( Chapter ) {
 		}		
 	}
 
-	showNextChapter();
+	function whenFontsHaveLoaded () {
+		$( ".chapter" ).each( chapterFactory );
+		showNextChapter();
+	}
+
+	if ( document.fonts && document.fonts.ready ) { // Chrome and Firefox
+		document.fonts.ready.then( whenFontsHaveLoaded );
+	} else {
+		whenFontsHaveLoaded();	
+	}
+	
 } );
