@@ -6,9 +6,10 @@ define( [], function () {
 		this.callback = callback;
 	}
 
-	KeyBoardShortCut.prototype.checkKeyPress = function ( key, ctrl, shift ) {
+	KeyBoardShortCut.prototype.checkKeyPress = function ( key, ctrl, shift, event ) {
 		if ( this.key == key && this.ctrl == ctrl && this.shift == shift ) {
 			this.callback();
+			event.preventDefault();
 		}
 	}
 
