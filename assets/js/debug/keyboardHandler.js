@@ -11,7 +11,7 @@ define( [ "debug/KeyBoardShortCut" ], function ( KeyBoardShortCut ) {
 			shift = event.shiftKey;
 
 		function checkSingleShortCut( shortCut ) {
-			shortCut.checkKeyPress( key, ctrl, shift );
+			shortCut.checkKeyPress( key, ctrl, shift, event );
 		}
 
 		keyBoardShortCuts.forEach( checkSingleShortCut );

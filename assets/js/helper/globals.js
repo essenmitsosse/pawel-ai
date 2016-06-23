@@ -5,6 +5,7 @@ define( [], function () {
 		noAnimation: false,
 		allowScroll: false,
 		defaultBasicTypeSpeed: 50,
-		typeSpeedMultiplyer: 1
+		typeSpeedMultiplyer: 1,
+		isPaused: false
 	}
 } );

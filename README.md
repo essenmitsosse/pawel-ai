@@ -55,6 +55,14 @@ Debug Options
 
 If you want to set a global option on startup you can add it as a query to the url. For example to set the grid flag to true and the noanimation flag to false add `?grid=1&noanimation=0`.
 
+#### `pause`
+
+* **type:** `boolean`
+* **default:** `false`
+* **short-cut to toggle:** `SPACEBAR`
+
+Pauses the animation
+
 #### `grid`
 
 * **type:** `boolean`

@@ -4,6 +4,9 @@ define( [ "helper/globalSetter", "debug/keyboardHandler" ], function ( globalSet
 	keyboardHandler.addKeyboardShortcut( { key: 187, ctrl: true, }, globalSetter.getGlobalChanger( "typeSpeedMultiplyer", 0.1 ) );
 	keyboardHandler.addKeyboardShortcut( { key: 189, ctrl: true, }, globalSetter.getGlobalChanger( "typeSpeedMultiplyer", -0.1 ) );
 
+	// noAnimation 'SPACEBAR'
+	keyboardHandler.addKeyboardShortcut( { key: 32 }, globalSetter.getGlobalToggler( "isPaused" ) );
+	
 	// noAnimation 'CTRL A'
 	keyboardHandler.addKeyboardShortcut( { key: 65, ctrl: true, }, globalSetter.getGlobalToggler( "noAnimation" ) );
 	
