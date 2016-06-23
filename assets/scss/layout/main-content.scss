@@ -1,8 +1,8 @@
 #main-content {
 	@include transition( all 0.2s );
 	background-color: $background-color;
-	@include filter( blur( 0 ) contrast(500%) contrast(100%) );
+	// @include filter( blur( 0 ) contrast(500%) contrast(100%) );
 	.isPaused & {
-		@include filter( blur( 0.2vw ) contrast(500%) contrast(80%) );
+		// @include filter( blur( 0.2vw ) contrast(500%) contrast(80%) );
 	}
 }
