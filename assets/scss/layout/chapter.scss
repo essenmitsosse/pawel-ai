@@ -79,7 +79,7 @@
 				.superGrid & {
 					border-left: none;
 					border-right: $debug-span-marker-width solid $debug-right-span-marker-color;
-					margin-left: $debug-span-marker-width;
+					margin-left: 0;
 					background-color: $debug-right-span-marker-background-color;
 
 					&:after {
