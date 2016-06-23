@@ -8,8 +8,8 @@ define( [], function () {
 
 	KeyBoardShortCut.prototype.checkKeyPress = function ( key, ctrl, shift, event ) {
 		if ( this.key == key && this.ctrl == ctrl && this.shift == shift ) {
-			this.callback();
 			event.preventDefault();
+			this.callback();
 		}
 	}
 
