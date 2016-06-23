@@ -12,6 +12,8 @@ define( [ "helper/globals", "helper/cache", "helper/errorMessenger" ], function 
 			if( userInput ) {
 				errorMessenger.sendMessage( "Global variable \"" + name + "\" has been set to " + value + "." );
 			}
+
+			return value;
 		} else {
 			errorMessenger.throwError( "Tried to set global \"" + name + "\", which doesn’t exist." );
 		}		
@@ -33,13 +35,21 @@ define( [ "helper/globals", "helper/cache", "helper/errorMessenger" ], function 
 		}
 	}
 
+	function getGlobal ( name ) {
+		if ( name in _globals ) {
+			return _globals[ name ];
+		} else {
+			errorMessenger.throwError( "Tried to get global \"" + name + "\", which doesn’t exist." );
+		}
+	}
+
 	function toggleGlobal ( name, userInput ) {
-		setGlobal( name, !_globals[ name ], userInput );
+		return setGlobal( name, !_globals[ name ], userInput );
 	}
 
 	function getGlobalToggler ( name ) {
 		return function () {
-			toggleGlobal( name, true );
+			return toggleGlobal( name, true );
 		};
 	}
 
@@ -61,6 +71,7 @@ define( [ "helper/globals", "helper/cache", "helper/errorMessenger" ], function 
 
 	return {
 		setGlobal: setGlobal,
+		getGlobal: getGlobal,
 		toggleGlobal: toggleGlobal,
 		getGlobalToggler: getGlobalToggler,
 		getGlobalChanger: getGlobalChanger
