@@ -28,9 +28,7 @@ define( [
 
 		if ( this.isElement === true ) {
 			this.$self = $( this.self );
-		}
-
-		if ( this.$self ) {
+			this.$self.addClass( "ns" );
 			this.delay = this.$self.data( "typespeed" ) || this.delay;
 		}
 
@@ -61,7 +59,7 @@ define( [
 	}
 
 	BasicTypeElement.prototype.reveal = function () {
-		this.$self.addClass( "s" );
+		this.$self.addClass( "s" ).removeClass( "ns" );
 		cursor.moveToElement( this );
 		if ( this.hasChildren === true && this.revealChildren ) {
 			this.revealChildren();

@@ -1,4 +1,13 @@
 .chapter {
+	* {
+		body:not(.noAnimation) &.ns {
+			height: 0;
+			opacity: 0;
+			overflow: hidden;
+			margin-top: 0 !important;
+		}
+	}
+
 	> p {
 		@include getAiRem( "height", 1 );
 		width: 100%;
@@ -195,15 +204,4 @@
 		$i: $i + 1;
 	} 
 
-
-}
-
-.c {
-	opacity: 0;
-
-	&.s,
-	.noAnimation & {
-		opacity: 1;
-	}
-}
 
