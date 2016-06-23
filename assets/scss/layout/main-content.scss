@@ -2,6 +2,6 @@
 	@include transition( all 0.5s );
 	background-color: $background-color;
 	.isPaused & {
-		@include filter( blur( 3px ) brightness(2) contrast(0.5)  );
+		@include filter( blur( 0.2vw ) contrast(500%) contrast(80%) );
 	}
 }
