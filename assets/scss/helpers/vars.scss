@@ -10,9 +10,10 @@ $background-color: #fff;
 $font-color: #000;
 
 // Grid
-$grid-outer-border: 3vw;
+$viewport-width: 0.98;
+$grid-outer-border: 3vw * $viewport-width;
 $grid-count: 12;
-$grid-inner-area: 100vw - ( 2 * 3vw );
+$grid-inner-area: 100vw * $viewport-width - ( 2 * $grid-outer-border );
 $single-grid: $grid-inner-area / 12;
 $grid-ratio: 1;
 
