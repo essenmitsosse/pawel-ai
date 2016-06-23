@@ -1,7 +1,8 @@
 #chapters-wrapper {
 	position: relative;
 	z-index: 1000;
-	margin-left: $grid-outer-border;
-	margin-right: $grid-outer-border;
+	padding-left: $grid-outer-border;
+	padding-right: $grid-outer-border;
 	margin-bottom: 40vh;
+	width: 100%;
 }
