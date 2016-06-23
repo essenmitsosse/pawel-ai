@@ -82,11 +82,11 @@
 }
 
 @mixin filter( $filter ) { 
-	-webkit-filter: unquote($filter);
-	-moz-filter: unquote($filter);
-	-ms-filter: unquote($filter);
-	-o-filter: unquote($filter);
-	filter: unquote($filter);
+	-webkit-filter: $filter;
+	-moz-filter: $filter;
+	-ms-filter: $filter;
+	-o-filter: $filter;
+	filter: $filter;
 }
 
 @mixin force-acceleration {
