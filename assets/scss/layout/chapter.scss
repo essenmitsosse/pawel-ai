@@ -185,7 +185,7 @@
 		$i: $i + 1;
 	} 
 
-	// image width
+	// image height
 	$i: 0;
 	@while ( $i < 10 ) {
 		.h#{$i} {
