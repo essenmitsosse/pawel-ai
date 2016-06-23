@@ -1,8 +1,8 @@
 define( [], function () {
 	return {
-		$body: $( "body" ),
-		$htmlBody: $( "html, body" ),
-		$window: $( window ),
+		$body: $body,
+		$htmlBody: $htmlBody,
+		$window: $_window,
 		$main: $( "#main-content" )
 	}
 } );
