@@ -65,6 +65,12 @@ module.exports = function(grunt) {
             },
         },
 
+        clean: {
+			build: {
+				src: ['dist']
+			}
+		},
+
 		htmlbuild: {
 			dist: {
 				src: '<%= assetsPath %>/html/index.html',
@@ -120,7 +126,7 @@ module.exports = function(grunt) {
 	});
 
 	// register task
-	grunt.registerTask( 'default', [ 'copy', 'sass', 'requirejs', 'htmlbuild' ]);
+	grunt.registerTask( 'default', [ 'clean', 'copy', 'sass', 'requirejs', 'htmlbuild' ]);
 	grunt.registerTask( 'css', [ 'sass' ]);
 	grunt.registerTask( 'js', [ 'requirejs' ]);
 	grunt.registerTask( 'html', [ 'htmlbuild' ]);
