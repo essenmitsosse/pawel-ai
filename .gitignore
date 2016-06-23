@@ -3,9 +3,5 @@
 *.map
 node_modules
 npm-debug.log
-*.eot
-*.ttf
-*.woff
-*.woff2
 *.sublime-*
 /dist
