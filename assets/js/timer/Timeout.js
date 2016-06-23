@@ -1,11 +1,15 @@
 define( [ "timer/list" ], function ( timeoutList ) {
+	var i = 0;
 	function Timeout ( callback, delay, noPause ) {
-		this.callback = callback;
+		this.callbackFunction = callback;
 		this.delay = Math.round( delay );
 		this.creationTime = window.performance.now();
 		this.noPause = noPause || false;
 
 		timeoutList.addToList( this );
+
+		this.i = i;
+		i += 1;
 
 		this.setTimeout();
 
@@ -15,7 +19,7 @@ define( [ "timer/list" ], function ( timeoutList ) {
 	}
 
 	Timeout.prototype.setTimeout = function () {
-		this.timeout = setTimeout( this.callback.bind( this ), this.delay );
+		this.timeout = setTimeout( this.callbackFunction.bind( this ), this.delay );
 	}
 
 	Timeout.prototype.clearTimeout = function () {
@@ -28,7 +32,7 @@ define( [ "timer/list" ], function ( timeoutList ) {
 	}
 
 	Timeout.prototype.callback = function () {
-		this.callback();
+		this.callbackFunction();
 		this.stop();
 	}
 

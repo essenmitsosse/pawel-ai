@@ -17,7 +17,7 @@ define( [
 	}
 
 	function addTimeoutThatDoesntPause ( callback, delay ) {
-		addTimeout( callback, delay, true )
+		return addTimeout( callback, delay, true )
 	}
 
 	function removeTimeout ( timeout ) {
