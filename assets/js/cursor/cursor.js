@@ -24,16 +24,14 @@ define( [ "helper/cache", "timer/controller" ], function ( _cache, timerControll
 	}
 
 	Cursor.prototype.updatePosition = function () {
-		var $currentElement = this.currentElement.$self,
-			currentElementPosition = $currentElement.offset(),
-			currentElementWidth = this.currentElement.checkIfCursorToTheRight() ? $currentElement.width() : 0,
+		var currentElementPosition = this.$currentElement.offset(),
+			currentElementWidth = this.currentlyIsAdding ? this.$currentElement.width() : 0,
 			left = currentElementPosition.left + currentElementWidth,
 			top = currentElementPosition.top;
 
 		this.$outerCursor.css( {
 			left: left,
-			top: top,
-			//width: this.currentElement.next && this.currentElement.next.cursorToTheRight ? this.currentElement.next.$self.width() : ""
+			top: top
 		} );
 
 		if ( ! ( this.currentLeft === left && this.currentTop === top ) ) {
@@ -44,8 +42,9 @@ define( [ "helper/cache", "timer/controller" ], function ( _cache, timerControll
 		this.currentTop = top;
 	}
 
-	Cursor.prototype.moveToElement = function ( element ) {
-		this.currentElement = element.getElementToMoveTo();
+	Cursor.prototype.moveToElement = function ( $element, isAdding ) {
+		this.$currentElement = $element;
+		this.currentlyIsAdding = isAdding;
 		this.updatePosition();
 	}
 

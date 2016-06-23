@@ -49,7 +49,7 @@ define( [ "helper/cache", "helper/globals" ], function ( _cache, _globals ) {
 
 	function scrollToCenterElement( $element, duration ) {
 		if ( !_globals.allowScroll && !_globals.noAnimation && !_globals.isPaused ) {
-			scrollTo( $element, duration, ( $window.height() - $element.height() ) / 2 );
+			scrollTo( $element, duration, 0 );
 		}
 	}
 

@@ -53,12 +53,29 @@
 			display: inline-block;
 			position: absolute;
 			z-index: 100;
+			height: 100%;
+			box-sizing: content-box;
+			white-space: nowrap;
+
+			> .inner {
+				display: inline-block;
+				height: 100%;
+			}
+
+			> .right {
+				float: right;
+				text-align: left;
+			}
 
 			.superGrid & {
 				border-left: $debug-span-marker-width solid $debug-span-marker-color;
 				margin-left: -$debug-span-marker-width;
 				background-color: $debug-span-marker-background-color;
 				z-index: 50;
+
+				> .right {
+					background-color: rgba( 0, 0, 0, .1 );
+				}
 
 				&:after {
 					@include debug-small-info;
@@ -111,7 +128,7 @@
 
 			// right grid tab stop positions
 			$i: 0;
-			@while ( $i < $grid-count ) {
+			@while ( $i <= $grid-count ) {
 				&.tr#{$i} {
 					width: ( 100% / $grid-count ) * $i;
 					@extend %tr-tabstop;
@@ -205,3 +222,4 @@
 	} 
 
 
+}

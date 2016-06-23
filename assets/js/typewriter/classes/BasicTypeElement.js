@@ -60,7 +60,6 @@ define( [
 
 	BasicTypeElement.prototype.reveal = function () {
 		this.$self.addClass( "s" ).removeClass( "ns" );
-		cursor.moveToElement( this );
 		if ( this.hasChildren === true && this.revealChildren ) {
 			this.revealChildren();
 		} else {
@@ -68,10 +67,6 @@ define( [
 				this.parentCallbackAfterReveal();
 			}
 		}
-	}
-
-	BasicTypeElement.prototype.getElementToMoveTo = function () {
-		return this;
 	}
 
 	BasicTypeElement.prototype.moveToStartFirst = function () {
