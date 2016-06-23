@@ -20,7 +20,7 @@ define( [ "helper/cache", "timer/controller" ], function ( _cache, timerControll
 		this.$outerCursor.removeClass( "idle" );
 
 		timerController.removeTimeout( this.currentTimeOut );
-		this.currentTimeOut = timerController.addTimeout( this.setToIdle.bind( this ), 100 );
+		this.currentTimeOut = timerController.addTimeoutThatDoesntPause( this.setToIdle.bind( this ), 100 );
 	}
 
 	Cursor.prototype.updatePosition = function () {

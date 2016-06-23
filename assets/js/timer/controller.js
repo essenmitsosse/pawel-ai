@@ -8,12 +8,16 @@ define( [
 	
 	var toggleGlobalPause = globalSetter.getGlobalToggler( "isPaused" );
 
-	function addTimeout ( callback, delay ) {
+	function addTimeout ( callback, delay, noPause ) {
 		if ( delay > 0 ) {
-			return new Timeout( callback, delay );
+			return new Timeout( callback, delay, noPause );
 		} else {
 			callback();
 		}
+	}
+
+	function addTimeoutThatDoesntPause ( callback, delay ) {
+		addTimeout( callback, delay, true )
 	}
 
 	function removeTimeout ( timeout ) {
@@ -49,6 +53,7 @@ define( [
 
 	return {
 		addTimeout: addTimeout,
+		addTimeoutThatDoesntPause: addTimeoutThatDoesntPause,
 		removeTimeout: removeTimeout,
 		toggleAllTimeouts: toggleAllTimeouts
 

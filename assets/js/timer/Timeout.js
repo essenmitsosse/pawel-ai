@@ -1,12 +1,17 @@
 define( [ "timer/list" ], function ( timeoutList ) {
-	function Timeout ( callback, delay ) {
+	function Timeout ( callback, delay, noPause ) {
 		this.callback = callback;
 		this.delay = Math.round( delay );
 		this.creationTime = window.performance.now();
+		this.noPause = noPause || false;
 
 		timeoutList.addToList( this );
 
 		this.setTimeout();
+
+		if ( this.noPause ) {
+			this.pause = this.pauseNot;
+		}
 	}
 
 	Timeout.prototype.setTimeout = function () {
@@ -33,6 +38,8 @@ define( [ "timer/list" ], function ( timeoutList ) {
 
 		this.clearTimeout();
 	}
+
+	Timeout.prototype.pauseNot = function () {};
 
 	Timeout.prototype.resume = function () {
 		this.setTimeout();
