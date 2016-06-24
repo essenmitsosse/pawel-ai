@@ -1,6 +1,12 @@
 .chapter {
 	position: relative;
 
+	opacity: 0;
+
+	.ready & {
+		opacity: 1;
+	}
+
 	* {
 		body:not(.noAnimation) &.ns {
 			height: 0;

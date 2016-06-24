@@ -1,4 +1,4 @@
-define( [ "typewriter/classes/Chapter" ], function ( Chapter ) {
+define( [ "helper/cache", "typewriter/classes/Chapter" ], function ( _cache, Chapter ) {
 	var chapterList = [],
 		currentChapter = 0;
 
@@ -25,6 +25,7 @@ define( [ "typewriter/classes/Chapter" ], function ( Chapter ) {
 	function whenFontsHaveLoaded () {
 		$( ".chapter" ).each( chapterFactory );
 		showNextChapter();
+		_cache.$body.addClass( "ready" );
 	}
 
 	if ( document.fonts && document.fonts.ready ) { // Chrome and Firefox
