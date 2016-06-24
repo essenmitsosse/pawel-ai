@@ -76,7 +76,7 @@ module.exports = function(grunt) {
 				src: '<%= assetsPath %>/html/index.html',
 				dest: 'dist/',
 				options: {
-					beautify: true,
+					beautify: false,
 					relative: true,
 					scripts: {
 						main: 'dist/js/main.js',
