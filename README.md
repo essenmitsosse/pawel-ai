@@ -77,10 +77,10 @@ If applied to an element, that is not a character, the value will be inherited b
 ### `delayend`
 
 * **inherited:** no
-* **allowed elements:** `SPAN`
+* **allowed elements:** `SPAN`, `DEL`
 * **value:** time in miliseconds after the last character of the span.
 
-This is a shorthand to add time between the last character of a `SPAN` and before the cursor moves to the beginning of the next `SPAN`.
+This is a shorthand to add time between the last character of a `SPAN` and before the cursor moves to the beginning of the next `SPAN`. For `DEL` it is the time after the last character has been typed and before the word is deleted.
 
 ### `delaylist`
 

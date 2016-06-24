@@ -38,10 +38,10 @@ define( [
 		} else if ( this.delayList && this.delayList.length > this.totalChars ) {
 			delay = this.delayList[ this.totalChars ] || this.delay;
 		} else {
-			delay = this.delay;
-		}		
+			delay = this.randomize(  this.delay, 0.25, 4 );
+		}
 
-		return this.randomize( delay / ( _globals.typeSpeedMultiplyer || 1 ), 0.25, 4 );
+		return delay / ( _globals.typeSpeedMultiplyer || 1 );
 	}
 
 	Span.prototype.beforeRevealCountdown = function () {
@@ -65,6 +65,7 @@ define( [
 			length: length,
 			pos: pos,
 			delay: $element.data( "delay" ),
+			delayEnd: $element.data( "delayend" ),
 			delayList: this.getDelayList( $element )
 		});
 	}
@@ -103,27 +104,47 @@ define( [
 		}
 
 		if ( this.delList ) {
+			this.deletedCharacters = 0;
 			this.delList.forEach( this.addListToRemoveCharList.bind( this ) );
 		}
 	}
 
 	Span.prototype.addListToRemoveCharList = function ( del ) {
 		this.removeCharList[ del.pos + del.length ] = -del.length;
+
+		console.log( "\n\nstart", this.delayList, "deleted", this.deletedCharacters );
 		
 		if ( del.delay ) {
-			var length = del.length + 2;
-			while ( length -= 1 ) {
-				this.delayList[ del.pos + del.length + length - 1 ] = del.delay;
+			var i = del.length + 1;
+			while ( i -= 1 ) {
+				this.delayList[ del.pos + del.length + this.deletedCharacters + i - 1 ] = del.delay;
 			}
 		}
+
+		console.log( "after delay", this.delayList, del.delay );
 
 		if ( del.delayList ) {
 			var i = 0;
 			while ( i < del.delayList.length ) {
-				this.delayList[ del.pos + del.length + i ] = del.delayList[ i ];
+				if ( del.delayList[ i ] !== undefined ) {
+					this.delayList[ del.pos + this.deletedCharacters + i ] = del.delayList[ i ];
+				}
 				i += 1;
 			}
 		}
+
+		console.log( "after delayList", this.delayList, del.delayList );
+
+		if ( del.delayEnd ) {
+			this.delayList[ del.pos + del.length + this.deletedCharacters ] = del.delayEnd;
+		}
+
+		console.log( "after delayEnd", this.delayList, del.delayEnd );
+
+		this.deletedCharacters += del.length;
+
+		
+		
 	}
 
 	Span.prototype.checkForDels = function ( nr, element ) {
@@ -218,7 +239,7 @@ define( [
 	Span.prototype.convertToDelay = function ( nr, b ) {
 		var nr = parseInt( nr );
 
-		if ( isNaN( nr ) ) { return this.delay; } 
+		if ( isNaN( nr ) ) { return; } 
 		else { return nr; }
 	}
 
