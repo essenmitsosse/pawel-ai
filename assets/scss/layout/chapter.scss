@@ -1,10 +1,28 @@
 .chapter {
 	position: relative;
-
 	opacity: 0;
+	padding-left: $grid-outer-border;
+	padding-right: $grid-outer-border;
+	padding-bottom: 50vh;
+	overflow: auto;
+	width: 100%;
+	bottom: 0;
+	background-color: $background-color;
+	@include transition( bottom 2s );
 
 	.ready & {
 		opacity: 1;
+	}
+
+	&.done {
+		position: fixed;
+		bottom: 100%;
+		z-index: 3000;
+		box-shadow: 0px 0px 10px rgba( 0, 0, 0, .5 );
+	}
+
+	body:not(.noAnimation) &.ns {
+		padding-bottom: 0;
 	}
 
 	* {

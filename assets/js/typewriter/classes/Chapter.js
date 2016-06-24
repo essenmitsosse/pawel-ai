@@ -1,7 +1,9 @@
 define( [ 
 	"typewriter/classes/ParentTypeElement", 
+	"typewriter/classes/Header", 
 	"typewriter/classes/Paragraph", 
 	"typewriter/classes/Figure", 
+	"cursor/cursor", 
 	"helper/errorMessenger" 
 	], function ( ParentTypeElement, Paragraph, Figure, errorMessenger ) {
 
@@ -16,9 +18,15 @@ define( [
 	Chapter.prototype.elementName = "section.chapter";
 	Chapter.prototype.possibleChildElements = [ 
 		{ elementName: "p", ClassConstructor: Paragraph }, 
-		{ elementName: "figure", ClassConstructor: Figure } 
+		{ elementName: "figure", ClassConstructor: Figure } , 
+		{ elementName: "header", ClassConstructor: Header }
 	];
 	Chapter.prototype.isElement = true;
+
+	Chapter.prototype.removeChapter = function () {
+		this.$self.addClass( "done" );
+		cursor.remove();
+	}
 
 	return Chapter;
 } );

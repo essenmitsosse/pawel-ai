@@ -13,12 +13,15 @@ define( [ "helper/cache", "typewriter/classes/Chapter" ], function ( _cache, Cha
 		chapterList.push( newElement );
 	};
 
-	
+	function removeCurrentChapter () {
+		chapterList[ currentChapter ].removeChapter();
+		currentChapter += 1;
+		showNextChapter();
+	}
 
 	function showNextChapter () {
 		if ( currentChapter < chapterList.length ) {
-			chapterList[ currentChapter ].startReveal( showNextChapter );
-			currentChapter += 1;
+			chapterList[ currentChapter ].startReveal( removeCurrentChapter, 2000 );
 		}		
 	}
 

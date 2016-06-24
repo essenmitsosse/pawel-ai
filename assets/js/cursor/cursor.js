@@ -23,16 +23,11 @@ define( [ "helper/cache", "timer/controller" ], function ( _cache, timerControll
 		this.currentTimeOut = timerController.addTimeoutThatDoesntPause( this.setToIdle.bind( this ), 100 );
 	}
 
-	Cursor.prototype.updatePosition = function () {
-		var currentElementOffset = this.$currentElement.offset(),
-			currentElementWidth = this.currentlyIsAdding ? this.$currentElement.width() : 0,
-			left = currentElementOffset.left + currentElementWidth,
-			top = currentElementOffset.top;
-
+	Cursor.prototype.moveToPosition = function ( left, top, height ) {
 		this.$outerCursor.css( {
 			left: left,
 			top: top,
-			height: this.$currentElement.height() || this.$currentElement.parent().height() || undefined
+			height: height
 		} );
 
 		if ( ! ( this.currentLeft === left && this.currentTop === top ) ) {
@@ -43,10 +38,24 @@ define( [ "helper/cache", "timer/controller" ], function ( _cache, timerControll
 		this.currentTop = top;
 	}
 
+	Cursor.prototype.updatePosition = function () {
+		var currentElementOffset = this.$currentElement.offset(),
+			currentElementWidth = this.currentlyIsAdding ? this.$currentElement.width() : 0,
+			left = currentElementOffset.left + currentElementWidth,
+			top = currentElementOffset.top,
+			height = this.$currentElement.height() || this.$currentElement.parent().height() || undefined;
+
+		this.moveToPosition( left, top, height );
+	}
+
 	Cursor.prototype.moveToElement = function ( $element, isAdding ) {
 		this.$currentElement = $element;
 		this.currentlyIsAdding = isAdding;
 		this.updatePosition();
+	}
+
+	Cursor.prototype.remove = function () {
+		this.moveToPosition( -1000, -1000, 0 );
 	}
 
 	return new Cursor();

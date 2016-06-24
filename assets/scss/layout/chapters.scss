@@ -1,10 +1,6 @@
 #chapters-wrapper {
 	position: relative;
-	z-index: 1000;
-	padding-left: $grid-outer-border;
-	padding-right: $grid-outer-border;
-	margin-bottom: 50vh;
-	width: 100%;
+	z-index: 1000;	width: 100%;
 
 	.grid & {
 		background-color: rgba( 0, 0, 0, .05 );

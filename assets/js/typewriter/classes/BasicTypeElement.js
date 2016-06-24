@@ -1,9 +1,8 @@
 define( [ 
 	"helper/globals",
-	"helper/errorMessenger", 
-	"cursor/cursor",
+	"helper/errorMessenger",
 	"timer/controller" 
-	], function ( _globals, errorMessenger, cursor, timerController ) {
+	], function ( _globals, errorMessenger, timerController ) {
 
 	function BasicTypeElement () {};
 
@@ -49,15 +48,16 @@ define( [
 		return this.delay / ( _globals.typeSpeedMultiplyer || 1 );
 	}
 
-	BasicTypeElement.prototype.startReveal = function ( parentCallback ) {
+	BasicTypeElement.prototype.startReveal = function ( parentCallback, delay ) {
 		this.parentCallbackAfterReveal = parentCallback;
 
+		this.$self.addClass( "s" ).removeClass( "ns" );
+
 		if ( this.beforeRevealCountdown ) { 
-			this.$self.addClass( "s" ).removeClass( "ns" );
 			this.beforeRevealCountdown(); 
 		}
 
-		timerController.addTimeout( this.reveal.bind( this ), this.getDelay() );
+		timerController.addTimeout( this.reveal.bind( this ), delay || this.getDelay() );
 	}
 
 	BasicTypeElement.prototype.reveal = function () {
