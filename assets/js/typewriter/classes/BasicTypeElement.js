@@ -30,7 +30,7 @@ define( [
 		if ( this.isElement === true ) {
 			this.$self = $( this.self );
 			this.$self.addClass( "ns" );
-			this.delay = this.$self.data( "typespeed" ) || this.delay;
+			this.delay = this.$self.data( "delay" ) || this.delay;
 		}	
 
 		// add this as the next Element to the previous Element
