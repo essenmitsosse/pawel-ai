@@ -43,7 +43,7 @@ Element Options
 ===============
 Element options are added to any element (unless otherwise stated) by giving it a data attribute. For example to set the typespeed to 1000ms you add `data-typespeed="1000"`
 
-### `typespeed`
+### `delay`
 
 * **inherited:** yes
 * **value:** time in miliseconds for each character.
