@@ -74,6 +74,14 @@ Element options are added to any element (unless otherwise stated) by giving it 
 
 If applied to an element, that is not a character, the value will be inherited by its children, thereby setting all characters of an element to a certain typespeed
 
+### `delayend`
+
+* **inherited:** no
+* **allowed elements:** `SPAN`
+* **value:** time in miliseconds after the last character of the span.
+
+This is a shorthand to add time between the last character of a `SPAN` and before the cursor moves to the beginning of the next `SPAN`.
+
 ### `delaylist`
 
 * **inherited:** no
