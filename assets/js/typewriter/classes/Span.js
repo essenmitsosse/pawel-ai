@@ -21,7 +21,8 @@ define( [
 	Span.prototype.elementName = "span";
 	Span.prototype.possibleChildElements = [ 
 		{ elementName: "character" },
-		{ elementName: "del" } 
+		{ elementName: "del" },
+		{ elementName: "span" }
 	];
 	Span.prototype.isElement = true;
 	Span.prototype.defaultDelay = _globals.defaultBasicTypeSpeed || 50;
@@ -61,9 +62,10 @@ define( [
 			pos += element.length;			
 		}
 
-		this.delList.push({
+		this.inlineList.push({
 			length: length,
 			pos: pos,
+			isDel: $element.is( "del" ),
 			delay: $element.data( "delay" ),
 			delayEnd: $element.data( "delayend" ),
 			delayList: this.getDelayList( $element )
@@ -103,55 +105,50 @@ define( [
 			this.removeCharList = [];
 		}
 
-		if ( this.delList ) {
+		if ( this.inlineList ) {
 			this.deletedCharacters = 0;
-			this.delList.forEach( this.addListToRemoveCharList.bind( this ) );
+			this.inlineList.forEach( this.convertInlineElements.bind( this ) );
 		}
 	}
 
-	Span.prototype.addListToRemoveCharList = function ( del ) {
-		this.removeCharList[ del.pos + del.length ] = -del.length;
-
-		console.log( "\n\nstart", this.delayList, "deleted", this.deletedCharacters );
+	Span.prototype.convertInlineElements = function ( inline ) {
 		
-		if ( del.delay ) {
-			var i = del.length + 1;
+		if ( inline.delay ) {
+			var i = inline.length + 1;
 			while ( i -= 1 ) {
-				this.delayList[ del.pos + del.length + this.deletedCharacters + i - 1 ] = del.delay;
+				if ( inline.isDel ) {
+					this.delayList[ inline.pos + inline.length + this.deletedCharacters + i - 1 ] = inline.delay;
+				} else {
+					this.delayList[ inline.pos + this.deletedCharacters + i - 1 ] = inline.delay;
+				}
 			}
 		}
 
-		console.log( "after delay", this.delayList, del.delay );
-
-		if ( del.delayList ) {
+		if ( inline.delayList ) {
 			var i = 0;
-			while ( i < del.delayList.length ) {
-				if ( del.delayList[ i ] !== undefined ) {
-					this.delayList[ del.pos + this.deletedCharacters + i ] = del.delayList[ i ];
+			while ( i < inline.delayList.length ) {
+				if ( inline.delayList[ i ] !== undefined ) {
+					this.delayList[ inline.pos + this.deletedCharacters + i ] = inline.delayList[ i ];
 				}
 				i += 1;
 			}
 		}
 
-		console.log( "after delayList", this.delayList, del.delayList );
-
-		if ( del.delayEnd ) {
-			this.delayList[ del.pos + del.length + this.deletedCharacters ] = del.delayEnd;
+		if ( inline.delayEnd ) {
+			this.delayList[ inline.pos + inline.length + this.deletedCharacters ] = inline.delayEnd;
 		}
 
-		console.log( "after delayEnd", this.delayList, del.delayEnd );
-
-		this.deletedCharacters += del.length;
-
-		
-		
+		if ( inline.isDel ) {
+			this.removeCharList[ inline.pos + inline.length ] = -inline.length;
+			this.deletedCharacters += inline.length;
+		}		
 	}
 
-	Span.prototype.checkForDels = function ( nr, element ) {
+	Span.prototype.checkForInlineElements = function ( nr, element ) {
 		var $element = $( element );
 
 		// check if element is a DEL
-		if ( $element.is( "del" ) ) {
+		if ( $element.is( "del" ) || $element.is( "span" ) ) {
 			this.getPosAndLength( $element );
 			$element.contents().unwrap();
 		} else {
@@ -166,8 +163,8 @@ define( [
 		// Check if any unallowed elements are in this
 		// If there are dels, remove them and save their position and size
 		if ( $children.length > 0 ) {
-			this.delList = [];
-			$children.each( this.checkForDels.bind( this ) );			
+			this.inlineList = [];
+			$children.each( this.checkForInlineElements.bind( this ) );			
 		}
 
 		// check for a right justified class
@@ -223,7 +220,6 @@ define( [
 			}
 
 			this.totalChars += 1;
-
 			this.$currentCharWrapper.html( this.fullTextContent.substr( 0, this.absChars ) );
 
 			cursor.moveToElement( this.$currentCharWrapper, true );
