@@ -9,22 +9,28 @@
 	bottom: 0;
 	background-color: $background-color;
 	@include transition( bottom 2s );
+	overflow-x: hidden;
 
 	.ready & {
 		opacity: 1;
 	}
 
-	&.done {
-		position: fixed;
-		bottom: 100%;
-		z-index: 3000;
-		box-shadow: 0px 0px 10px rgba( 0, 0, 0, .5 );
+	.grid & {
+		background-color: transparent;
 	}
 
-	body:not(.noAnimation) &.ns {
-		padding-bottom: 0;
-	}
+	body:not(.noAnimation) & {
+		&.done {
+			position: fixed;
+			bottom: 100%;
+			z-index: 3000;
+			box-shadow: 0px 0px 10px rgba( 0, 0, 0, .5 );
+		}
 
+		&.ns {
+			padding-bottom: 0;
+		}
+	}
 	* {
 		body:not(.noAnimation) &.ns {
 			height: 0;

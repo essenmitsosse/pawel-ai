@@ -1,5 +1,28 @@
 .chapter {
-	// margin in form of full rows
+
+	%margin-top {
+		.superGrid & {
+			&:before {
+				@include debug-small-info;
+
+				content: "1";
+
+				// center
+				margin: auto;
+				left: 0;
+				right: 0;
+
+				border-style: solid;
+				border-color: transparent;
+				border-left-width: 25vw;
+				border-right-width: 25vw;
+				
+				border-bottom: 5px solid $debug-margin-marker-color;
+			}
+		}
+	}
+	
+	// MARGIN TOP in form of full rows
 	$i: 0;
 	@while ( $i < 10 ) {
 		.m#{$i} {
@@ -19,7 +42,7 @@
 		$i: $i + 1;
 	}
 
-	// grid tab stop positions
+	// LEFT MARGIN grid tab stop positions
 	$i: 0;
 	@while ( $i < $grid-count ) {
 		.t#{$i} {
@@ -36,7 +59,7 @@
 		$i: $i + 1;
 	}
 
-	// right grid tab stop positions
+	// RIGHT MARGIN right grid tab stop positions
 	$i: 0;
 	@while ( $i <= $grid-count ) {
 		.tr#{$i} {

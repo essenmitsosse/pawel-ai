@@ -1,29 +1,27 @@
-.chapter {
-		> figure {
-		position: absolute;
+.chapter > figure  {
+	position: absolute;
 
+	> img {
+		width: 100%;
+		@include transform( scale( 1 ) );
+		@include transition( 1s all ease-out );
+	}
+
+	body:not(.noAnimation) &.ns {
 		> img {
-			width: 100%;
-			@include transform( scale( 1 ) );
-			@include transition( 1s all ease-out );
+			@include transform( scale( 0 ) );
 		}
+	}
 
-		body:not(.noAnimation) &.ns {
-			> img {
-				@include transform( scale( 0 ) );
-			}
-		}
-
-		> iframe {
-			width: 100%;
-			height: 100%;
-		}
+	> iframe {
+		width: 100%;
+		height: 100%;
 	}
 
 	// image width
 	$i: 0;
 	@while ( $i < $grid-count ) {
-		.w#{$i} {
+		&.w#{$i} {
 			width: ( 100% / $grid-count ) * $i;
 		}
 
@@ -33,7 +31,7 @@
 	// image height
 	$i: 0;
 	@while ( $i < 10 ) {
-		.h#{$i} {
+		&.h#{$i} {
 			@include getAiRem( "height", $i );
 		}
 
