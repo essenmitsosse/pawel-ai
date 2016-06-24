@@ -85,19 +85,15 @@ define( [ "typewriter/classes/BasicTypeElement", "helper/errorMessenger" ], func
 		errorMessenger.markErrorElement( $childElement, this.$self );
 	};
 
-	ParentTypeElement.prototype.revealChildren = function () {
+	ParentTypeElement.prototype.reveal = function () {
 		if ( this.currentChild < this.childList.length ) {
-			this.childList[ this.currentChild ].startReveal( this.revealChildren.bind( this ) );
-			this.currentChild += 1;
+			var currentChild = this.childList[ this.currentChild ];
+			this.currentChild += 1;	
+
+			currentChild.startReveal( this.reveal.bind( this ) );		
 		} else {
-			if( this.parentCallbackAfterReveal ) {
-				this.parentCallbackAfterReveal();
-			}
+			this.afterReveal();
 		}
-	}
-
-	ParentTypeElement.prototype.afterChildrenAreRevealed = function () {
-
 	}
 
 	BasicTypeElement.prototype.getElementToMoveTo = function () {

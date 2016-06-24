@@ -21,13 +21,13 @@ define( [ "helper/cache", "typewriter/classes/Chapter" ], function ( _cache, Cha
 
 	function showNextChapter () {
 		if ( currentChapter < chapterList.length ) {
-			chapterList[ currentChapter ].startReveal( removeCurrentChapter, 2000 );
+			chapterList[ currentChapter ].startReveal( removeCurrentChapter );
 		}		
 	}
 
 	function whenFontsHaveLoaded () {
 		$( ".chapter" ).each( chapterFactory );
-		showNextChapter();
+		showNextChapter( 0 );
 		_cache.$body.addClass( "ready" );
 	}
 

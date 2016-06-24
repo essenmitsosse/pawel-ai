@@ -5,7 +5,7 @@ define( [
 	"typewriter/classes/Figure", 
 	"cursor/cursor", 
 	"helper/errorMessenger" 
-	], function ( ParentTypeElement, Paragraph, Figure, errorMessenger ) {
+	], function ( ParentTypeElement, Header, Paragraph, Figure, cursor, errorMessenger ) {
 
 	function Chapter ( args ) {
 		this.basicSetup( args );		

@@ -1,0 +1,28 @@
+.chapter {
+	header {
+		position: fixed;
+		height: 100%;
+		width: 100%;
+		left: 0;
+		top: 0;
+		background: #000;
+		color: #fff;
+		text-align: center;
+		@include display-flex();
+		@include justify-content( center );
+		@include align-items( center );
+
+		&.done {
+			opacity: 0;
+			@include transition( opacity 2s );
+		}
+
+		.noAnimation & {
+			opacity: 0;
+		}
+
+		h1 {
+			padding-bottom: 2em;
+		}
+	}
+}

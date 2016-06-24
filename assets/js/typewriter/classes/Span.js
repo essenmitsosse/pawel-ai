@@ -50,7 +50,7 @@ define( [
 			this.$innerSelf.html( this.$currentCharWrapper );
 		}
 
-		cursor.moveToElement( this.$currentCharWrapper, true );
+		cursor.moveToElement( this.$innerSelf, true );
 	}
 
 	Span.prototype.getPosAndLength = function ( $element ) {
@@ -196,7 +196,7 @@ define( [
 		}
 	}
 
-	Span.prototype.revealChildren = function () {
+	Span.prototype.reveal = function () {
 		if ( this.currentChar < this.characterCount  ) {
 			var removesChar;
 			// check if there is a list of characters that should be removed and then check if this character should be removed
@@ -224,7 +224,7 @@ define( [
 
 			cursor.moveToElement( this.$currentCharWrapper, true );
 
-			timerController.addTimeout( this.revealChildren.bind( this ), this.getDelay() );
+			timerController.addTimeout( this.reveal.bind( this ), this.getDelay() );
 		} else {
 			if( this.parentCallbackAfterReveal ) {
 				this.parentCallbackAfterReveal();

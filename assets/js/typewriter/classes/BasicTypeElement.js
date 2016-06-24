@@ -49,6 +49,8 @@ define( [
 	}
 
 	BasicTypeElement.prototype.startReveal = function ( parentCallback, delay ) {
+		delay = delay || this.getDelay();
+
 		this.parentCallbackAfterReveal = parentCallback;
 
 		this.$self.addClass( "s" ).removeClass( "ns" );
@@ -57,16 +59,31 @@ define( [
 			this.beforeRevealCountdown(); 
 		}
 
-		timerController.addTimeout( this.reveal.bind( this ), delay || this.getDelay() );
+		if ( delay > 0 ) {
+			timerController.addTimeout( this.reveal.bind( this ), delay );
+		} else {
+			this.reveal();
+		}
+	}
+
+	BasicTypeElement.prototype.afterReveal = function () {
+		if ( this.afterDelay > 0 ) {
+			timerController.addTimeout( this.finish.bind( this ), this.afterDelay );
+		} else {
+			this.finish();
+		}
+	}
+
+	BasicTypeElement.prototype.finish = function () {
+		this.$self.addClass( "done" );
+		if( this.parentCallbackAfterReveal ) {
+			this.parentCallbackAfterReveal();
+		}	
 	}
 
 	BasicTypeElement.prototype.reveal = function () {
-		if ( this.hasChildren === true && this.revealChildren ) {
-			this.revealChildren();
-		} else {
-			if( this.parentCallbackAfterReveal ) {
-				this.parentCallbackAfterReveal();
-			}
+		if( this.afterReveal ) {
+			this.afterReveal();
 		}
 	}
 

@@ -9,6 +9,14 @@ Possible Elements and Classes
 #### possible child elements
 * `P`
 * `FIGURE`
+* `HEADER`
+
+`HEADER` (HEADER)
+---------------
+#### possible parent elements
+* `SECTION`
+
+The header is displayed at the beginning of each chapter. The header element needs to be the first element inside a `SECTION.chapter`, otherwise there most likely will be problems.
 
 `P` (paragraph)
 ---------------
