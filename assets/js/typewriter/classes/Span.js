@@ -10,6 +10,8 @@ define( [
 		this.basicSetup( nr, self, prev, parent );
 		this.delayList = this.getDelayList( this.$self );
 		this.getRemoveCharList();
+
+		this.delayEnd = this.$self.data( "delayend" );
 	}
 
 	Span.prototype = Object.create( ParentTypeElement.prototype );
@@ -31,7 +33,9 @@ define( [
 	Span.prototype.getDelay = function () {
 		var delay;
 
-		if ( this.delayList && this.delayList.length > this.totalChars ) {
+		if ( this.delayEnd && this.currentChar === this.characterCount ) {
+			delay = this.delayEnd;
+		} else if ( this.delayList && this.delayList.length > this.totalChars ) {
 			delay = this.delayList[ this.totalChars ] || this.delay;
 		} else {
 			delay = this.delay;
