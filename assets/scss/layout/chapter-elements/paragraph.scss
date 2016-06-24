@@ -25,6 +25,13 @@
 		}			
 	}
 
+	&:not(.small) + .small:not(.m1):not(.m2):not(.m3):not(.m4):not(.m5):not(.m6):not(.m7):not(.m9):not(.m10) {
+		> span {
+			@include getAiRem( "margin-top", $line-height-ai-small-rel * 0.13 );
+		}
+		
+	}
+
 	&:after {
 		content: "";
 		width: 100%;

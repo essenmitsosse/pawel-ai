@@ -1,6 +1,6 @@
 // Font-sizes
 $base-font-size: 18px;
-$base-line-height-rel: 1.2;
+$base-line-height-rel: 1;
 $base-relative-font-size: 1 / $base-line-height-rel;
 
 // Colors
@@ -22,8 +22,8 @@ $ai-line-height: $single-grid * $grid-ratio;
 $ai-line-height-rel: $base-line-height-rel;
 $ai-font-size: $ai-line-height / $ai-line-height-rel;
 
-$font-size-ai-small-rel: 0.33;
-$line-height-ai-small-rel: 0.5;
+$font-size-ai-small-rel: 0.4166;
+$line-height-ai-small-rel: $font-size-ai-small-rel * $base-line-height-rel;
 
 // Debug
 $debug-border-color: rgba( 0, 0, 0, .25 );
