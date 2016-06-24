@@ -8,6 +8,7 @@ define( [
 	function BasicTypeElement () {};
 
 	BasicTypeElement.prototype.name = "BasicTypeElement";
+	BasicTypeElement.prototype.defaultDelay = 0;
 
 	BasicTypeElement.prototype.addNext = function ( next ) {
 		this.next = next;
@@ -52,6 +53,7 @@ define( [
 		this.parentCallbackAfterReveal = parentCallback;
 
 		if ( this.beforeRevealCountdown ) { 
+			this.$self.addClass( "s" ).removeClass( "ns" );
 			this.beforeRevealCountdown(); 
 		}
 
@@ -59,7 +61,6 @@ define( [
 	}
 
 	BasicTypeElement.prototype.reveal = function () {
-		this.$self.addClass( "s" ).removeClass( "ns" );
 		if ( this.hasChildren === true && this.revealChildren ) {
 			this.revealChildren();
 		} else {
@@ -71,15 +72,6 @@ define( [
 
 	BasicTypeElement.prototype.moveToStartFirst = function () {
 		this.notRevealedYet = true;
-	}
-
-	BasicTypeElement.prototype.checkIfCursorToTheRight = function () {
-		if ( this.notRevealedYet ) {
-			this.notRevealedYet = false;
-			return false;
-		} else {
-			return this.cursorToTheRight;
-		}
 	}
 
 	return BasicTypeElement;

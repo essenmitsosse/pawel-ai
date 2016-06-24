@@ -19,12 +19,20 @@ define( [
 		{ elementName: "character" } 
 	];
 	Span.prototype.isElement = true;
-	Span.prototype.defaultDelay = _globals.defaultBasicTypeSpeed || 30;
+	Span.prototype.defaultDelay = _globals.defaultBasicTypeSpeed || 50;
 	Span.prototype.currentCharacter = 0;
 	Span.prototype.typeingForward = true;
 
 	Span.prototype.getDelay = function () {
 		return this.randomize( this.delay / ( _globals.typeSpeedMultiplyer || 1 ), 0.25, 4 );
+	}
+
+	Span.prototype.beforeRevealCountdown = function () {
+		if ( this.currentCharacter == 0 ) {
+			this.$innerSelf.html( this.$currentCharacterWrapper );
+		}
+
+		cursor.moveToElement( this.$currentCharacterWrapper, true );
 	}
 
 	Span.prototype.getChildren = function () {
@@ -64,10 +72,6 @@ define( [
 	}
 
 	Span.prototype.revealChildren = function () {
-		if ( this.currentCharacter == 0 ) {
-			this.$innerSelf.html( this.$currentCharacterWrapper );
-		}
-
 		if ( this.currentCharacter < this.characterCount  ) {
 			this.currentCharacter += 1;
 
