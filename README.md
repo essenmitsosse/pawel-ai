@@ -12,6 +12,9 @@ Possible Elements and Classes
 
 `P` (paragraph)
 ---------------
+#### possible parent elements
+* `SECTION`
+
 #### possible child elements
 * `SPAN`
 
@@ -21,6 +24,9 @@ Possible Elements and Classes
 
 `FIGURE` (figure)
 -----------------
+#### possible parent elements
+* `SECTION`
+
 #### possible child elements
 * `IMG`
 * `IFRAME`
@@ -32,12 +38,30 @@ Possible Elements and Classes
 
 `SPAN` (span)
 ------------
+#### possible parent elements
+* `P`
+
 #### possible child elements
 * individual characters
+* `DEL`
 
 #### classes
 * **`.t1` — `.t12`** moves the left side of that span to the given tab stop, text-align is left
 * **`.tr1` — `.tr12`** move the right side of that span to the given tab stop, text-align is right
+
+#### Data-attributes
+* `delay`
+* `delaylist`
+* `removelist`
+
+`DEL` (span)
+-------------
+#### Data-attributes
+* `delay`
+* `delaylist`
+* `removelist`
+
+Text inside a `DEL` will be written and then removed, making it look like it was corrected.
 
 Element Options
 ===============
@@ -49,6 +73,22 @@ Element options are added to any element (unless otherwise stated) by giving it 
 * **value:** time in miliseconds for each character.
 
 If applied to an element, that is not a character, the value will be inherited by its children, thereby setting all characters of an element to a certain typespeed
+
+### `delaylist`
+
+* **inherited:** no
+* **allowed elements:** `SPAN`
+* **value:** comma seperated list for time in miliseconds for each character.
+
+Each element in the list corespondents to the delay of the character at the same position in the string. The first value will delay the first character and so on. If leaved empty the default delay will be used.
+
+### `removelist`
+
+* **inherited:** no
+* **allowed elements:** `SPAN`
+* **value:** comma seperated list position of characters from which given amount of character shall be removed.
+
+Each element in the list corespondents to a character from which the given amount of character will be removed. Value needs to be negative or will be ignored.
 
 Debug Options
 =============
