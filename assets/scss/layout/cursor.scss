@@ -7,13 +7,13 @@
 	animation-timing-function: ease-in-out;
 
 	&.idle {
-		@include animation( blinkCursor 1s infinite );
+		@include animation( blinkCursor 2s infinite );
 	}
 
 	.noAnimation & {
 		display: none;
 	}
-	
+
 }
 
 @keyframes blinkCursor {
