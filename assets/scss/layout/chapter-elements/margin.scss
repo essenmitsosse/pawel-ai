@@ -1,0 +1,56 @@
+.chapter {
+	// margin in form of full rows
+	$i: 0;
+	@while ( $i < 10 ) {
+		.m#{$i} {
+			@include getAiRem( "margin-top", $i );
+			@extend %margin-top;
+			.superGrid & {
+				&:before {
+					@include getAiRem( "height", $i );
+					@include getAiRem( "line-height", $i );
+					@include getAiRem( "border-bottom-width", $i );
+					@include getAiRem( "top", -$i );
+					content: "#{$i}";
+				}
+			}
+		}
+
+		$i: $i + 1;
+	}
+
+	// grid tab stop positions
+	$i: 0;
+	@while ( $i < $grid-count ) {
+		.t#{$i} {
+			left: ( 100% / $grid-count ) * $i;
+
+			// Numbers for debug tabstops
+			.superGrid & {
+				&:after {
+					content: "#{$i}";
+				}
+			}
+		}
+
+		$i: $i + 1;
+	}
+
+	// right grid tab stop positions
+	$i: 0;
+	@while ( $i <= $grid-count ) {
+		.tr#{$i} {
+			width: ( 100% / $grid-count ) * $i;
+			@extend %tr-tabstop;
+
+			// Numbers for debug tabstops
+			.superGrid & {
+				&:after {
+					content: "#{$i}";
+				}
+			}
+		}
+
+		$i: $i + 1;
+	} 
+}

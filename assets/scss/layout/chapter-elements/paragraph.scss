@@ -1,0 +1,186 @@
+
+.chapter {
+	> p {
+		@include getAiRem( "height", 1 );
+		width: 100%;
+		position: relative;
+
+		&.v2 {
+			font-style: italic;
+		}
+
+		&.small {
+			@include getAiFontRem( "font-size", $font-size-ai-small-rel );
+			@include getAiRem( "line-height", $line-height-ai-small-rel );
+			@include getAiRem( "height", $line-height-ai-small-rel );
+
+			> span {
+				.superGrid & {
+					border-color: $debug-small-span-marker-color;
+					background-color: $debug-small-span-marker-background-color;
+
+					&:after {
+						background-color: $debug-small-span-marker-color;
+					}
+				}
+			}			
+		}
+
+		&:after {
+			content: "";
+			width: 100%;
+			height: 100%;
+			display: block;
+			position: absolute;
+			top: 0;
+			left: 0;
+
+			.grid & {
+				border-bottom: $debug-border;
+			}
+
+			.superGrid & {
+				background-color: rgba( 0, 0, 0, .02 );
+			}
+		}
+
+		> span {
+			display: inline-block;
+			position: absolute;
+			z-index: 100;
+			height: 100%;
+			box-sizing: content-box;
+			white-space: pre;
+
+			> .inner {
+				display: inline-block;
+				height: 100%;
+			}
+
+			> .right {
+				float: right;
+				text-align: left;
+			}
+
+			.superGrid & {
+				border-left: $debug-span-marker-width solid $debug-span-marker-color;
+				margin-left: -$debug-span-marker-width;
+				background-color: $debug-span-marker-background-color;
+				z-index: 50;
+
+				> .right {
+					background-color: rgba( 0, 0, 0, .1 );
+				}
+
+				&:after {
+					@include debug-small-info;
+
+					content: "0";
+
+					@include getFontRem( "left", $debug-span-marker-size * -0.5 );
+					@include getFontRem( "top", $debug-span-marker-size * -0.5 );
+					margin-left: -$debug-span-marker-width / 2;
+					border-radius: 100%;
+					background-color: $debug-span-marker-color;
+				}
+			}
+
+			&%tr-tabstop {
+				text-align: right;
+
+				.superGrid & {
+					border-left: none;
+					border-right: $debug-span-marker-width solid $debug-right-span-marker-color;
+					margin-left: 0;
+					background-color: $debug-right-span-marker-background-color;
+
+					&:after {
+						left: auto;
+						@include getFontRem( "right", $debug-span-marker-size * -0.5 );
+						margin-left: 0;
+						margin-right: -$debug-span-marker-width / 2;
+						background-color: $debug-right-span-marker-color;
+					}
+				}
+			}
+		}
+	}
+
+	%margin-top {
+		.superGrid & {
+			&:before {
+				@include debug-small-info;
+
+				content: "1";
+
+				// center
+				margin: auto;
+				left: 0;
+				right: 0;
+ 
+				border-style: solid;
+				border-color: transparent;
+				border-left-width: 25vw;
+				border-right-width: 25vw;
+				
+				border-bottom: 5px solid $debug-margin-marker-color;
+			}
+		}
+	}
+
+}
+
+	// margin in form of full rows
+	$i: 0;
+	@while ( $i < 10 ) {
+		.m#{$i} {
+			@include getAiRem( "margin-top", $i );
+			@extend %margin-top;
+			.superGrid & {
+				&:before {
+					@include getAiRem( "height", $i );
+					@include getAiRem( "line-height", $i );
+					@include getAiRem( "border-bottom-width", $i );
+					@include getAiRem( "top", -$i );
+					content: "#{$i}";
+				}
+			}
+		}
+
+		$i: $i + 1;
+	}
+
+	// grid tab stop positions
+	$i: 0;
+	@while ( $i < $grid-count ) {
+		.t#{$i} {
+			left: ( 100% / $grid-count ) * $i;
+
+			// Numbers for debug tabstops
+			.superGrid & {
+				&:after {
+					content: "#{$i}";
+				}
+			}
+		}
+
+		$i: $i + 1;
+	}
+
+	// right grid tab stop positions
+	$i: 0;
+	@while ( $i <= $grid-count ) {
+		.tr#{$i} {
+			width: ( 100% / $grid-count ) * $i;
+			@extend %tr-tabstop;
+
+			// Numbers for debug tabstops
+			.superGrid & {
+				&:after {
+					content: "#{$i}";
+				}
+			}
+		}
+
+		$i: $i + 1;
+	} 
