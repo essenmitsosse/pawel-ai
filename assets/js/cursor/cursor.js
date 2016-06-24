@@ -24,14 +24,15 @@ define( [ "helper/cache", "timer/controller" ], function ( _cache, timerControll
 	}
 
 	Cursor.prototype.updatePosition = function () {
-		var currentElementPosition = this.$currentElement.offset(),
+		var currentElementOffset = this.$currentElement.offset(),
 			currentElementWidth = this.currentlyIsAdding ? this.$currentElement.width() : 0,
-			left = currentElementPosition.left + currentElementWidth,
-			top = currentElementPosition.top;
+			left = currentElementOffset.left + currentElementWidth,
+			top = currentElementOffset.top;
 
 		this.$outerCursor.css( {
 			left: left,
-			top: top
+			top: top,
+			height: this.$currentElement.height() || this.$currentElement.parent().height() || undefined
 		} );
 
 		if ( ! ( this.currentLeft === left && this.currentTop === top ) ) {
