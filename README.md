@@ -44,6 +44,7 @@ Possible Elements and Classes
 #### possible child elements
 * individual characters
 * `DEL`
+* `SPAN` (only one level deep, no classes allowed)
 
 #### classes
 * **`.t1` — `.t12`** moves the left side of that span to the given tab stop, text-align is left
@@ -72,7 +73,7 @@ Element options are added to any element (unless otherwise stated) by giving it 
 * **inherited:** yes
 * **value:** time in miliseconds for each character.
 
-If applied to an element, that is not a character, the value will be inherited by its children, thereby setting all characters of an element to a certain typespeed
+If applied to an element, that is not a character, the value will be inherited by its children, thereby setting all characters of an element to a certain typespeed. If applied to a `del` element, only the deletion will be set to the given value
 
 ### `delayend`
 
