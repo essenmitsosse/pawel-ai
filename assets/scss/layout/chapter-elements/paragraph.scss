@@ -1,35 +1,58 @@
 
-.chapter > p {
-	@include getAiRem( "height", 1 );
-	width: 100%;
-	position: relative;
+.chapter {
+	> p {
+		@include getAiRem( "height", 1 );
+		width: 100%;
+		position: relative;
 
-	&.v2 {
-		font-style: italic;
-	}
+		&.v2 {
+			font-style: italic;
+		}
 
-	&.small {
-		@include getAiFontRem( "font-size", $font-size-ai-small-rel );
-		@include getAiRem( "line-height", $line-height-ai-small-rel );
-		@include getAiRem( "height", $line-height-ai-small-rel );
+		&.small {
+			@include getAiFontRem( "font-size", $font-size-ai-small-rel );
+			@include getAiRem( "line-height", $line-height-ai-small-rel );
+			@include getAiRem( "height", $line-height-ai-small-rel );			
+		}
 
-		> span {
-			.superGrid & {
-				border-color: $debug-small-span-marker-color;
-				background-color: $debug-small-span-marker-background-color;
+		&.big {
+			@include getAiFontRem( "font-size", $font-size-ai-big-rel );
+			@include getAiRem( "line-height", $line-height-ai-big-rel );
+			@include getAiRem( "height", $line-height-ai-big-rel );	
+		}
 
-				&:after {
-					background-color: $debug-small-span-marker-color;
+		&.big, &.small {
+			> span {
+				.superGrid & {
+					border-color: $debug-small-span-marker-color;
+					background-color: $debug-small-span-marker-background-color;
+
+					&:after {
+						background-color: $debug-small-span-marker-color;
+					}
 				}
 			}
-		}			
+		}
 	}
 
-	&:not(.small) + .small:not(.m1):not(.m2):not(.m3):not(.m4):not(.m5):not(.m6):not(.m7):not(.m9):not(.m10) {
-		> span {
-			@include getAiRem( "margin-top", $line-height-ai-small-rel * 0.13 );
-		}
-		
+	// normal after big margin
+	> p.big + p:not(.small):not(.m1):not(.m2):not(.m3):not(.m4):not(.m5):not(.m6):not(.m7):not(.m9):not(.m10) {
+		@include getAiRem( "margin-top", $ai-line-height-rel * 0.13 );		
+	}
+
+	// small after normal margin
+	> p:not(.small) + p.small:not(.m1):not(.m2):not(.m3):not(.m4):not(.m5):not(.m6):not(.m7):not(.m9):not(.m10) {
+		@include getAiRem( "margin-top", $line-height-ai-small-rel * 0.13 );		
+	}
+
+	// small after big margin
+	> p.big + p.small:not(.m1):not(.m2):not(.m3):not(.m4):not(.m5):not(.m6):not(.m7):not(.m9):not(.m10) {
+		@include getAiRem( "margin-top", $ai-line-height-rel * 0.35 );		
+	}
+
+	// first paragraph margin
+	header + p {
+		margin-top: $grid-outer-border;
 	}
 
 	&:after {
@@ -49,6 +72,8 @@
 			background-color: rgba( 0, 0, 0, .02 );
 		}
 	}
+
+
 
 	> span {
 		display: inline-block;
@@ -109,11 +134,5 @@
 				}
 			}
 		}
-	}
-}
-
-.chapter {
-	header + p {
-		margin-top: $grid-outer-border;
 	}
 }

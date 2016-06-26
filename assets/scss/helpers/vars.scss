@@ -25,6 +25,9 @@ $ai-font-size: $ai-line-height / $ai-line-height-rel;
 $font-size-ai-small-rel: 0.4166;
 $line-height-ai-small-rel: $font-size-ai-small-rel * $base-line-height-rel;
 
+$font-size-ai-big-rel: 2.5;
+$line-height-ai-big-rel: $font-size-ai-big-rel * 0.8;
+
 // Debug
 $debug-border-color: rgba( 0, 0, 0, .25 );
 $debug-border: 1px solid $debug-border-color;
