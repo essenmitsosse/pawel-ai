@@ -28,10 +28,12 @@ html {
 
 ::-webkit-scrollbar-thumb {
 	background-color: #000;
+	border-left: 0.3vw solid #fff;
+	border-right: 0.3vw solid #fff;
 }
 
 ::-webkit-scrollbar-track { 
-	background-color: rgba( 0, 0, 0, .2 );
+	background-color: rgba( 255, 255, 255, 0 );
 } 
 
 body {
@@ -41,5 +43,4 @@ body {
 	font-family: "Distinct";
 	text-transform: lowercase;
 	background-color: $background-color;
-
 }

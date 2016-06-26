@@ -10,7 +10,7 @@ $background-color: rgba( 255, 255, 255, 1 );
 $font-color: rgba( 0, 0, 0, 1 );
 
 // Grid
-$viewport-width: 0.98;
+$viewport-width: 0.985;
 $grid-outer-border: 2vw * $viewport-width;
 $grid-count: 12;
 $grid-inner-area: 100vw * $viewport-width - ( 2 * $grid-outer-border );
