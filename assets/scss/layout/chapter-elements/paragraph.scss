@@ -111,3 +111,9 @@
 		}
 	}
 }
+
+.chapter {
+	header + p {
+		margin-top: $grid-outer-border;
+	}
+}
