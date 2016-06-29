@@ -36,17 +36,17 @@
 	}
 
 	// normal after big margin
-	> p.big + p:not(.small):not(.m1):not(.m2):not(.m3):not(.m4):not(.m5):not(.m6):not(.m7):not(.m9):not(.m10) {
+	> p.big + p:not(.small):not(.m1):not(.m2):not(.m3):not(.m4):not(.m5):not(.m6):not(.m7):not(.m9):not(.m10):not(.m11):not(.m12):not(.m13):not(.m14):not(.m15) {
 		@include getAiRem( "margin-top", $ai-line-height-rel * 0.13 );		
 	}
 
 	// small after normal margin
-	> p:not(.small) + p.small:not(.m1):not(.m2):not(.m3):not(.m4):not(.m5):not(.m6):not(.m7):not(.m9):not(.m10) {
+	> p:not(.small) + p.small:not(.m1):not(.m2):not(.m3):not(.m4):not(.m5):not(.m6):not(.m7):not(.m9):not(.m10):not(.m11):not(.m12):not(.m13):not(.m14):not(.m15) {
 		@include getAiRem( "margin-top", $line-height-ai-small-rel * 0.13 );		
 	}
 
 	// small after big margin
-	> p.big + p.small:not(.m1):not(.m2):not(.m3):not(.m4):not(.m5):not(.m6):not(.m7):not(.m9):not(.m10) {
+	> p.big + p.small:not(.m1):not(.m2):not(.m3):not(.m4):not(.m5):not(.m6):not(.m7):not(.m9):not(.m10):not(.m11):not(.m12):not(.m13):not(.m14):not(.m15) {
 		@include getAiRem( "margin-top", $ai-line-height-rel * 0.35 );		
 	}
 

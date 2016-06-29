@@ -24,7 +24,7 @@
 	
 	// MARGIN TOP in form of full rows
 	$i: 0;
-	@while ( $i < 10 ) {
+	@while ( $i <= 15 ) {
 		.m#{$i} {
 			@include getAiRem( "margin-top", $i );
 			@extend %margin-top;
