@@ -23,9 +23,9 @@
 	}
 	
 	// MARGIN TOP in form of full rows
-	$i: 0;
-	@while ( $i <= 15 ) {
-		.m#{$i} {
+	$i: 1;
+	@mixin get-margin-top( $i, $name: $i ) {
+		.m#{$name} {
 			@include getAiRem( "margin-top", $i );
 			@extend %margin-top;
 			.superGrid & {
@@ -38,7 +38,11 @@
 				}
 			}
 		}
+	}
 
+	@include get-margin-top( $font-size-ai-small-rel, "_small" );
+	@while ( $i <= 15 ) {
+		@include get-margin-top( $i );
 		$i: $i + 1;
 	}
 

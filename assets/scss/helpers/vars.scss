@@ -21,6 +21,9 @@ $grid-inner-area: 100vw * $viewport-width - ( 2 * $grid-outer-border );
 $single-grid: $grid-inner-area / 12;
 $grid-ratio: 1;
 
+// Cursor
+$cursor-width: 20px;
+
 // AI Font Size
 $ai-line-height: $single-grid * $grid-ratio;
 $ai-line-height-rel: $base-line-height-rel;

@@ -1,6 +1,7 @@
-define( [ "helper/cache", "timer/controller" ], function ( _cache, timerController ) {
+define( [ "helper/cache", "helper/const", "timer/controller" ], function ( _cache, _const, timerController ) {
 	function Cursor () {
 		this.createCursorElement();
+		this.cursorRatio = _const.cursorRatio || 0.5;
 	}
 
 	Cursor.prototype.createCursorElement = function () {
@@ -27,7 +28,8 @@ define( [ "helper/cache", "timer/controller" ], function ( _cache, timerControll
 		this.$outerCursor.css( {
 			left: left,
 			top: top,
-			height: height
+			height: height,
+			width: height * this.cursorRatio
 		} );
 
 		if ( ! ( this.currentLeft === left && this.currentTop === top ) ) {
