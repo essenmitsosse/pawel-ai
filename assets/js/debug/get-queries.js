@@ -85,7 +85,7 @@ define( [ "helper/globals", "helper/errorMessenger" ], function ( _globals, erro
 
 		newValue = convertFunction( value );
 
-		if ( !isNaN( newValue ) && newValue !== null ) {
+		if ( ( typeOfGlobal !== "number" || !isNaN( newValue ) ) && newValue !== null ) {
 			_globals[ nameOfGlobal ] = newValue;
 		} else {
 			errorMessenger.sendMessage( [
