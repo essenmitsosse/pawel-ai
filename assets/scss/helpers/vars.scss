@@ -9,6 +9,10 @@ $background-color: rgba( 255, 255, 255, 1 );
 // Font-colors
 $font-color: rgba( 0, 0, 0, 1 );
 
+// Background
+$background-url: url("../imgs/background1.png");
+$background-fixed: false;
+
 // Grid
 $viewport-width: 0.985;
 $grid-outer-border: 2vw * $viewport-width;

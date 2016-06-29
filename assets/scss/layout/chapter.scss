@@ -8,6 +8,11 @@
 	width: 100%;
 	bottom: 0;
 	background-color: $background-color;
+	background-image: $background-url;
+	@if ( $background-fixed == true ) {
+		background-attachment: fixed;
+	}	
+
 	@include transition( bottom 2s );
 	overflow-x: hidden;
 
