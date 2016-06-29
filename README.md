@@ -152,7 +152,7 @@ Doesn’t show any animation, content is displayed immediately. NoAnimation also
 
 When set to true, allows to user to scroll on their own. When set to false the user can’t scroll by default.
 
-#### `defaultBasicTypeSpeed`
+#### `defaultDelay`
 
 * **type:** `number`
 * **default:** `50`

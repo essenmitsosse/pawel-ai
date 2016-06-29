@@ -25,7 +25,7 @@ define( [
 		{ elementName: "span" }
 	];
 	Span.prototype.isElement = true;
-	Span.prototype.defaultDelay = _globals.defaultBasicTypeSpeed || 50;
+	Span.prototype.defaultDelay = _globals.defaultDelay || 50;
 	Span.prototype.currentChar = 0;
 	Span.prototype.totalChars = 0;
 	Span.prototype.absChars = 0;
