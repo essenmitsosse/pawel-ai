@@ -4,7 +4,7 @@ define( [], function () {
 		superGrid: false,
 		noAnimation: false,
 		allowScroll: false,
-		defaultBasicTypeSpeed: 50,
+		defaultBasicTypeSpeed: 40,
 		typeSpeedMultiplyer: 1,
 		isPaused: false
 	}
