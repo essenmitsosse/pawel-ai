@@ -4,6 +4,7 @@
 	padding-left: $grid-outer-border;
 	padding-right: $grid-outer-border;
 	@include getAiRem( "padding-bottom", $line-height-ai-small-rel );
+	padding-top: $grid-outer-border * 0.8;
 	overflow: auto;
 	width: 100%;
 	bottom: 0;
