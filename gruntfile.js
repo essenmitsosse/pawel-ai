@@ -47,25 +47,25 @@ module.exports = function(grunt) {
 		},
 
 		copy: {
-            jQuery: {
-                files: [{
-                    expand: true,
-                    cwd: 'node_modules/jquery/dist/',
-                    src: ['jquery.js'],
-                    dest: 'dist/js'
-                }]
-            },
-            fonts: {
-                files: [{
-                    expand: true,
-                    cwd: 'assets/fonts/',
-                    src: ['*.woff*'],
-                    dest: 'dist/fonts'
-                }]
-            },
-        },
+			jQuery: {
+				files: [{
+					expand: true,
+					cwd: 'node_modules/jquery/dist/',
+					src: ['jquery.js'],
+					dest: 'dist/js'
+				}]
+			},
+			fonts: {
+				files: [{
+					expand: true,
+					cwd: 'assets/fonts/',
+					src: ['*.woff*'],
+					dest: 'dist/fonts'
+				}]
+			},
+		},
 
-        clean: {
+		clean: {
 			build: {
 				src: ['dist']
 			}
