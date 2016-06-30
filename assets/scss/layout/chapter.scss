@@ -1,11 +1,11 @@
 .chapter {
-	position: relative;
+	position: static;
 	opacity: 0;
 	padding-left: $grid-outer-border;
 	padding-right: $grid-outer-border;
 	@include getAiRem( "padding-bottom", $line-height-ai-small-rel );
 	padding-top: $grid-outer-border * 0.8;
-	overflow: auto;
+	overflow: hidden;
 	width: 100%;
 	bottom: 0;
 	background-color: $background-color;
@@ -15,7 +15,6 @@
 	}	
 
 	@include transition( bottom 2s );
-	overflow-x: hidden;
 
 	.ready & {
 		opacity: 1;
@@ -23,6 +22,15 @@
 
 	.grid & {
 		background-color: transparent;
+	}
+
+	.noAnimation & {
+		box-shadow: 0px 0px 10px rgba( 0, 0, 0, .5 );
+	}
+
+	&.s {
+		min-height: 100vh;
+		display: block;
 	}
 
 	body:not(.noAnimation) & {
@@ -35,10 +43,12 @@
 
 		&.ns {
 			padding-bottom: 0;
+			display: none;
 		}
 	}
+
 	* {
-		body:not(.noAnimation) &.ns {
+		body:not(.noAnimation) &.ns:not(header) {
 			height: 0;
 			opacity: 0;
 			overflow: hidden;

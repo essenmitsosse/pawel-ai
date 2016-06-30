@@ -18,7 +18,13 @@
 		}
 
 		.noAnimation & {
-			opacity: 0;
+			opacity: 1;
+			position: static;
+			height: 50vh;
+
+			h1 {
+				padding-bottom: 0.5em;
+			}
 		}
 
 		h1 {

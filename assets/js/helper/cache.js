@@ -3,6 +3,7 @@ define( [], function () {
 		$body: $body,
 		$htmlBody: $htmlBody,
 		$window: $_window,
+		$document: $( document ),
 		$main: $( "#main-content" )
 	}
 } );

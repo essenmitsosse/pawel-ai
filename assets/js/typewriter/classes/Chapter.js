@@ -1,14 +1,25 @@
 define( [ 
+	"helper/cache",
+	"helper/const",
+	"helper/globals",
 	"typewriter/classes/ParentTypeElement", 
 	"typewriter/classes/Header", 
 	"typewriter/classes/Paragraph", 
 	"typewriter/classes/Figure", 
 	"cursor/cursor", 
 	"helper/errorMessenger" 
-	], function ( ParentTypeElement, Header, Paragraph, Figure, cursor, errorMessenger ) {
+	], function ( _chache, _const, _globals, ParentTypeElement, Header, Paragraph, Figure, cursor, errorMessenger ) {
 
 	function Chapter ( args ) {
-		this.basicSetup( args );		
+		this.basicSetup( args );
+
+		this.ID = this.$self.attr( 'id' )
+
+		this.$self.css( { 
+			"z-index": ( _chache.chapterLength - args.nr ) * 1000
+		} )	
+
+		this.chapterTransition = _const.chapterTransition;
 	}
 
 	Chapter.prototype = Object.create( ParentTypeElement.prototype );
@@ -24,8 +35,11 @@ define( [
 	Chapter.prototype.isElement = true;
 
 	Chapter.prototype.removeChapter = function () {
-		this.$self.addClass( "done" );
+		var transitionTime = this.chapterTransition / ( _globals.typeSpeedMultiplyer || 1 );
+		this.$self.css( { "transition": "bottom " + transitionTime + "ms" } ).addClass( "done" );
 		cursor.remove();
+
+		return transitionTime;
 	}
 
 	return Chapter;

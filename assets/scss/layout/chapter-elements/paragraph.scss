@@ -55,23 +55,23 @@
 		margin-top: $grid-outer-border;
 	}
 
-	&:after {
-		content: "";
-		width: 100%;
-		height: 100%;
-		display: block;
-		position: absolute;
-		top: 0;
-		left: 0;
+	// &:after {
+	// 	content: "";
+	// 	width: 100%;
+	// 	height: 100%;
+	// 	display: block;
+	// 	position: absolute;
+	// 	top: 0;
+	// 	left: 0;
 
-		.grid & {
-			border-bottom: $debug-border;
-		}
+	// 	.grid & {
+	// 		border-bottom: $debug-border;
+	// 	}
 
-		.superGrid & {
-			background-color: rgba( 0, 0, 0, .02 );
-		}
-	}
+	// 	.superGrid & {
+	// 		background-color: rgba( 0, 0, 0, .02 );
+	// 	}
+	// }
 
 
 

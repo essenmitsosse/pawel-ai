@@ -250,5 +250,9 @@ define( [
 		return prev - current;
 	}
 
+	Span.prototype.resetChildren = function () {
+
+	}
+
 	return Span;
 } );

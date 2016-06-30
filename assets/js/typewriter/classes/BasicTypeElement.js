@@ -28,7 +28,6 @@ define( [
 
 		if ( this.isElement === true ) {
 			this.$self = $( this.self );
-			this.$self.addClass( "ns" );
 			this.delay = this.$self.data( "delay" ) || this.delay;
 		}	
 
@@ -42,14 +41,25 @@ define( [
 			this.getChildren();
 			this.currentChild = 0;
 		}
+
+		this.reset();
 	}
 
 	BasicTypeElement.prototype.getDelay = function () {
 		return this.delay / ( _globals.typeSpeedMultiplyer || 1 );
 	}
 
+	BasicTypeElement.prototype.reset = function () {
+		this.$self.removeClass( "s" ).removeClass( "done" ).addClass( "ns" );
+
+		if ( this.resetChildren ) {
+			this.resetChildren();
+		}
+
+		return this;
+	}
+
 	BasicTypeElement.prototype.startReveal = function ( parentCallback, delay ) {
-		delay = delay || this.getDelay();
 
 		this.parentCallbackAfterReveal = parentCallback;
 
@@ -57,6 +67,12 @@ define( [
 
 		if ( this.beforeRevealCountdown ) { 
 			this.beforeRevealCountdown(); 
+		}
+
+		delay = delay || this.getDelay() || 0;
+
+		if ( this.scrollDelay ) {
+			delay += this.scrollDelay / ( _globals.typeSpeedMultiplyer || 1 );
 		}
 
 		if ( delay > 0 ) {
@@ -82,9 +98,7 @@ define( [
 	}
 
 	BasicTypeElement.prototype.reveal = function () {
-		if( this.afterReveal ) {
-			this.afterReveal();
-		}
+		this.afterReveal();
 	}
 
 	BasicTypeElement.prototype.moveToStartFirst = function () {

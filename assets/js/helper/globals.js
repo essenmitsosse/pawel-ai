@@ -6,6 +6,7 @@ define( [], function () {
 		allowScroll: false,
 		defaultDelay: 40,
 		typeSpeedMultiplyer: 1,
-		isPaused: false
+		isPaused: false,
+		start: ""
 	}
 } );

@@ -27,12 +27,12 @@ define( [ "helper/cache", "helper/globals" ], function ( _cache, _globals ) {
 	}
 
 	function scrollToCurrentPosition ( duration ) {
-		$htmlBody.animate({
+		$htmlBody.stop().animate({
 			scrollTop: currentPosition
 		}, duration || 250, scrollDone );
 	}
 
-	function scrollTo( $element, duration, offset ) {
+	function scrollTo( duration, offset ) {
 		duration = duration || 500;
 		offset = offset || 0;
 
@@ -41,15 +41,21 @@ define( [ "helper/cache", "helper/globals" ], function ( _cache, _globals ) {
 
 		isScrolling = true;
 
-		currentPosition = $element.offset().top - offset
+		currentPosition = _cache.$document.height() - _cache.$window.height();
 
 		checkForScrollAbort();
 		scrollToCurrentPosition( duration );
 	}
 
-	function scrollToCenterElement( $element, duration ) {
+	// function scrollToCenterElement( $element, duration ) {
+	// 	if ( !_globals.allowScroll && !_globals.noAnimation && !_globals.isPaused ) {
+	// 		scrollTo( $element, duration, 0 );
+	// 	}
+	// }
+
+	function scrollToBottom( duration ) {
 		if ( !_globals.allowScroll && !_globals.noAnimation && !_globals.isPaused ) {
-			scrollTo( $element, duration, 0 );
+			scrollTo( duration, 0 );
 		}
 	}
 
@@ -62,7 +68,7 @@ define( [ "helper/cache", "helper/globals" ], function ( _cache, _globals ) {
 
 	return {
 		scrollTo: scrollTo,
-		scrollToCenterElement: scrollToCenterElement,
+		scrollToBottom: scrollToBottom,
 		scrollToCurrentPosition: scrollToCurrentPosition
 	}
 } );

@@ -1,6 +1,8 @@
-define( [ "helper/cache", "typewriter/classes/Chapter" ], function ( _cache, Chapter ) {
+define( [ "helper/cache", "helper/globals", "typewriter/classes/Chapter" ], function ( _cache, _globals, Chapter ) {
 	var chapterList = [],
-		currentChapter = 0;
+		chapterNameList = {},
+		currentChapter = 0,
+		first = true;
 
 	function chapterFactory ( nr, chapter ) {
 		var args = {
@@ -10,26 +12,45 @@ define( [ "helper/cache", "typewriter/classes/Chapter" ], function ( _cache, Cha
 			},
 			newElement = new Chapter( args );
 
+		chapterNameList[ newElement.ID ] = nr;
+
 		chapterList.push( newElement );
 	};
 
 	function removeCurrentChapter () {
-		chapterList[ currentChapter ].removeChapter();
+		var removingDuration = chapterList[ currentChapter ].removeChapter();
 		currentChapter += 1;
-		showNextChapter();
+		showNextChapter( removingDuration || 0 );
 	}
 
-	function showNextChapter () {
+	function showNextChapter ( delay ) {
 		if ( currentChapter < chapterList.length ) {
-			chapterList[ currentChapter ].startReveal( removeCurrentChapter );
+			if ( !_globals.noAnimation ) {
+				chapterList[ currentChapter ].reset().startReveal( removeCurrentChapter, first ? 0 : delay );
+				first = false;
+			}
 		}		
 	}
 
 	function whenFontsHaveLoaded () {
+		_cache.chapterLength = $( ".chapter" ).length;
 		$( ".chapter" ).each( chapterFactory );
-		showNextChapter( 0 );
 		_cache.$body.addClass( "ready" );
+
+		console.log( _globals.start, chapterNameList[ _globals.start ], chapterNameList );
+
+		if ( _globals.start && chapterNameList[ _globals.start ] !== undefined ) {
+			currentChapter = chapterNameList[ _globals.start ];
+		}
+
+		showNextChapter( 0 );
+		
 	}
+
+	function jumpToChapter ( chapterID ) {
+	}
+
+	window.jumpToChapter = jumpToChapter;
 
 	if ( document.fonts && document.fonts.ready ) { // Chrome and Firefox
 		document.fonts.ready.then( whenFontsHaveLoaded );

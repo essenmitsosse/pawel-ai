@@ -96,5 +96,15 @@ define( [ "typewriter/classes/BasicTypeElement", "helper/errorMessenger" ], func
 		}
 	}
 
+	ParentTypeElement.prototype.resetChildren = function () {
+		if ( this.childList.length >  0 ) {
+			this.childList.forEach( this.resetChild );
+		}		
+	}
+
+	ParentTypeElement.prototype.resetChild = function ( child ) {
+		child.reset();
+	}
+
 	return ParentTypeElement;
 } );

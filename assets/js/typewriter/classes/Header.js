@@ -1,8 +1,9 @@
 define( [ 
+	"helper/const",
 	"typewriter/classes/BasicTypeElement", 
 	"typewriter/classes/Image", 
 	"helper/errorMessenger" 
-	], function ( BasicTypeElement, Image, errorMessenger ) {
+	], function ( _const, BasicTypeElement, Image, errorMessenger ) {
 	
 	function Header ( args ) {
 		this.basicSetup( args );
@@ -15,7 +16,7 @@ define( [
 	Header.prototype.elementName = "header";
 	// Header.prototype.possibleChildElements = [ { elementName: "img", ClassConstructor: Image } ];
 	Header.prototype.isElement = true;
-	Header.prototype.afterDelay = 3000;
+	Header.prototype.afterDelay = _const.titleDuration || 1500;
 
 	return Header;
 } );
