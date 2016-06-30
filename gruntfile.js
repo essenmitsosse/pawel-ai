@@ -26,6 +26,14 @@ module.exports = function(grunt) {
 					mainConfigFile: '<%= assetsPath %>/js/config.js',
 					out: 'dist/js/main.js',
 					useStrict: true,
+					error: function( done, err ) {
+						grunt.log.errorlns( err );
+						grunt.log.write('\x07');
+						done();
+					},
+					done: function( done, output ) {
+						done();						
+					},
 					onModuleBundleComplete: function ( data ) {
 						var fs = require('fs'),
 						amdclean = require('amdclean'),
@@ -104,6 +112,14 @@ module.exports = function(grunt) {
 				}
 			}
 		},
+
+		notify_hooks: {
+			options: {
+				enabled: true,
+				success: false, // whether successful grunt executions should be notified automatically
+				duration: 1 // the duration of notification in seconds, for `notify-send only
+			}
+		},
 		
 		// watch for changes and trigger tasks
 		watch: {
@@ -113,32 +129,28 @@ module.exports = function(grunt) {
 			},
 			scss: {
 				files: [ 'assets/scss/**/*.scss' ],
-				tasks: [ 'sass' ],
-				options: {
-					spawn: false,
-					livereload: 35729
-				},
+				tasks: [ 'css' ]
 			},
 			js: {
 				files: [ 'assets/js/**/*.js' ],
-				tasks: [ 'requirejs' ],
-				options: {
-					spawn: false,
-					livereload: 35729
-				},
+				tasks: [ 'js' ]
 			},
 			html: {
 				files: [ 'assets/html/**/*.html' ],
-				tasks: [ 'htmlbuild' ]
+				tasks: [ 'html' ]
 			}
 		},
 	});
 
 	// register task
-	grunt.registerTask( 'default', [ 'clean', 'copy', 'sass', 'requirejs', 'htmlbuild' ]);
-	grunt.registerTask( 'css', [ 'sass' ]);
-	grunt.registerTask( 'js', [ 'requirejs' ]);
-	grunt.registerTask( 'html', [ 'htmlbuild' ]);
-	grunt.registerTask( 'w', [ 'default', 'watch' ]);
+	grunt.registerTask( 'basic', [ 'clean', 'copy', 'sass', 'requirejs', 'htmlbuild' ]);
+	grunt.registerTask( 'css', [ 'sass']);
+	grunt.registerTask( 'js', [ 'requirejs']);
+	grunt.registerTask( 'html', [ 'htmlbuild']);
+
+	grunt.registerTask( 'default', [ 'basic' ]);
+	grunt.registerTask( 'w', [ 'basic', 'watch' ]);
+
+	grunt.task.run('notify_hooks');
 
 };
