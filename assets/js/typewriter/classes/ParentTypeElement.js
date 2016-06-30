@@ -96,14 +96,5 @@ define( [ "typewriter/classes/BasicTypeElement", "helper/errorMessenger" ], func
 		}
 	}
 
-	BasicTypeElement.prototype.getElementToMoveTo = function () {
-		if ( this.childList && this.childList.length > 0 ) {
-			this.childList[ 0 ].moveToStartFirst();
-			return this.childList[ 0 ].getElementToMoveTo();
-		} else {
-			return this;
-		}
-	}
-
 	return ParentTypeElement;
 } );
