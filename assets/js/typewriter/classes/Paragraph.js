@@ -12,6 +12,10 @@ define( [
 		this.getMargin();
 
 		this.scrollDelay = 250 + this.topMargin * 250;
+
+		if ( this.childList.length < 1 ) {
+			// this.displayEmptyElementError();
+		}
 	}
 
 	Paragraph.prototype = Object.create( ParentTypeElement.prototype );

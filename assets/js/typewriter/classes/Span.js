@@ -177,6 +177,10 @@ define( [
 
 		this.characterCount = this.fullTextContent.length + ( this.characterThatNeedToBeRemoved || 0 );
 
+		if ( this.characterCount === 0 ) {
+			this.displayEmptyElementError( true );
+		}
+
 		// put content in div;
 		this.$innerSelf = $( "<span>", {
 			html: this.fullTextContent,

@@ -61,10 +61,21 @@ define( [ "typewriter/classes/BasicTypeElement", "helper/errorMessenger" ], func
 		}, false );
 	};
 
+	ParentTypeElement.prototype.displayEmptyElementError = function ( markParent ) {
+		var errorMessage = [];
+
+		errorMessage.push( "There is an empty element which is supposed to have children." );
+		errorMessage.push( "- element is a: " + this.$self.prop( "nodeName" ) );
+		
+
+		this.giveLocationInformationAboutFaultyElement( errorMessage );
+
+		errorMessenger.markErrorElement( this.$self, markParent ? this.parent.$self : false );
+	}
+
 	ParentTypeElement.prototype.displayChildrenError = function( nr, $childElement ) {
 		var possibleChildElementsNames = [],
 			errorMessage = [],
-			parent = this,
 			neitherNor = this.possibleChildElements.length > 1 ? "neither" : "not";
 
 		this.possibleChildElements.forEach( function ( possibleElement, nr ) {
@@ -76,14 +87,20 @@ define( [ "typewriter/classes/BasicTypeElement", "helper/errorMessenger" ], func
 		errorMessage.push( "- element should be: " + possibleChildElementsNames.join( " or " ) );
 		errorMessage.push( "- position: #" + nr );
 
-		while ( parent ) {
-			errorMessage.push( "- " + parent.elementName.toUpperCase() + ": #" + parent.nr );
-			parent = parent.parent;
-		}
-		errorMessenger.sendMessage( errorMessage );
+		this.giveLocationInformationAboutFaultyElement( errorMessage );
 
 		errorMessenger.markErrorElement( $childElement, this.$self );
 	};
+
+	ParentTypeElement.prototype.giveLocationInformationAboutFaultyElement = function ( errorMessage ) {
+		var parent = this;
+
+		while ( parent ) {
+			errorMessage.push( "- " + parent.elementName.toUpperCase() + ": #" + ( parent.nr + 1 )  );
+			parent = parent.parent;
+		}
+		errorMessenger.sendMessage( errorMessage );
+	}
 
 	ParentTypeElement.prototype.reveal = function () {
 		if ( this.currentChild < this.childList.length ) {
