@@ -5,12 +5,6 @@
 	width: $voice-width;
 	height: $voice-height;
 	z-index: 20000;
-	// @include transform( scale( 1, 0 ) );
-	// @include transition( all 0.2s );
-
-	// &.speaking {
-	// 	@include transform( scale( 1 ) );
-	// }
 }
 
 #voice-2 {
