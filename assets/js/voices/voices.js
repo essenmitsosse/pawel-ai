@@ -15,7 +15,7 @@ define( [ "helper/cache", "helper/const", "timer/controller" ], function ( _cach
 		voices;
 
 	Voice.prototype.createDots = function ( $wrap ) {
-		var i = 3;
+		var i = 5;
 
 		while ( i ) {
 			$wrap.append( this.createDot( i ) );

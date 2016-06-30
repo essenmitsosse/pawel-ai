@@ -53,13 +53,13 @@
 
 @keyframes voice {
 	0%   	{ @include voice-scale( $voice-smallest-scale ); }
-	45%  	{ @include voice-scale( 1 ) }
-	90%  	{ @include voice-scale( $voice-smallest-scale ); }
+	30%  	{ @include voice-scale( 1 ) }
+	60%  	{ @include voice-scale( $voice-smallest-scale ); }
 	100% 	{ @include voice-scale( $voice-smallest-scale ); }
 }
 
 $i: 0;
-$dot-count: 3;
+$dot-count: 5;
 $box-rest: ( 100 - $dot-count * $dot-size );
 @while ( $i <= $dot-count ) {
 	.voice-dot-#{$i + 1} {
