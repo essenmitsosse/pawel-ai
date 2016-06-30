@@ -37,8 +37,6 @@ define( [ "helper/cache", "helper/globals", "typewriter/classes/Chapter" ], func
 		$( ".chapter" ).each( chapterFactory );
 		_cache.$body.addClass( "ready" );
 
-		console.log( _globals.start, chapterNameList[ _globals.start ], chapterNameList );
-
 		if ( _globals.start && chapterNameList[ _globals.start ] !== undefined ) {
 			currentChapter = chapterNameList[ _globals.start ];
 		}
