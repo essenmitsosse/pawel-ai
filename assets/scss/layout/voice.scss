@@ -1,0 +1,81 @@
+.voice-wrap {
+	position: fixed;
+	top: $voice-top;
+	left: $voice-side;
+	width: $voice-width;
+	height: $voice-height;
+	z-index: 20000;
+	// @include transform( scale( 1, 0 ) );
+	// @include transition( all 0.2s );
+
+	// &.speaking {
+	// 	@include transform( scale( 1 ) );
+	// }
+}
+
+#voice-2 {
+	left: auto;
+	right: $voice-side;
+}
+
+.voice-box {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: #fff;
+	border-radius: 5vw;
+	border: 3px solid #000;
+	display: none;
+	box-sizing: content-box;
+}
+
+.voice-dot {
+	position: absolute;
+	width: $dot-size;
+	height: 0;
+	padding-bottom: $dot-size;
+	top: ( 100% - $dot-size / $voice-ratio ) / 2;
+	box-sizing: content-box;
+	@include transform( scale( 0 ) );
+	@include transition( transform 0.5s );
+
+	.speaking & {
+		@include transform( scale( 1 ) );
+	}
+
+	.voice-dot-inner {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		background-color: #000;
+		border-radius: 100%;
+		@include animation( voice $voice-duration infinite );
+	}
+}
+
+@mixin voice-scale ( $scale ) {
+	transform: scale( $scale );
+}
+
+@keyframes voice {
+	0%   	{ @include voice-scale( $voice-smallest-scale ); }
+	45%  	{ @include voice-scale( 1 ) }
+	90%  	{ @include voice-scale( $voice-smallest-scale ); }
+	100% 	{ @include voice-scale( $voice-smallest-scale ); }
+}
+
+$i: 0;
+$dot-count: 3;
+$box-rest: ( 100 - $dot-count * $dot-size );
+@while ( $i <= $dot-count ) {
+	.voice-dot-#{$i + 1} {
+		left: ( $box-rest / ( $dot-count + 1 ) ) * ( $i + 1 ) + $dot-size * $i;
+
+		.voice-dot-inner {
+			animation-delay: ( $voice-duration / ( $dot-count + 1 ) ) * $i;
+		}
+	}
+	$i: $i + 1;
+}
+
+

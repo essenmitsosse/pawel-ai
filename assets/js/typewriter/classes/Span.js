@@ -2,9 +2,10 @@ define( [
 	"helper/globals",
 	"typewriter/classes/ParentTypeElement",
 	"cursor/cursor",
+	"voices/voices",
 	"timer/controller", 
 	"helper/errorMessenger" 
-	], function ( _globals, ParentTypeElement, cursor, timerController, errorMessenger ) {
+	], function ( _globals, ParentTypeElement, cursor, voices, timerController, errorMessenger ) {
 
 	function Span ( nr, self, prev, parent ) {
 		this.basicSetup( nr, self, prev, parent );
@@ -12,6 +13,8 @@ define( [
 		this.getRemoveCharList();
 
 		this.delayEnd = this.$self.data( "delayend" );
+
+		this.voice = this.parent.$self.hasClass( "v2" ) ? 1 : 0;
 	}
 
 	Span.prototype = Object.create( ParentTypeElement.prototype );
@@ -227,6 +230,7 @@ define( [
 			this.$currentCharWrapper.html( this.fullTextContent.substr( 0, this.absChars ) );
 
 			cursor.moveToElement( this.$currentCharWrapper, true );
+			voices.refreshVoice( this.voice );
 
 			timerController.addTimeout( this.reveal.bind( this ), this.getDelay() );
 		} else {

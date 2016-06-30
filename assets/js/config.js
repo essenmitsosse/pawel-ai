@@ -6,6 +6,7 @@ requirejs.config({
 		
 		"typewriter/chapterFactory",
 
-		"cursor/cursor"
+		"cursor/cursor",
+		"voices/voices"
 	]
 });

@@ -24,6 +24,16 @@ $grid-ratio: 1;
 // Cursor
 $cursor-width: 20px;
 
+// Voices
+$voice-top: $grid-outer-border;
+$voice-side: $grid-outer-border * 1.5;
+$voice-ratio: 0.4;
+$voice-width: 10vw;
+$voice-height: $voice-width * $voice-ratio;
+$dot-size: 20%;
+$voice-smallest-scale: 0.2;
+$voice-duration: 1.2s;
+
 // AI Font Size
 $ai-line-height: $single-grid * $grid-ratio;
 $ai-line-height-rel: $base-line-height-rel;
