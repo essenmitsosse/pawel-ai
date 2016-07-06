@@ -8,7 +8,7 @@ define( [
 		this.isFinished = false;
 
 		this.$self.on( "click", this.pause.bind( this ) );
-		this.self.addEventListener( 'timeupdate', this.progress.bind( this ), false );
+		this.self.addEventListener( "timeupdate", this.progress.bind( this ), false );
 	}
 
 	Video.prototype = Object.create( BasicTypeElement.prototype );
