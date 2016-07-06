@@ -1,4 +1,4 @@
-define( [ "typewriter/classes/ParentTypeElement", "typewriter/classes/Image", "helper/errorMessenger" ], function ( ParentTypeElement, Image, errorMessenger ) {
+define( [ "typewriter/classes/ParentTypeElement", "typewriter/classes/Video", "typewriter/classes/Image", "helper/errorMessenger" ], function ( ParentTypeElement, Video, Image, errorMessenger ) {
 	function Figure( args ) {
 		this.basicSetup( args );
 	}
@@ -11,6 +11,9 @@ define( [ "typewriter/classes/ParentTypeElement", "typewriter/classes/Image", "h
 	Figure.prototype.possibleChildElements = [ {
 		elementName: "img",
 		ClassConstructor: Image
+	}, {
+		elementName: "video",
+		ClassConstructor: Video
 	} ];
 	Figure.prototype.isElement = true;
 

@@ -1,4 +1,4 @@
-define( [ "typewriter/classes/BasicTypeElement", "helper/errorMessenger" ], function ( BasicTypeElement, Image, errorMessenger ) {
+define( [ "typewriter/classes/BasicTypeElement" ], function ( BasicTypeElement ) {
 	function Image( nr, self, prev, parent ) {
 		this.basicSetup( nr, self, prev, parent );
 	}
