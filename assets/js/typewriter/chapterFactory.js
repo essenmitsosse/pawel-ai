@@ -4,7 +4,7 @@ define( [ "helper/cache", "helper/globals", "typewriter/classes/Chapter" ], func
 		currentChapter = 0,
 		first = true;
 
-	function chapterFactory ( nr, chapter ) {
+	function chapterFactory( nr, chapter ) {
 		var args = {
 				nr: nr,
 				self: chapter,
@@ -15,26 +15,29 @@ define( [ "helper/cache", "helper/globals", "typewriter/classes/Chapter" ], func
 		chapterNameList[ newElement.ID ] = nr;
 
 		chapterList.push( newElement );
-	};
+	}
 
-	function removeCurrentChapter () {
+	function removeCurrentChapter() {
 		var removingDuration = chapterList[ currentChapter ].removeChapter();
 		currentChapter += 1;
 		showNextChapter( removingDuration || 0 );
 	}
 
-	function showNextChapter ( delay ) {
+	function showNextChapter( delay ) {
 		if ( currentChapter < chapterList.length ) {
 			if ( !_globals.noAnimation ) {
-				chapterList[ currentChapter ].reset().startReveal( removeCurrentChapter, first ? 0 : delay );
+				chapterList[ currentChapter ].reset()
+					.startReveal( removeCurrentChapter, first ? 0 : delay );
 				first = false;
 			}
-		}		
+		}
 	}
 
-	function whenFontsHaveLoaded () {
-		_cache.chapterLength = $( ".chapter" ).length;
-		$( ".chapter" ).each( chapterFactory );
+	function whenFontsHaveLoaded() {
+		_cache.chapterLength = $( ".chapter" )
+			.length;
+		$( ".chapter" )
+			.each( chapterFactory );
 		_cache.$body.addClass( "ready" );
 
 		if ( _globals.start && chapterNameList[ _globals.start ] !== undefined ) {
@@ -42,18 +45,17 @@ define( [ "helper/cache", "helper/globals", "typewriter/classes/Chapter" ], func
 		}
 
 		showNextChapter( 0 );
-		
+
 	}
 
-	function jumpToChapter ( chapterID ) {
-	}
+	function jumpToChapter( chapterID ) {}
 
 	window.jumpToChapter = jumpToChapter;
 
 	if ( document.fonts && document.fonts.ready ) { // Chrome and Firefox
 		document.fonts.ready.then( whenFontsHaveLoaded );
 	} else {
-		whenFontsHaveLoaded();	
+		whenFontsHaveLoaded();
 	}
-	
+
 } );
