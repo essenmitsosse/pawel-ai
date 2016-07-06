@@ -13,16 +13,17 @@
 		}
 	}
 
-	> iframe {
+	& > iframe,
+	& > video {
 		width : 100%;
 		height: 100%;
 	}
 
 	// image width
 	$i      : 0;
-	@while ( $i < $grid-count ) {
+	@while ( $i <= $grid-count ) {
 		&.w#{$i} {
-			width: ( 100% / $grid-count ) * $i;
+			width: ( $grid-inner-area / $grid-count ) * $i;
 		}
 
 		$i: $i + 1;
