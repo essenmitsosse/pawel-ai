@@ -1,20 +1,19 @@
 .chapter {
-	position: static;
-	opacity: 0;
-	padding-left: $grid-outer-border;
-	padding-right: $grid-outer-border;
-	@include getAiRem( "padding-bottom", $line-height-ai-small-rel );
-	padding-top: $grid-outer-border * 0.8;
-	overflow: hidden;
-	width: 100%;
-	bottom: 0;
+	@include transition( bottom 2s );
+	position        : static;
+	opacity         : 0;
+	padding-left    : $grid-outer-border;
+	padding-right   : $grid-outer-border;
+	@include get-ai-rem( 'padding-bottom', $line-height-ai-small-rel );
+	padding-top     : $grid-outer-border * .8;
+	overflow        : hidden;
+	width           : 100%;
+	bottom          : 0;
 	background-color: $background-color;
 	background-image: $background-url;
 	@if ( $background-fixed == true ) {
 		background-attachment: fixed;
-	}	
-
-	@include transition( bottom 2s );
+	}
 
 	.ready & {
 		opacity: 1;
@@ -25,33 +24,33 @@
 	}
 
 	.noAnimation & {
-		box-shadow: 0px 0px 10px rgba( 0, 0, 0, .5 );
+		box-shadow: 0 0 10px $shadow-color;
 	}
 
 	&.s {
 		min-height: 100vh;
-		display: block;
+		display   : block;
 	}
 
 	body:not(.noAnimation) & {
 		&.done {
-			position: fixed;
-			bottom: 100%;
-			z-index: 3000;
-			box-shadow: 0px 0px 10px rgba( 0, 0, 0, .5 );
+			position  : fixed;
+			bottom    : 100%;
+			z-index   : 3000;
+			box-shadow: 0 0 10px $shadow-color;
 		}
 
 		&.ns {
 			padding-bottom: 0;
-			display: none;
+			display       : none;
 		}
 	}
 
 	* {
 		body:not(.noAnimation) &.ns:not(header) {
-			height: 0;
-			opacity: 0;
-			overflow: hidden;
+			height    : 0;
+			opacity   : 0;
+			overflow  : hidden;
 			margin-top: 0 !important;
 		}
 	}

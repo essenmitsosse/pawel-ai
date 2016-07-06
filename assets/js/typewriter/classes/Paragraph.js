@@ -1,12 +1,12 @@
-define( [ 
+define( [
 	"helper/globals",
-	"typewriter/classes/ParentTypeElement", 
+	"typewriter/classes/ParentTypeElement",
 	"typewriter/classes/Span",
-	"scroller/scroller", 
-	"helper/errorMessenger" 
+	"scroller/scroller",
+	"helper/errorMessenger"
 	], function ( _globals, ParentTypeElement, Span, scroller, errorMessenger ) {
 
-	function Paragraph ( args ) {
+	function Paragraph( args ) {
 		this.basicSetup( args );
 
 		this.getMargin();
@@ -23,11 +23,14 @@ define( [
 
 	Paragraph.prototype.name = "Paragraph";
 	Paragraph.prototype.elementName = "p";
-	Paragraph.prototype.possibleChildElements = [ 
-		{ elementName: "span", ClassConstructor: Span } 
+	Paragraph.prototype.possibleChildElements = [
+		{
+			elementName: "span",
+			ClassConstructor: Span
+		}
 	];
 	Paragraph.prototype.isElement = true;
-	Paragraph.prototype.getMargin = function() {
+	Paragraph.prototype.getMargin = function () {
 		var i = 1;
 
 		this.topMargin = 0;

@@ -1,35 +1,35 @@
 define( [ "helper/cache", "helper/globals" ], function ( _cache, _globals ) {
 	var $htmlBody = _cache.$htmlBody,
-		$window = _cache.$window,
 		isScrolling = false,
 		currentPosition = 0;
 
-	function checkForScrollAbort () {
+	function checkForScrollAbort() {
 		// $htmlBody.on( "scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove", stopScroll );
 	}
 
-	function scrollDone () {
+	function scrollDone() {
 		isScrolling = false;
 		$htmlBody.stop();
 		// $htmlBody.off("scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove");
 	}
 
-	function stopScroll ( event ) {
-		var isAbort = true;
+	// function stopScroll( event ) {
+	// 	var isAbort = true;
+	//
+	// 	if ( event.type === "keyup" ) {
+	// 		isAbort = false;
+	// 	}
+	//
+	// 	if ( isAbort ) {
+	// 		scrollDone();
+	// 	}
+	// }
 
-		if( event.type === "keyup" ) {
-			isAbort = false;
-		}
-
-		if ( isAbort ) {
-			scrollDone();
-		}
-	}
-
-	function scrollToCurrentPosition ( duration ) {
-		$htmlBody.stop().animate({
-			scrollTop: currentPosition
-		}, duration || 250, scrollDone );
+	function scrollToCurrentPosition( duration ) {
+		$htmlBody.stop()
+			.animate( {
+				scrollTop: currentPosition
+			}, duration || 250, scrollDone );
 	}
 
 	function scrollTo( duration, offset ) {
@@ -59,16 +59,16 @@ define( [ "helper/cache", "helper/globals" ], function ( _cache, _globals ) {
 		}
 	}
 
-	$htmlBody.on( "scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove", function( e ) {
+	$htmlBody.on( "scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove", function ( e ) {
 		if ( !_globals.allowScroll && !_globals.noAnimation && !_globals.isPaused ) {
 			e.preventDefault();
 			e.stopPropagation();
 		}
-	})
+	} );
 
 	return {
 		scrollTo: scrollTo,
 		scrollToBottom: scrollToBottom,
 		scrollToCurrentPosition: scrollToCurrentPosition
-	}
+	};
 } );

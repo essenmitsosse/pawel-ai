@@ -1,66 +1,80 @@
 // Font-sizes
-$base-font-size: 18px;
-$base-line-height-rel: 1;
-$base-relative-font-size: 1 / $base-line-height-rel;
+$base-font-size                          : 18px;
+$base-line-height-rel                    : 1;
+$base-relative-font-size                 : 1 / $base-line-height-rel;
 
 // Colors
-$background-color: rgba( 255, 255, 255, 1 );
+$white                                   : rgba( 255, 255, 255, 1 );
+$black                                   : rgb( 0, 0, 0 );
+$background-color                        : $white;
+$chapter-background-color                : $black;
 
 // Font-colors
-$font-color: rgba( 0, 0, 0, 1 );
+$font-color                              : rgba( 0, 0, 0, 1 );
+$chapter-font-color                      : rba( 255, 255, 255 );
 
 // Background
-$background-url: url("../imgs/background1.png");
-$background-fixed: false;
+$background-url                          : url('../imgs/background1.png');
+$background-fixed                        : false;
+
+$shadow-color                            : rgba( 0, 0, 0, .5 );
 
 // Grid
-$viewport-width: 0.985;
-$grid-outer-border: 2vw * $viewport-width;
-$grid-count: 12;
-$grid-inner-area: 100vw * $viewport-width - ( 2 * $grid-outer-border );
-$single-grid: $grid-inner-area / 12;
-$grid-ratio: 1;
+$viewport-width                          : .985;
+$grid-outer-border                       : 2vw * $viewport-width;
+$grid-count                              : 12;
+$grid-inner-area                         : 100vw * $viewport-width - ( 2 * $grid-outer-border );
+$single-grid                             : $grid-inner-area / 12;
+$grid-ratio                              : 1;
 
 // Cursor
-$cursor-width: 20px;
+$cursor-width                            : 20px;
 
 // Voices
-$voice-top: $grid-outer-border;
-$voice-side: $grid-outer-border * 1.5;
-$voice-ratio: 0.25;
-$voice-width: 10vw;
-$voice-height: $voice-width * $voice-ratio;
-$dot-size: 60% * $voice-ratio;
-$voice-smallest-scale: 0.2;
-$voice-duration: 1.2s;
+$voice-top                               : $grid-outer-border;
+$voice-side                              : $grid-outer-border * 1.5;
+$voice-ratio                             : .25;
+$voice-width                             : 10vw;
+$voice-height                            : $voice-width * $voice-ratio;
+$dot-size                                : 60% * $voice-ratio;
+$voice-smallest-scale                    : .2;
+$voice-duration                          : 1.2s;
 
 // AI Font Size
-$ai-line-height: $single-grid * $grid-ratio;
-$ai-line-height-rel: $base-line-height-rel;
-$ai-font-size: $ai-line-height / $ai-line-height-rel;
+$ai-line-height                          : $single-grid * $grid-ratio;
+$ai-line-height-rel                      : $base-line-height-rel;
+$ai-font-size                            : $ai-line-height / $ai-line-height-rel;
 
-$font-size-ai-small-rel: 0.4166;
-$line-height-ai-small-rel: $font-size-ai-small-rel * $base-line-height-rel;
+$font-size-ai-small-rel                  : .4166;
+$line-height-ai-small-rel                : $font-size-ai-small-rel * $base-line-height-rel;
 
-$font-size-ai-big-rel: 2.5;
-$line-height-ai-big-rel: $font-size-ai-big-rel * 0.8;
+$font-size-ai-big-rel                    : 2.5;
+$line-height-ai-big-rel                  : $font-size-ai-big-rel * .8;
 
 // Debug
-$debug-border-color: rgba( 0, 0, 0, .25 );
-$debug-border: 1px solid $debug-border-color;
+$debug-border-color                      : rgba( 0, 0, 0, .25 );
+$debug-border                            : 1px solid $debug-border-color;
 
-$debug-span-marker-size: 0.7;
-$debug-span-marker-width: 3px;
+$debug-span-marker-size                  : .7;
+$debug-span-marker-width                 : 3px;
 
-$debug-span-marker-transparency: 0.8;
+$debug-span-marker-transparency          : .8;
 
-$debug-span-marker-color: rgba( 0, 170, 0, 1 );
-$debug-span-marker-background-color: transparentize( $debug-span-marker-color, $debug-span-marker-transparency );
+$debug-font-color                        : #fff;
 
-$debug-right-span-marker-color: rgba( 170, 0, 0, 1 );
+$debug-span-marker-color                 : rgba( 0, 170, 0, 1 );
+$debug-span-marker-background-color      : transparentize( $debug-span-marker-color, $debug-span-marker-transparency );
+
+$debug-right-span-marker-color           : rgba( 170, 0, 0, 1 );
 $debug-right-span-marker-background-color: transparentize( $debug-right-span-marker-color, $debug-span-marker-transparency );
 
-$debug-small-span-marker-color: rgba( 0, 90, 0, 1 );
+$debug-small-span-marker-color           : rgba( 0, 90, 0, 1 );
 $debug-small-span-marker-background-color: transparentize( $debug-small-span-marker-color, $debug-span-marker-transparency );
 
-$debug-margin-marker-color: rgba( 0, 0, 170, 0.2 );
+$debug-margin-marker-color               : rgba( 0, 0, 170, .2 );
+
+// Errors
+$error-color                             : #f00;
+
+// Grid
+$grid-line-color                         : rgba( 0, 0, 0, .05 );

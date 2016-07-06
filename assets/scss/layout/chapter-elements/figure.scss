@@ -1,4 +1,4 @@
-.chapter > figure  {
+.chapter > figure {
 	position: absolute;
 
 	> img {
@@ -14,27 +14,27 @@
 	}
 
 	> iframe {
-		width: 100%;
+		width : 100%;
 		height: 100%;
 	}
 
 	// image width
-	$i: 0;
+	$i      : 0;
 	@while ( $i < $grid-count ) {
 		&.w#{$i} {
 			width: ( 100% / $grid-count ) * $i;
 		}
 
 		$i: $i + 1;
-	} 
+	}
 
 	// image height
-	$i: 0;
+	$i      : 0;
 	@while ( $i < 10 ) {
 		&.h#{$i} {
-			@include getAiRem( "height", $i );
+			@include get-ai-rem( 'height', $i );
 		}
 
 		$i: $i + 1;
-	} 
+	}
 }

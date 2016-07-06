@@ -1,8 +1,9 @@
 #chapters-wrapper {
 	position: relative;
-	z-index: 1000;	width: 100%;
+	z-index : 1000;
+	width   : 100%;
 
 	.grid & {
-		background-color: rgba( 0, 0, 0, .05 );
+		background-color: $grid-line-color;
 	}
 }

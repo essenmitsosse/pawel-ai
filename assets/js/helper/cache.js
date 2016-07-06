@@ -1,9 +1,10 @@
+/* globals $body, $htmlBody, $window */
 define( [], function () {
 	return {
 		$body: $body,
 		$htmlBody: $htmlBody,
-		$window: $_window,
+		$window: $window,
 		$document: $( document ),
 		$main: $( "#main-content" )
-	}
+	};
 } );

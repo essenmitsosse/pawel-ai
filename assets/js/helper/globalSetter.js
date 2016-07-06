@@ -1,6 +1,6 @@
 define( [ "helper/globals", "helper/cache", "helper/errorMessenger" ], function ( _globals, _cache, errorMessenger ) {
-	
-	function setGlobal ( name, value, userInput ) {
+
+	function setGlobal( name, value, userInput ) {
 		if ( name in _globals ) {
 			_globals[ name ] = value;
 			if ( !value ) {
@@ -9,19 +9,20 @@ define( [ "helper/globals", "helper/cache", "helper/errorMessenger" ], function 
 				_cache.$body.addClass( name );
 			}
 
-			if( userInput ) {
+			if ( userInput ) {
 				errorMessenger.sendMessage( "Global variable \"" + name + "\" has been set to " + value + "." );
 			}
 
 			return value;
 		} else {
 			errorMessenger.throwError( "Tried to set global \"" + name + "\", which doesn’t exist." );
-		}		
+		}
 	}
 
-	function changeGlobal ( name, value, userInput ) {
+	function changeGlobal( name, value ) {
 		if ( name in _globals ) {
 			if ( typeof value === "number" ) {
+				var direction;
 				_globals[ name ] += value;
 
 				direction = value < 0 ? "decreased" : "increased";
@@ -35,7 +36,7 @@ define( [ "helper/globals", "helper/cache", "helper/errorMessenger" ], function 
 		}
 	}
 
-	function getGlobal ( name ) {
+	function getGlobal( name ) {
 		if ( name in _globals ) {
 			return _globals[ name ];
 		} else {
@@ -43,26 +44,26 @@ define( [ "helper/globals", "helper/cache", "helper/errorMessenger" ], function 
 		}
 	}
 
-	function toggleGlobal ( name, userInput ) {
+	function toggleGlobal( name, userInput ) {
 		return setGlobal( name, !_globals[ name ], userInput );
 	}
 
-	function getGlobalToggler ( name ) {
+	function getGlobalToggler( name ) {
 		return function () {
 			return toggleGlobal( name, true );
 		};
 	}
 
-	function getGlobalChanger ( name, value ) {
+	function getGlobalChanger( name, value ) {
 		return function () {
 			changeGlobal( name, value, true );
-		}
+		};
 	}
 
 	function initGlobals() {
 		var key;
 
-		for( key in _globals ) {
+		for ( key in _globals ) {
 			setGlobal( key, _globals[ key ] );
 		}
 	}

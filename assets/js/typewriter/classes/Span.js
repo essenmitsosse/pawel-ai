@@ -1,13 +1,13 @@
-define( [ 
+define( [
 	"helper/globals",
 	"typewriter/classes/ParentTypeElement",
 	"cursor/cursor",
 	"voices/voices",
-	"timer/controller", 
-	"helper/errorMessenger" 
-	], function ( _globals, ParentTypeElement, cursor, voices, timerController, errorMessenger ) {
+	"timer/controller",
+	"helper/errorMessenger"
+	], function ( _globals, ParentTypeElement, cursor, voices, timerController ) {
 
-	function Span ( nr, self, prev, parent ) {
+	function Span( nr, self, prev, parent ) {
 		this.basicSetup( nr, self, prev, parent );
 		this.delayList = this.getDelayList( this.$self );
 		this.getRemoveCharList();
@@ -22,10 +22,16 @@ define( [
 
 	Span.prototype.name = "Span";
 	Span.prototype.elementName = "span";
-	Span.prototype.possibleChildElements = [ 
-		{ elementName: "character" },
-		{ elementName: "del" },
-		{ elementName: "span" }
+	Span.prototype.possibleChildElements = [
+		{
+			elementName: "character"
+		},
+		{
+			elementName: "del"
+		},
+		{
+			elementName: "span"
+		}
 	];
 	Span.prototype.isElement = true;
 	Span.prototype.defaultDelay = _globals.defaultDelay || 50;
@@ -42,38 +48,39 @@ define( [
 		} else if ( this.delayList && this.delayList.length > this.totalChars ) {
 			delay = this.delayList[ this.totalChars ] || this.delay;
 		} else {
-			delay = this.randomize(  this.delay, 0.25, 4 );
+			delay = this.randomize( this.delay, 0.25, 4 );
 		}
 
 		return delay / ( _globals.typeSpeedMultiplyer || 1 );
-	}
+	};
 
 	Span.prototype.beforeRevealCountdown = function () {
-		if ( this.currentChar == 0 ) {
+		if ( this.currentChar === 0 ) {
 			this.$innerSelf.html( this.$currentCharWrapper );
 		}
 
 		cursor.moveToElement( this.$innerSelf, true );
-	}
+	};
 
 	Span.prototype.getPosAndLength = function ( $element ) {
 		var element = $element[ 0 ],
-			length = $element.text().length,
+			length = $element.text()
+			.length,
 			pos = 0;
 
-		while ( element = element.previousSibling ) {
-			pos += element.length;			
+		while ( ( element = element.previousSibling ) ) {
+			pos += element.length;
 		}
 
-		this.inlineList.push({
+		this.inlineList.push( {
 			length: length,
 			pos: pos,
 			isDel: $element.is( "del" ),
 			delay: $element.data( "delay" ),
 			delayEnd: $element.data( "delayend" ),
 			delayList: this.getDelayList( $element )
-		});
-	}
+		} );
+	};
 
 	Span.prototype.getDelayList = function ( $element ) {
 		var delayList = $element.data( "delaylist" );
@@ -90,7 +97,7 @@ define( [
 		}
 
 		return delayList;
-	}
+	};
 
 	Span.prototype.getRemoveCharList = function () {
 		var removeCharList = this.$self.data( "remove" );
@@ -112,13 +119,13 @@ define( [
 			this.deletedCharacters = 0;
 			this.inlineList.forEach( this.convertInlineElements.bind( this ) );
 		}
-	}
+	};
 
 	Span.prototype.convertInlineElements = function ( inline ) {
-		
+		var i;
 		if ( inline.delay ) {
-			var i = inline.length + 1;
-			while ( i -= 1 ) {
+			i = inline.length + 1;
+			while ( ( i -= 1 ) ) {
 				if ( inline.isDel ) {
 					this.delayList[ inline.pos + inline.length + this.deletedCharacters + i - 1 ] = inline.delay;
 				} else {
@@ -128,7 +135,7 @@ define( [
 		}
 
 		if ( inline.delayList ) {
-			var i = 0;
+			i = 0;
 			while ( i < inline.delayList.length ) {
 				if ( inline.delayList[ i ] !== undefined ) {
 					this.delayList[ inline.pos + this.deletedCharacters + i ] = inline.delayList[ i ];
@@ -144,8 +151,8 @@ define( [
 		if ( inline.isDel ) {
 			this.removeCharList[ inline.pos + inline.length ] = -inline.length;
 			this.deletedCharacters += inline.length;
-		}		
-	}
+		}
+	};
 
 	Span.prototype.checkForInlineElements = function ( nr, element ) {
 		var $element = $( element );
@@ -153,11 +160,12 @@ define( [
 		// check if element is a DEL
 		if ( $element.is( "del" ) || $element.is( "span" ) ) {
 			this.getPosAndLength( $element );
-			$element.contents().unwrap();
+			$element.contents()
+				.unwrap();
 		} else {
 			this.displayChildrenError( 0, $element );
 		}
-	}
+	};
 
 	Span.prototype.getChildren = function () {
 		var innerClasses = [ "inner" ],
@@ -167,12 +175,12 @@ define( [
 		// If there are dels, remove them and save their position and size
 		if ( $children.length > 0 ) {
 			this.inlineList = [];
-			$children.each( this.checkForInlineElements.bind( this ) );			
+			$children.each( this.checkForInlineElements.bind( this ) );
 		}
 
 		// check for a right justified class
-		if ( this.$self.is(".tr0,.tr1,.tr2,.tr3,.tr4,.tr5,.tr6,.tr7,.tr8,.tr9,.tr10,.tr11,.tr12") ) {
-			this.rightJustified  = true;
+		if ( this.$self.is( ".tr0,.tr1,.tr2,.tr3,.tr4,.tr5,.tr6,.tr7,.tr8,.tr9,.tr10,.tr11,.tr12" ) ) {
+			this.rightJustified = true;
 			innerClasses.push( "right" );
 		}
 
@@ -188,23 +196,22 @@ define( [
 		this.$innerSelf = $( "<span>", {
 			html: this.fullTextContent,
 			class: innerClasses.join( " " )
-		});
+		} );
 
 		this.$currentCharWrapper = $( "<span>" );
 
 		// remove normal content and replace it with the new wrapped content
 		this.$self.html( this.$innerSelf );
 
-
 		if ( this.rightJustified ) {
 			this.$innerSelf.css( "width", ( 100 * this.$innerSelf.width() / this.$self.width() ) + "%" );
 		} else {
 			this.$self.css( "min-width", ( 100 * this.$self.width() / this.parent.$self.width() ) + "%" );
 		}
-	}
+	};
 
 	Span.prototype.reveal = function () {
-		if ( this.currentChar < this.characterCount  ) {
+		if ( this.currentChar < this.characterCount ) {
 			var removesChar;
 			// check if there is a list of characters that should be removed and then check if this character should be removed
 			if ( this.removeCharList ) {
@@ -234,33 +241,39 @@ define( [
 
 			timerController.addTimeout( this.reveal.bind( this ), this.getDelay() );
 		} else {
-			if( this.parentCallbackAfterReveal ) {
+			if ( this.parentCallbackAfterReveal ) {
 				this.parentCallbackAfterReveal();
 			}
 		}
-	}
+	};
 
-	Span.prototype.convertToDelay = function ( nr, b ) {
-		var nr = parseInt( nr );
+	Span.prototype.convertToDelay = function ( nr ) {
+		nr = parseInt( nr );
 
-		if ( isNaN( nr ) ) { return; } 
-		else { return nr; }
-	}
+		if ( isNaN( nr ) ) {
+			return;
+		} else {
+			return nr;
+		}
+	};
 
-	Span.prototype.convertToRemove = function ( nr, b ) {
-		var nr = parseInt( nr );
+	Span.prototype.convertToRemove = function ( nr ) {
+		nr = parseInt( nr );
 
-		if ( isNaN( nr ) ) { return 0; } 
-		else { return nr; }
-	}
+		if ( isNaN( nr ) ) {
+			return 0;
+		} else {
+			return nr;
+		}
+	};
 
 	Span.prototype.getSumOfRemovals = function ( prev, current ) {
 		return prev - current;
-	}
+	};
 
 	Span.prototype.resetChildren = function () {
 
-	}
+	};
 
 	return Span;
 } );

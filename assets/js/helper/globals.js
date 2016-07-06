@@ -8,5 +8,5 @@ define( [], function () {
 		typeSpeedMultiplyer: 1,
 		isPaused: false,
 		start: ""
-	}
+	};
 } );

@@ -1,61 +1,71 @@
 .voice-wrap {
 	position: fixed;
-	top: $voice-top;
-	left: $voice-side;
-	width: $voice-width;
-	height: $voice-height;
-	z-index: 20000;
+	top     : $voice-top;
+	left    : $voice-side;
+	width   : $voice-width;
+	height  : $voice-height;
+	z-index : 20000;
 }
 
 #voice-2 {
-	left: auto;
+	left : auto;
 	right: $voice-side;
 }
 
 .voice-box {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	background-color: #fff;
-	border-radius: 5vw;
-	border: 3px solid #000;
-	display: none;
-	box-sizing: content-box;
+	position        : absolute;
+	width           : 100%;
+	height          : 100%;
+	background-color: $background-color;
+	border-radius   : 5vw;
+	border          : 3px solid $font-color;
+	display         : none;
+	box-sizing      : content-box;
 }
 
 .voice-dot {
-	position: absolute;
-	width: $dot-size;
-	height: 0;
-	padding-bottom: $dot-size;
-	top: ( 100% - $dot-size / $voice-ratio ) / 2;
-	box-sizing: content-box;
 	@include transform( scale( 0 ) );
-	@include transition( transform 0.5s );
+	@include transition( transform .5s );
+
+	position      : absolute;
+	width         : $dot-size;
+	height        : 0;
+	padding-bottom: $dot-size;
+	top           : ( 100% - $dot-size / $voice-ratio ) / 2;
+	box-sizing    : content-box;
 
 	.speaking & {
 		@include transform( scale( 1 ) );
 	}
 
 	.voice-dot-inner {
-		width: 100%;
-		height: 100%;
-		position: absolute;
-		background-color: #000;
-		border-radius: 100%;
 		@include animation( voice $voice-duration infinite );
+		width           : 100%;
+		height          : 100%;
+		position        : absolute;
+		background-color: $font-color;
+		border-radius   : 100%;
 	}
 }
-
 @mixin voice-scale ( $scale ) {
 	transform: scale( $scale );
 }
-
 @keyframes voice {
-	0%   	{ @include voice-scale( $voice-smallest-scale ); }
-	30%  	{ @include voice-scale( 1 ) }
-	60%  	{ @include voice-scale( $voice-smallest-scale ); }
-	100% 	{ @include voice-scale( $voice-smallest-scale ); }
+	0% {
+		@include voice-scale( $voice-smallest-scale );
+	}
+
+	30% {
+		@include voice-scale( 1 )
+	}
+
+	60% {
+		@include voice-scale( $voice-smallest-scale );
+	}
+
+	100% {
+		@include voice-scale( $voice-smallest-scale );
+	}
 }
 
 $i: 0;
@@ -71,5 +81,3 @@ $box-rest: ( 100 - $dot-count * $dot-size );
 	}
 	$i: $i + 1;
 }
-
-

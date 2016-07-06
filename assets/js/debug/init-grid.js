@@ -1,11 +1,15 @@
 define( [ "helper/const", "helper/cache" ], function ( _const, _cache ) {
 	var grids = _const.gridCount,
-		$debugWrapper = $( "<div/>", { id: "debug-wrapper" } ),
-		$innerGridWrapper = $( "<div/>", { class: "inner-grid-wrapper" } ),
+		$debugWrapper = $( "<div/>", {
+			id: "debug-wrapper"
+		} ),
+		$innerGridWrapper = $( "<div/>", {
+			class: "inner-grid-wrapper"
+		} ),
 		i = 0;
 
-	function createGridLine ( nr ) {
-		$gridLine = $( "<div/>", {
+	function createGridLine( nr ) {
+		var $gridLine = $( "<div/>", {
 			class: [ "grid-line", "grid-line-" + nr ].join( " " )
 		} );
 

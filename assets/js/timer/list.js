@@ -1,31 +1,31 @@
 define( [], function () {
 	var timeoutList = [];
 
-	function addToList ( item ) {
+	function addToList( item ) {
 		timeoutList.push( item );
 	}
 
-	function removeFromList ( item ) {
+	function removeFromList( item ) {
 		var pos = timeoutList.indexOf( item );
-    	
-    	if ( pos > 0 ) {
-    		timeoutList = timeoutList.splice( pos, 1 );
-    	}
+
+		if ( pos > 0 ) {
+			timeoutList = timeoutList.splice( pos, 1 );
+		}
 	}
 
-	function pauseTimeout ( timeout ) {
+	function pauseTimeout( timeout ) {
 		timeout.pause();
 	}
 
-	function resumeTimeout ( timeout ) {
+	function resumeTimeout( timeout ) {
 		timeout.resume();
 	}
-	
-	function pauseAllTimeouts () {
+
+	function pauseAllTimeouts() {
 		timeoutList.forEach( pauseTimeout );
 	}
-	
-	function resumeAllTimeouts () {
+
+	function resumeAllTimeouts() {
 		timeoutList.forEach( resumeTimeout );
 	}
 
@@ -34,5 +34,5 @@ define( [], function () {
 		removeFromList: removeFromList,
 		pauseAllTimeouts: pauseAllTimeouts,
 		resumeAllTimeouts: resumeAllTimeouts
-	}
+	};
 } );

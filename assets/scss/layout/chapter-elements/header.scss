@@ -1,14 +1,14 @@
 .chapter {
 	header {
-		position: fixed;
-		height: 100%;
-		width: 100%;
-		left: 0;
-		top: 0;
-		background: #000;
-		color: #fff;
+		position  : fixed;
+		height    : 100%;
+		width     : 100%;
+		left      : 0;
+		top       : 0;
+		background: $chapter-background-color;
+		color     : $chapter-font-color;
 		text-align: center;
-		@include display-flex();
+		@include display-flex;
 		@include justify-content( center );
 		@include align-items( center );
 
@@ -18,12 +18,12 @@
 		}
 
 		.noAnimation & {
-			opacity: 1;
+			opacity : 1;
 			position: static;
-			height: 50vh;
+			height  : 50vh;
 
 			h1 {
-				padding-bottom: 0.5em;
+				padding-bottom: .5em;
 			}
 		}
 

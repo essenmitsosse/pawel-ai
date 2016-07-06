@@ -1,21 +1,21 @@
-define( [ 
+define( [
 	"helper/globals",
 	"helper/errorMessenger",
-	"timer/controller" 
+	"timer/controller"
 	], function ( _globals, errorMessenger, timerController ) {
 
-	function BasicTypeElement () {};
+	function BasicTypeElement() {}
 
 	BasicTypeElement.prototype.name = "BasicTypeElement";
 	BasicTypeElement.prototype.defaultDelay = 0;
 
 	BasicTypeElement.prototype.addNext = function ( next ) {
 		this.next = next;
-	}
+	};
 
 	BasicTypeElement.prototype.randomize = function ( input, minFactor, maxFactor ) {
 		return input * ( minFactor + ( Math.random() * ( maxFactor - minFactor ) ) );
-	}
+	};
 
 	BasicTypeElement.prototype.basicSetup = function ( args ) {
 		args = args || [];
@@ -29,7 +29,7 @@ define( [
 		if ( this.isElement === true ) {
 			this.$self = $( this.self );
 			this.delay = this.$self.data( "delay" ) || this.delay;
-		}	
+		}
 
 		// add this as the next Element to the previous Element
 		if ( this.prev !== false ) {
@@ -43,30 +43,33 @@ define( [
 		}
 
 		this.reset();
-	}
+	};
 
 	BasicTypeElement.prototype.getDelay = function () {
 		return this.delay / ( _globals.typeSpeedMultiplyer || 1 );
-	}
+	};
 
 	BasicTypeElement.prototype.reset = function () {
-		this.$self.removeClass( "s" ).removeClass( "done" ).addClass( "ns" );
+		this.$self.removeClass( "s" )
+			.removeClass( "done" )
+			.addClass( "ns" );
 
 		if ( this.resetChildren ) {
 			this.resetChildren();
 		}
 
 		return this;
-	}
+	};
 
 	BasicTypeElement.prototype.startReveal = function ( parentCallback, delay ) {
 
 		this.parentCallbackAfterReveal = parentCallback;
 
-		this.$self.addClass( "s" ).removeClass( "ns" );
+		this.$self.addClass( "s" )
+			.removeClass( "ns" );
 
-		if ( this.beforeRevealCountdown ) { 
-			this.beforeRevealCountdown(); 
+		if ( this.beforeRevealCountdown ) {
+			this.beforeRevealCountdown();
 		}
 
 		delay = delay || this.getDelay() || 0;
@@ -80,7 +83,7 @@ define( [
 		} else {
 			this.reveal();
 		}
-	}
+	};
 
 	BasicTypeElement.prototype.afterReveal = function () {
 		if ( this.afterDelay > 0 ) {
@@ -88,22 +91,22 @@ define( [
 		} else {
 			this.finish();
 		}
-	}
+	};
 
 	BasicTypeElement.prototype.finish = function () {
 		this.$self.addClass( "done" );
-		if( this.parentCallbackAfterReveal ) {
+		if ( this.parentCallbackAfterReveal ) {
 			this.parentCallbackAfterReveal();
-		}	
-	}
+		}
+	};
 
 	BasicTypeElement.prototype.reveal = function () {
 		this.afterReveal();
-	}
+	};
 
 	BasicTypeElement.prototype.moveToStartFirst = function () {
 		this.notRevealedYet = true;
-	}
+	};
 
 	return BasicTypeElement;
 } );

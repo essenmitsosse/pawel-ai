@@ -1,46 +1,45 @@
 .chapter {
-
 	%margin-top {
 		.superGrid & {
-			&:before {
+			&::before {
 				@include debug-small-info;
 
-				content: "1";
+				content           : '1';
 
 				// center
-				margin: auto;
-				left: 0;
-				right: 0;
+				margin            : auto;
+				left              : 0;
+				right             : 0;
 
-				border-style: solid;
-				border-color: transparent;
-				border-left-width: 25vw;
+				border-style      : solid;
+				border-color      : transparent;
+				border-left-width : 25vw;
 				border-right-width: 25vw;
-				
-				border-bottom: 5px solid $debug-margin-marker-color;
+
+				border-bottom     : 5px solid $debug-margin-marker-color;
 			}
 		}
 	}
-	
+
 	// MARGIN TOP in form of full rows
 	$i: 1;
 	@mixin get-margin-top( $i, $name: $i ) {
 		.m#{$name} {
-			@include getAiRem( "margin-top", $i );
 			@extend %margin-top;
+			@include get-ai-rem( 'margin-top', $i );
+
 			.superGrid & {
-				&:before {
-					@include getAiRem( "height", $i );
-					@include getAiRem( "line-height", $i );
-					@include getAiRem( "border-bottom-width", $i );
-					@include getAiRem( "top", -$i );
-					content: "#{$i}";
+				&::before {
+					@include get-ai-rem( 'height', $i );
+					@include get-ai-rem( 'line-height', $i );
+					@include get-ai-rem( 'border-bottom-width', $i );
+					@include get-ai-rem( 'top', -$i );
+					content: '#{$i}';
 				}
 			}
 		}
 	}
-
-	@include get-margin-top( $font-size-ai-small-rel, "_small" );
+	@include get-margin-top( $font-size-ai-small-rel, '-small' );
 	@while ( $i <= 15 ) {
 		@include get-margin-top( $i );
 		$i: $i + 1;
@@ -54,8 +53,8 @@
 
 			// Numbers for debug tabstops
 			.superGrid & {
-				&:after {
-					content: "#{$i}";
+				&::after {
+					content: '#{$i}';
 				}
 			}
 		}
@@ -67,17 +66,17 @@
 	$i: 0;
 	@while ( $i <= $grid-count ) {
 		.tr#{$i} {
-			width: ( 100% / $grid-count ) * $i;
 			@extend %tr-tabstop;
+			width: ( 100% / $grid-count ) * $i;
 
 			// Numbers for debug tabstops
 			.superGrid & {
-				&:after {
-					content: "#{$i}";
+				&::after {
+					content: '#{$i}';
 				}
 			}
 		}
 
 		$i: $i + 1;
-	} 
+	}
 }

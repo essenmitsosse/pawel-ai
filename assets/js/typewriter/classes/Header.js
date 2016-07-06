@@ -1,11 +1,11 @@
-define( [ 
+define( [
 	"helper/const",
-	"typewriter/classes/BasicTypeElement", 
-	"typewriter/classes/Image", 
-	"helper/errorMessenger" 
+	"typewriter/classes/BasicTypeElement",
+	"typewriter/classes/Image",
+	"helper/errorMessenger"
 	], function ( _const, BasicTypeElement, Image, errorMessenger ) {
-	
-	function Header ( args ) {
+
+	function Header( args ) {
 		this.basicSetup( args );
 	}
 

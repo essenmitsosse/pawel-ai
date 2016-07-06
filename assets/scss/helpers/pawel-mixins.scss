@@ -1,12 +1,13 @@
-@mixin debug-small-info () {
-	position: absolute;
-	@include getFontRem( "font-size", $debug-span-marker-size );
-	@include getRem( "line-height", $debug-span-marker-size );
-	@include getRem( "width", $debug-span-marker-size );
-	@include getRem( "height", $debug-span-marker-size );
-	text-align: center;
+@mixin debug-small-info {
+	@include get-font-rem( 'font-size', $debug-span-marker-size );
+	@include get-rem( 'line-height', $debug-span-marker-size );
+	@include get-rem( 'width', $debug-span-marker-size );
+	@include get-rem( 'height', $debug-span-marker-size );
+
+	position   : absolute;
+	text-align : center;
 	font-family: Arial;
 	font-weight: bold;
-	font-style: normal;
-	color: #fff;
+	font-style : normal;
+	color      : $debug-font-color;
 }

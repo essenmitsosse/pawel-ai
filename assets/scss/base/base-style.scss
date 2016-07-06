@@ -1,21 +1,19 @@
 @font-face {
 	font-family: 'Distinct';
-	src: url('../fonts/distinct-regular-webfont.woff2') format('woff2'), /* Super Modern Browsers */
-		 url('../fonts/distinct-regular-webfont.woff') format('woff'), /* Pretty Modern Browsers */
-}
+	src        : url('../fonts/distinct-regular-webfont.woff2') format('woff2'), url('../fonts/distinct-regular-webfont.woff') format('woff');
 
+}
 @font-face {
 	font-family: 'Distinct';
-	font-style: italic;
-	src: url('../fonts/distinct-regularitalic-webfont.woff2') format('woff2'), /* Super Modern Browsers */
-		 url('../fonts/distinct-regularitalic-webfont.woff') format('woff'), /* Pretty Modern Browsers */
+	font-style : italic;
+	src        : url('../fonts/distinct-regularitalic-webfont.woff2') format('woff2'), url('../fonts/distinct-regularitalic-webfont.woff') format('woff'),;
 }
 
 html {
-	font-size: $base-font-size;
+	font-size : $base-font-size;
 	overflow-x: hidden;
 	overflow-y: scroll;
-	width: 100vw * $viewport-width;
+	width     : 100vw * $viewport-width;
 
 	&::-webkit-scrollbar {
 		-webkit-appearance: none;
@@ -26,21 +24,21 @@ html {
 	}
 
 	&::-webkit-scrollbar-thumb {
-		background-color: #000;
-		border-left: 0.3vw solid #fff;
-		border-right: 0.3vw solid #fff;
+		background-color: $font-color;
+		border-left     : .3vw solid $background-color;
+		border-right    : .3vw solid $background-color;
 	}
 
 	&::-webkit-scrollbar-track {
-		background-color: rgba( 255, 255, 255, 0 );
+		background-color: $background-color;
 	}
 }
 
 body {
-	@include getFontRem( "font-size" );
-	@include getRem( "line-height" );
-	color: $font-color;
-	font-family: "Distinct";
-	text-transform: lowercase;
+	@include get-font-rem( 'font-size' );
+	@include get-rem( 'line-height' );
+	color           : $font-color;
+	font-family     : 'Distinct';
+	text-transform  : lowercase;
 	background-color: $background-color;
 }

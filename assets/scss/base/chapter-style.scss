@@ -1,4 +1,4 @@
 #chapters-wrapper {
-	@include getAiFontRem( "font-size" );
-	@include getAiRem( "line-height" );
+	@include get-ai-font-rem( 'font-size' );
+	@include get-ai-rem( 'line-height' );
 }

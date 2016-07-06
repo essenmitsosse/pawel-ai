@@ -1,8 +1,7 @@
-
 .chapter {
 	> p {
-		@include getAiRem( "height", 1 );
-		width: 100%;
+		@include get-ai-rem( 'height', 1 );
+		width   : 100%;
 		position: relative;
 
 		&.v2 {
@@ -10,24 +9,25 @@
 		}
 
 		&.small {
-			@include getAiFontRem( "font-size", $font-size-ai-small-rel );
-			@include getAiRem( "line-height", $line-height-ai-small-rel );
-			@include getAiRem( "height", $line-height-ai-small-rel );			
+			@include get-ai-font-rem( 'font-size', $font-size-ai-small-rel );
+			@include get-ai-rem( 'line-height', $line-height-ai-small-rel );
+			@include get-ai-rem( 'height', $line-height-ai-small-rel );
 		}
 
 		&.big {
-			@include getAiFontRem( "font-size", $font-size-ai-big-rel );
-			@include getAiRem( "line-height", $line-height-ai-big-rel );
-			@include getAiRem( "height", $line-height-ai-big-rel );	
+			@include get-ai-font-rem( 'font-size', $font-size-ai-big-rel );
+			@include get-ai-rem( 'line-height', $line-height-ai-big-rel );
+			@include get-ai-rem( 'height', $line-height-ai-big-rel );
 		}
 
-		&.big, &.small {
+		&.big,
+		&.small {
 			> span {
 				.superGrid & {
-					border-color: $debug-small-span-marker-color;
+					border-color    : $debug-small-span-marker-color;
 					background-color: $debug-small-span-marker-background-color;
 
-					&:after {
+					&::after {
 						background-color: $debug-small-span-marker-color;
 					}
 				}
@@ -36,18 +36,18 @@
 	}
 
 	// normal after big margin
-	> p.big + p:not(.small):not(.m_small):not(.m1):not(.m2):not(.m3):not(.m4):not(.m5):not(.m6):not(.m7):not(.m9):not(.m10):not(.m11):not(.m12):not(.m13):not(.m14):not(.m15) {
-		@include getAiRem( "margin-top", $ai-line-height-rel * 0.13 );		
+	& > p.big + p:not(.small):not(.m-small):not(.m1):not(.m2):not(.m3):not(.m4):not(.m5):not(.m6):not(.m7):not(.m9):not(.m10):not(.m11):not(.m12):not(.m13):not(.m14):not(.m15) {
+		@include get-ai-rem( 'margin-top', $ai-line-height-rel * .13 );
 	}
 
 	// small after normal margin
-	> p:not(.small) + p.small:not(.m_small):not(.m1):not(.m2):not(.m3):not(.m4):not(.m5):not(.m6):not(.m7):not(.m9):not(.m10):not(.m11):not(.m12):not(.m13):not(.m14):not(.m15) {
-		@include getAiRem( "margin-top", $line-height-ai-small-rel * 0.13 );		
+	& > p:not(.small) + p.small:not(.m-small):not(.m1):not(.m2):not(.m3):not(.m4):not(.m5):not(.m6):not(.m7):not(.m9):not(.m10):not(.m11):not(.m12):not(.m13):not(.m14):not(.m15) {
+		@include get-ai-rem( 'margin-top', $line-height-ai-small-rel * .13 );
 	}
 
 	// small after big margin
-	> p.big + p.small:not(.m_small):not(.m1):not(.m2):not(.m3):not(.m4):not(.m5):not(.m6):not(.m7):not(.m9):not(.m10):not(.m11):not(.m12):not(.m13):not(.m14):not(.m15) {
-		@include getAiRem( "margin-top", $ai-line-height-rel * 0 );		
+	& > p.big + p.small:not(.m-small):not(.m1):not(.m2):not(.m3):not(.m4):not(.m5):not(.m6):not(.m7):not(.m9):not(.m10):not(.m11):not(.m12):not(.m13):not(.m14):not(.m15) {
+		@include get-ai-rem( 'margin-top', $ai-line-height-rel * 0 );
 	}
 
 	// first paragraph margin
@@ -56,7 +56,7 @@
 	}
 
 	// &:after {
-	// 	content: "";
+	// 	content: '';
 	// 	width: 100%;
 	// 	height: 100%;
 	// 	display: block;
@@ -73,45 +73,42 @@
 	// 	}
 	// }
 
-
-
 	> p > span {
-		display: inline-block;
-		position: absolute;
-		z-index: 100;
-		height: 100%;
-		box-sizing: content-box;
+		display    : inline-block;
+		position   : absolute;
+		z-index    : 100;
+		height     : 100%;
+		box-sizing : content-box;
 		white-space: pre;
 
 		> .inner {
 			display: inline-block;
-			height: 100%;
+			height : 100%;
 		}
 
 		> .right {
-			float: right;
+			float     : right;
 			text-align: left;
 		}
 
 		.superGrid & {
-			border-left: $debug-span-marker-width solid $debug-span-marker-color;
-			margin-left: -$debug-span-marker-width;
+			border-left     : $debug-span-marker-width solid $debug-span-marker-color;
+			margin-left     : -$debug-span-marker-width;
 			background-color: $debug-span-marker-background-color;
-			z-index: 50;
+			z-index         : 50;
 
 			> .right {
-				background-color: rgba( 0, 0, 0, .1 );
+				background-color: transparentize( $black, .1 );
 			}
 
-			&:after {
+			&::after {
 				@include debug-small-info;
 
-				content: "0";
-
-				@include getFontRem( "left", $debug-span-marker-size * -0.5 );
-				@include getFontRem( "top", $debug-span-marker-size * -0.5 );
-				margin-left: -$debug-span-marker-width / 2;
-				border-radius: 100%;
+				content         : '0';
+				@include get-font-rem( 'left', $debug-span-marker-size * -.5 );
+				@include get-font-rem( 'top', $debug-span-marker-size * -.5 );
+				margin-left     : -$debug-span-marker-width / 2;
+				border-radius   : 100%;
 				background-color: $debug-span-marker-color;
 			}
 		}
@@ -120,16 +117,16 @@
 			text-align: right;
 
 			.superGrid & {
-				border-left: none;
-				border-right: $debug-span-marker-width solid $debug-right-span-marker-color;
-				margin-left: 0;
+				border-left     : 0;
+				border-right    : $debug-span-marker-width solid $debug-right-span-marker-color;
+				margin-left     : 0;
 				background-color: $debug-right-span-marker-background-color;
 
-				&:after {
-					left: auto;
-					@include getFontRem( "right", $debug-span-marker-size * -0.5 );
-					margin-left: 0;
-					margin-right: -$debug-span-marker-width / 2;
+				&::after {
+					left            : auto;
+					@include get-font-rem( 'right', $debug-span-marker-size * -.5 );
+					margin-left     : 0;
+					margin-right    : -$debug-span-marker-width / 2;
 					background-color: $debug-right-span-marker-color;
 				}
 			}

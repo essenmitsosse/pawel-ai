@@ -1,10 +1,10 @@
 #debug-wrapper {
 	position: fixed;
-	width: 100%;
-	height: 100%;
-	top: 0;
-	left: 0;
-	display: none;
+	width   : 100%;
+	height  : 100%;
+	top     : 0;
+	left    : 0;
+	display : none;
 
 	.grid & {
 		display: block;
@@ -12,18 +12,18 @@
 }
 
 .inner-grid-wrapper {
-	position: absolute;
-	top: 0;
-	left: $grid-outer-border;
-	right: $grid-outer-border;
-	width: $grid-inner-area;
-	height: 100%;
+	position   : absolute;
+	top        : 0;
+	left       : $grid-outer-border;
+	right      : $grid-outer-border;
+	width      : $grid-inner-area;
+	height     : 100%;
 	border-left: $debug-border;
 }
 
 .grid-line {
-	width: 100% / $grid-count;
-	height: 100%;
-	float: left;
+	width       : 100% / $grid-count;
+	height      : 100%;
+	float       : left;
 	border-right: $debug-border;
 }

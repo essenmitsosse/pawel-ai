@@ -1,8 +1,8 @@
 define( [ "helper/globals", "helper/errorMessenger" ], function ( _globals, errorMessenger ) {
-	var query = window.location.search.substring(1),
-		vars = query.split("&");
+	var query = window.location.search.substring( 1 ),
+		vars = query.split( "&" );
 
-	function findMatchingGlobal( name, value ) {
+	function findMatchingGlobal( name ) {
 		var key;
 
 		for ( key in _globals ) {
@@ -14,43 +14,53 @@ define( [ "helper/globals", "helper/errorMessenger" ], function ( _globals, erro
 		return false;
 	}
 
-	function getTypeOfGlobal ( nameOfGlobal ) {
+	function getTypeOfGlobal( nameOfGlobal ) {
 		var value = _globals[ nameOfGlobal ];
 		return typeof value;
 	}
 
-	function toBoolean ( value ) {
+	function toBoolean( value ) {
 		switch ( value ) {
-			case "0": 		return false;
-			case "1": 		return true;
-			case "false": 	return false;
-			case "true": 	return true;
-			case 0: 		return false;
-			case 1: 		return true;
-			case false: 	return false;
-			case true: 		return true;
+		case "0":
+			return false;
+		case "1":
+			return true;
+		case "false":
+			return false;
+		case "true":
+			return true;
+		case 0:
+			return false;
+		case 1:
+			return true;
+		case false:
+			return false;
+		case true:
+			return true;
 		}
 		return null;
 	}
 
-	function toNumber ( value ) {
+	function toNumber( value ) {
 		return Number( value );
 	}
 
-	function toString ( value ) {
+	function toString( value ) {
 		return String( value );
 	}
 
 	function analiseVar( obj ) {
-
-		if ( obj === "" ) { return; }
-
 		var objParts = obj.split( "=" ),
 			name = objParts[ 0 ],
 			value = objParts[ 1 ],
-			nameOfGlobal = findMatchingGlobal( name, value ),
+			nameOfGlobal = findMatchingGlobal( name ),
 			typeOfGlobal,
+			convertFunction,
 			newValue;
+
+		if ( obj === "" ) {
+			return;
+		}
 
 		if ( nameOfGlobal === false ) {
 			var ErrorMessage = [
@@ -60,7 +70,7 @@ define( [ "helper/globals", "helper/errorMessenger" ], function ( _globals, erro
 					"Possible global variables are: "
 				];
 
-			for ( key in _globals ) {
+			for ( var key in _globals ) {
 				ErrorMessage.push( "— " + key );
 			}
 
@@ -72,15 +82,15 @@ define( [ "helper/globals", "helper/errorMessenger" ], function ( _globals, erro
 		typeOfGlobal = getTypeOfGlobal( nameOfGlobal );
 
 		switch ( typeOfGlobal ) {
-			case "boolean":
-				convertFunction = toBoolean;
-				break;
-			case "number":
-				convertFunction = toNumber;
-				break;
-			case "string":
-				convertFunction = toString;
-				break;
+		case "boolean":
+			convertFunction = toBoolean;
+			break;
+		case "number":
+			convertFunction = toNumber;
+			break;
+		case "string":
+			convertFunction = toString;
+			break;
 		}
 
 		newValue = convertFunction( value );
@@ -95,7 +105,6 @@ define( [ "helper/globals", "helper/errorMessenger" ], function ( _globals, erro
  			] );
 		}
 
-		
 	}
 
 	vars.forEach( analiseVar );
