@@ -177,11 +177,15 @@ define( [
 
 		this.childList = this.getCharacterList();
 
+		this.$currentCharWrapper.html( this.childList[ this.childList.length - 1 ].text );
+
 		if ( this.rightJustified ) {
 			this.$innerSelf.css( "width", ( 100 * this.$innerSelf.width() / this.$self.width() ) + "%" );
 		} else {
 			this.$self.css( "min-width", ( 100 * this.$self.width() / this.parent.$self.width() ) + "%" );
 		}
+
+		this.$currentCharWrapper.html( "" );
 	};
 
 	Span.prototype.getCharacterList = function () {
