@@ -185,7 +185,10 @@ define( [
 			this.$self.css( "min-width", ( 100 * this.$self.width() / this.parent.$self.width() ) + "%" );
 		}
 
-		this.$currentCharWrapper.html( "" );
+		if ( !_globals.noAnimation ) {
+			this.$currentCharWrapper.html( "" );
+		}
+
 	};
 
 	Span.prototype.getCharacterList = function () {
@@ -242,6 +245,7 @@ define( [
 		var child = this.childList[ nr ];
 
 		this.$currentCharWrapper.html( child.text );
+		cursor.moveToElement( this.$currentCharWrapper, true );
 		timerController.addTimeout( this.reveal.bind( this ), child.delay, "reveal next char" + child.text );
 	};
 
