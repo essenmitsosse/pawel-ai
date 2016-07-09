@@ -44,7 +44,7 @@ define( [
 		}
 	};
 	Paragraph.prototype.beforeRevealCountdown = function () {
-		scroller.scrollToBottom( this.scrollDelay / ( _globals.typeSpeedMultiplyer || 1 ) );
+		scroller.scrollToBottom( this.scrollDelay );
 	};
 
 	return Paragraph;

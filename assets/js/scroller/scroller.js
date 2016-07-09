@@ -26,6 +26,8 @@ define( [ "helper/cache", "helper/globals" ], function ( _cache, _globals ) {
 	// }
 
 	function scrollToCurrentPosition( duration ) {
+		duration /= ( _globals.typeSpeedMultiplyer || 1 );
+
 		$htmlBody.stop()
 			.animate( {
 				scrollTop: currentPosition

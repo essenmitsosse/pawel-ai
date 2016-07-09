@@ -51,7 +51,7 @@ define( [
 			delay = this.randomize( this.delay, 0.25, 4 );
 		}
 
-		return delay / ( _globals.typeSpeedMultiplyer || 1 );
+		return delay;
 	};
 
 	Span.prototype.beforeRevealCountdown = function () {

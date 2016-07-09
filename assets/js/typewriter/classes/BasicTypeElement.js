@@ -1,8 +1,7 @@
 define( [
-	"helper/globals",
 	"helper/errorMessenger",
 	"timer/controller"
-	], function ( _globals, errorMessenger, timerController ) {
+	], function ( errorMessenger, timerController ) {
 
 	function BasicTypeElement() {}
 
@@ -46,7 +45,7 @@ define( [
 	};
 
 	BasicTypeElement.prototype.getDelay = function () {
-		return this.delay / ( _globals.typeSpeedMultiplyer || 1 );
+		return this.delay;
 	};
 
 	BasicTypeElement.prototype.reset = function () {
@@ -75,7 +74,7 @@ define( [
 		delay = delay || this.getDelay() || 0;
 
 		if ( this.scrollDelay ) {
-			delay += this.scrollDelay / ( _globals.typeSpeedMultiplyer || 1 );
+			delay += this.scrollDelay;
 		}
 
 		if ( delay > 0 ) {
