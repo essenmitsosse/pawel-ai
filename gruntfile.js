@@ -116,7 +116,9 @@ module.exports = function ( grunt ) {
 						"test_chapter": "<%= assetsPath %>/html/test_chapters/**/*.html",
 						"layout": {
 							"header": "<%= assetsPath %>/html/layout/header.html",
-							"footer": "<%= assetsPath %>/html/layout/footer.html"
+							"footer": "<%= assetsPath %>/html/layout/footer.html",
+							"about": "<%= assetsPath %>/html/layout/about.html",
+							"chapters": "<%= assetsPath %>/html/layout/chapters.html"
 						}
 					}
 				}
