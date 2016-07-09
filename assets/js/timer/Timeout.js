@@ -1,11 +1,11 @@
-define( [ "timer/list" ], function ( timeoutList ) {
+define( [ "helper/globals", "timer/list" ], function ( _globals, timeoutList ) {
 	var i = 0;
 
-	function Timeout( callback, delay, noPause ) {
+	function Timeout( callback, delay, desc ) {
 		this.callbackFunction = callback;
 		this.delay = Math.round( delay );
 		this.creationTime = window.performance.now();
-		this.noPause = noPause || false;
+		this.name = desc;
 
 		timeoutList.addToList( this );
 
@@ -14,13 +14,14 @@ define( [ "timer/list" ], function ( timeoutList ) {
 
 		this.setTimeout();
 
-		if ( this.noPause ) {
-			this.pause = this.pauseNot;
-		}
+		// if ( this.noPause ) {
+		// 	this.pause = this.pauseNot;
+		// }
 	}
 
 	Timeout.prototype.setTimeout = function () {
-		this.timeout = setTimeout( this.callbackFunction.bind( this ), this.delay );
+		var delay = this.delay / ( _globals.typeSpeedMultiplyer || 1 );
+		this.timeout = setTimeout( this.callback.bind( this ), delay );
 	};
 
 	Timeout.prototype.clearTimeout = function () {
@@ -33,11 +34,12 @@ define( [ "timer/list" ], function ( timeoutList ) {
 	};
 
 	Timeout.prototype.callback = function () {
-		this.callbackFunction();
 		this.stop();
+		this.callbackFunction();
 	};
 
 	Timeout.prototype.pause = function () {
+		console.log( "pause" );
 		var timeSinceCreation = Math.round( window.performance.now() - this.creationTime );
 		this.delay = this.delay - timeSinceCreation;
 
