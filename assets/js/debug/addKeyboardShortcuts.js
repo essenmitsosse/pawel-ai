@@ -9,7 +9,6 @@ define( [
 		key: 187,
 		ctrl: true,
 	}, globalSetter.getGlobalChanger( "typeSpeedMultiplyer", 0.1 ) );
-
 	keyboardHandler.addKeyboardShortcut( {
 		key: 189,
 		ctrl: true,

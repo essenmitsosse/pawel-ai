@@ -14,6 +14,8 @@ define( [
 		this.basicSetup( args );
 
 		this.ID = this.$self.attr( "id" );
+		this.name = this.$self.data( "name" ) || this.$self.find( "header h1" )
+			.html() || "KEIN NAME";
 
 		this.$self.css( {
 			"z-index": ( _chache.chapterLength - args.nr ) * 1000

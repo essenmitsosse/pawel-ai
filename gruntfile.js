@@ -114,11 +114,10 @@ module.exports = function ( grunt ) {
 					"sections": {
 						"chapter": "<%= assetsPath %>/html/chapters/**/*.html",
 						"test_chapter": "<%= assetsPath %>/html/test_chapters/**/*.html",
+						"menu": "<%= assetsPath %>/html/menu/*.html",
 						"layout": {
 							"header": "<%= assetsPath %>/html/layout/header.html",
-							"footer": "<%= assetsPath %>/html/layout/footer.html",
-							"about": "<%= assetsPath %>/html/layout/about.html",
-							"chapters": "<%= assetsPath %>/html/layout/chapters.html"
+							"footer": "<%= assetsPath %>/html/layout/footer.html"
 						}
 					}
 				}

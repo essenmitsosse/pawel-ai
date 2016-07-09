@@ -5,6 +5,7 @@ requirejs.config( {
 		"debug/addKeyboardShortcuts",
 
 		"typewriter/chapterFactory",
+		"menu/menuFactory",
 
 		"cursor/cursor",
 		"voices/voices"

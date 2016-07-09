@@ -11,3 +11,6 @@
 	font-style : normal;
 	color      : $debug-font-color;
 }
+@mixin sans-serif-font {
+	font-family: Arial, sans-serif;
+}

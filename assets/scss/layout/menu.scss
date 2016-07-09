@@ -1,0 +1,49 @@
+.menu {
+	position   : fixed;
+	top        : 0;
+	left       : -$menu-width;
+	height     : 100%;
+	background : $background-color;
+	z-index    : 10000;
+	width      : $menu-width;
+	@include transition( left 1s );
+	padding    : $menu-icon-left $menu-icon-bottom;
+	@include sans-serif-font;
+	font-weight: bold;
+	overflow   : scroll;
+
+	h1 {
+		font-weight: bold;
+
+		&::after {
+			content: '-';
+			display: block;
+		}
+	}
+
+	&.show {
+		left: 0;
+	}
+}
+
+#menuIconWrapper {
+	height  : $menu-icon-size;
+	position: fixed;
+	left    : $menu-icon-left;
+	bottom  : $menu-icon-bottom;
+	z-index : 10000;
+	@include transition( margin-left 1s );
+
+	.showMenu & {
+		margin-left: $menu-width;
+	}
+}
+
+.menuIcon {
+	width           : $menu-icon-size;
+	height          : $menu-icon-size;
+	margin-right    : $menu-icon-margin;
+	float           : left;
+	background-color: $font-color;
+	cursor          : pointer;
+}

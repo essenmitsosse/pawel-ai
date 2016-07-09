@@ -8,7 +8,8 @@
 		background : $chapter-background-color;
 		color      : $chapter-font-color;
 		text-align : center;
-		font-family: sans-serif;
+		@include sans-serif-font;
+		
 		@include display-flex();
 		@include justify-content( center );
 		@include align-items( center );

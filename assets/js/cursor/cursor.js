@@ -14,7 +14,7 @@ define( [ "helper/cache", "helper/const", "timer/controller" ], function ( _cach
 
 		this.$outerCursor.append( this.$innerCursor );
 
-		_cache.$main.append( this.$outerCursor );
+		_cache.$chaptersWrapper.append( this.$outerCursor );
 	};
 
 	Cursor.prototype.setToIdle = function () {

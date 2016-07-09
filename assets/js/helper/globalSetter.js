@@ -54,9 +54,21 @@ define( [ "helper/globals", "helper/cache", "helper/errorMessenger" ], function 
 		};
 	}
 
-	function getGlobalChanger( name, value ) {
-		return function () {
+	function getGlobalChanger( name ) {
+		return function ( value ) {
 			changeGlobal( name, value, true );
+		};
+	}
+
+	function getGlobalSetter( name ) {
+		return function ( value ) {
+			setGlobal( name, value, true );
+		};
+	}
+
+	function getGlobalGetter( name, value ) {
+		return function () {
+			return getGlobal( name, value, true );
 		};
 	}
 
@@ -75,6 +87,8 @@ define( [ "helper/globals", "helper/cache", "helper/errorMessenger" ], function 
 		getGlobal: getGlobal,
 		toggleGlobal: toggleGlobal,
 		getGlobalToggler: getGlobalToggler,
-		getGlobalChanger: getGlobalChanger
+		getGlobalSetter: getGlobalSetter,
+		getGlobalChanger: getGlobalChanger,
+		getGlobalGetter: getGlobalGetter
 	};
 } );

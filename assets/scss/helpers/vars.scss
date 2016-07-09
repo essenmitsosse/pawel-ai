@@ -27,6 +27,13 @@ $grid-inner-area                         : 100vw * $viewport-width - ( 2 * $grid
 $single-grid                             : $grid-inner-area / 12;
 $grid-ratio                              : 1;
 
+// Menu
+$menu-width                              : 20em;
+$menu-icon-size                          : 4vw;
+$menu-icon-margin                        : $menu-icon-size / 5;
+$menu-icon-left                          : $menu-icon-size / 4;
+$menu-icon-bottom                        : $menu-icon-left;
+
 // Cursor
 $cursor-width                            : 20px;
 

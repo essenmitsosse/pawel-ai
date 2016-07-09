@@ -2,8 +2,13 @@
 	position: relative;
 	z-index : 1000;
 	width   : 100%;
+	@include transition( -webkit-filter 1s );
 
 	.grid & {
 		background-color: $grid-line-color;
+	}
+
+	.showMenu & {
+		@include filter( blur( 2px) brightness( 50% ) )
 	}
 }

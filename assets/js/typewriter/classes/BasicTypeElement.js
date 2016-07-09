@@ -73,6 +73,7 @@ define( [
 			delay += this.scrollDelay;
 		}
 
+		// do special stuff like scrolling
 		if ( this.beforeRevealCountdown ) {
 			this.beforeRevealCountdown();
 		}

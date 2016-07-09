@@ -6,7 +6,8 @@ define( [
 	"scroller/scroller"
 	], function ( globalSetter, errorMessenger, Timeout, timeoutList, scroller ) {
 
-	var toggleGlobalPause = globalSetter.getGlobalToggler( "isPaused" ),
+	var getGlobalPause = globalSetter.getGlobalGetter( "isPaused" ),
+		setGlobalPause = globalSetter.getGlobalSetter( "isPaused" ),
 		isPlaying = false;
 
 	function addTimeout( callback, delay, desc ) {
@@ -28,27 +29,27 @@ define( [
 	}
 
 	function pauseAllTimeouts() {
-		if ( globalSetter.getGlobal( "isPaused" ) ) {
-			timeoutList.pauseAllTimeouts();
-			isPlaying = false;
-		}
+		setGlobalPause( true );
+		timeoutList.pauseAllTimeouts();
+		isPlaying = false;
+	}
+
+	function resumeAllTimeoutsAfterScroll() {
+		timeoutList.resumeAllTimeouts();
+		isPlaying = true;
 	}
 
 	function resumeAllTimeouts() {
-		if ( !globalSetter.getGlobal( "isPaused" ) ) {
-			timeoutList.resumeAllTimeouts();
-			isPlaying = true;
-		}
+		setGlobalPause( false );
+		scroller.scrollToCurrentPosition( 500 );
+		setTimeout( resumeAllTimeoutsAfterScroll, 700 );
 	}
 
 	function toggleAllTimeouts() {
-		var isPaused = toggleGlobalPause();
-
-		if ( isPaused ) {
-			pauseAllTimeouts();
+		if ( !getGlobalPause() ) {
+			pauseAllTimeouts( true );
 		} else {
-			scroller.scrollToCurrentPosition( 500 );
-			setTimeout( resumeAllTimeouts, 700 );
+			resumeAllTimeouts( true );
 		}
 	}
 
@@ -56,7 +57,9 @@ define( [
 		addTimeout: addTimeout,
 		addTimeoutThatDoesntPause: addTimeoutThatDoesntPause,
 		removeTimeout: removeTimeout,
-		toggleAllTimeouts: toggleAllTimeouts
+		toggleAllTimeouts: toggleAllTimeouts,
+		pauseAllTimeouts: pauseAllTimeouts,
+		resumeAllTimeouts: resumeAllTimeouts
 
 	};
 } );

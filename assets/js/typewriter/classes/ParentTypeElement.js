@@ -112,7 +112,7 @@ define( [ "typewriter/classes/BasicTypeElement", "helper/errorMessenger" ], func
 	};
 
 	ParentTypeElement.prototype.reveal = function () {
-		var currentChildNr = this.currentChildNr
+		var currentChildNr = this.currentChildNr;
 		if ( this.currentChildNr < this.childList.length ) {
 			this.currentChildNr += 1;
 			this.revealChild( currentChildNr );

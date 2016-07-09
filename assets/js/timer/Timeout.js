@@ -39,7 +39,6 @@ define( [ "helper/globals", "timer/list" ], function ( _globals, timeoutList ) {
 	};
 
 	Timeout.prototype.pause = function () {
-		console.log( "pause '" + this.desc + "'" );
 		var timeSinceCreation = Math.round( window.performance.now() - this.creationTime );
 		this.delay = this.delay - timeSinceCreation;
 
