@@ -42,10 +42,10 @@ define( [
 			}
 			i += 1;
 		}
-	}
+	};
 	Paragraph.prototype.beforeRevealCountdown = function () {
 		scroller.scrollToBottom( this.scrollDelay / ( _globals.typeSpeedMultiplyer || 1 ) );
-	}
+	};
 
 	return Paragraph;
 } );
