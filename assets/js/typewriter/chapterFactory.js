@@ -47,12 +47,14 @@ define( [ "helper/cache", "helper/globals", "typewriter/classes/Chapter" ], func
 		}
 
 		showNextChapter( 0 );
-
 	}
 
-	// function jumpToChapter( chapterID ) {}
-	//
-	// window.jumpToChapter = jumpToChapter;
+	window.jumpToChapter = function jumpToChapter( chapterID ) {
+		var chapterNr = chapterNameList[ chapterID ];
+
+		currentChapter = chapterNr;
+		showNextChapter();
+	};
 
 	if ( document.fonts && document.fonts.ready ) { // Chrome and Firefox
 		document.fonts.ready.then( whenFontsHaveLoaded );

@@ -8,6 +8,7 @@ define( [ "typewriter/classes/BasicTypeElement", "helper/errorMessenger" ], func
 	ParentTypeElement.prototype.hasChildren = true;
 	ParentTypeElement.prototype.name = "ParentTypeElement";
 	ParentTypeElement.prototype.possibleChildElements = [];
+	ParentTypeElement.prototype.currentChildNr = 0;
 
 	ParentTypeElement.prototype.getChildrenList = function () {
 		return this.$self.children();
@@ -104,12 +105,17 @@ define( [ "typewriter/classes/BasicTypeElement", "helper/errorMessenger" ], func
 		errorMessenger.sendMessage( errorMessage );
 	};
 
-	ParentTypeElement.prototype.reveal = function () {
-		if ( this.currentChild < this.childList.length ) {
-			var currentChild = this.childList[ this.currentChild ];
-			this.currentChild += 1;
+	ParentTypeElement.prototype.revealChild = function ( nr ) {
+		var child = this.childList[ nr ];
 
-			currentChild.startReveal( this.reveal.bind( this ) );
+		child.startReveal( this.reveal.bind( this ) );
+	};
+
+	ParentTypeElement.prototype.reveal = function () {
+		var currentChildNr = this.currentChildNr
+		if ( this.currentChildNr < this.childList.length ) {
+			this.currentChildNr += 1;
+			this.revealChild( currentChildNr );
 		} else {
 			this.afterReveal();
 		}

@@ -77,20 +77,11 @@ define( [
 			this.beforeRevealCountdown();
 		}
 
-		if ( delay > 0 ) {
-			console.log( delay );
-			timerController.addTimeout( this.reveal.bind( this ), delay, "reveal next basic element" );
-		} else {
-			this.reveal();
-		}
+		timerController.addTimeout( this.reveal.bind( this ), delay, "reveal next basic element" );
 	};
 
 	BasicTypeElement.prototype.afterReveal = function () {
-		if ( this.afterDelay > 0 ) {
-			timerController.addTimeout( this.finish.bind( this ), this.afterDelay, "finish current element" );
-		} else {
-			this.finish();
-		}
+		timerController.addTimeout( this.finish.bind( this ), this.afterDelay, "finish current element" );
 	};
 
 	BasicTypeElement.prototype.finish = function () {

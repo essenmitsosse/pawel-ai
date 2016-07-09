@@ -5,7 +5,7 @@ define( [ "helper/globals", "timer/list" ], function ( _globals, timeoutList ) {
 		this.callbackFunction = callback;
 		this.delay = Math.round( delay );
 		this.creationTime = window.performance.now();
-		this.name = desc;
+		this.desc = desc;
 
 		timeoutList.addToList( this );
 
@@ -39,7 +39,7 @@ define( [ "helper/globals", "timer/list" ], function ( _globals, timeoutList ) {
 	};
 
 	Timeout.prototype.pause = function () {
-		console.log( "pause" );
+		console.log( "pause '" + this.desc + "'" );
 		var timeSinceCreation = Math.round( window.performance.now() - this.creationTime );
 		this.delay = this.delay - timeSinceCreation;
 

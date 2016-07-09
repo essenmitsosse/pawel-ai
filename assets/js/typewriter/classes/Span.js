@@ -3,16 +3,11 @@ define( [
 	"typewriter/classes/ParentTypeElement",
 	"cursor/cursor",
 	"voices/voices",
-	"timer/controller",
-	"helper/errorMessenger"
+	"timer/controller"
 	], function ( _globals, ParentTypeElement, cursor, voices, timerController ) {
 
 	function Span( nr, self, prev, parent ) {
 		this.basicSetup( nr, self, prev, parent );
-		this.delayList = this.getDelayList( this.$self );
-		this.getRemoveCharList();
-
-		this.delayEnd = this.$self.data( "delayend" );
 
 		this.voice = this.parent.$self.hasClass( "v2" ) ? 1 : 0;
 	}
@@ -35,32 +30,7 @@ define( [
 	];
 	Span.prototype.isElement = true;
 	Span.prototype.defaultDelay = _globals.defaultDelay || 50;
-	Span.prototype.currentChar = 0;
-	Span.prototype.totalChars = 0;
-	Span.prototype.absChars = 0;
 	Span.prototype.typeingForward = true;
-
-	Span.prototype.getDelay = function () {
-		var delay;
-
-		if ( this.delayEnd && this.currentChar === this.characterCount ) {
-			delay = this.delayEnd;
-		} else if ( this.delayList && this.delayList.length > this.totalChars ) {
-			delay = this.delayList[ this.totalChars ] || this.delay;
-		} else {
-			delay = this.randomize( this.delay, 0.25, 4 );
-		}
-
-		return delay;
-	};
-
-	Span.prototype.beforeRevealCountdown = function () {
-		if ( this.currentChar === 0 ) {
-			this.$innerSelf.html( this.$currentCharWrapper );
-		}
-
-		// cursor.moveToElement( this.$innerSelf, true );
-	};
 
 	Span.prototype.getPosAndLength = function ( $element ) {
 		var element = $element[ 0 ],
@@ -110,15 +80,11 @@ define( [
 				this.characterThatNeedToBeRemoved = removeCharList.reduce( this.getSumOfRemovals );
 
 			}
-			this.removeCharList = removeCharList;
 		} else {
-			this.removeCharList = [];
+			removeCharList = [];
 		}
 
-		if ( this.inlineList ) {
-			this.deletedCharacters = 0;
-			this.inlineList.forEach( this.convertInlineElements.bind( this ) );
-		}
+		return removeCharList;
 	};
 
 	Span.prototype.convertInlineElements = function ( inline ) {
@@ -186,22 +152,30 @@ define( [
 
 		this.fullTextContent = this.$self.html();
 
-		this.characterCount = this.fullTextContent.length + ( this.characterThatNeedToBeRemoved || 0 );
-
-		if ( this.characterCount === 0 ) {
+		if ( this.fullTextContent.length === 0 ) {
 			this.displayEmptyElementError( true );
 		}
 
 		// put content in div;
 		this.$innerSelf = $( "<span>", {
-			html: this.fullTextContent,
 			class: innerClasses.join( " " )
 		} );
 
 		this.$currentCharWrapper = $( "<span>" );
+		this.$innerSelf.append( this.$currentCharWrapper );
 
 		// remove normal content and replace it with the new wrapped content
 		this.$self.html( this.$innerSelf );
+
+		this.removeCharList = this.getRemoveCharList();
+		this.delayList = this.getDelayList( this.$self );
+
+		if ( this.inlineList ) {
+			this.deletedCharacters = 0;
+			this.inlineList.forEach( this.convertInlineElements.bind( this ) );
+		}
+
+		this.childList = this.getCharacterList();
 
 		if ( this.rightJustified ) {
 			this.$innerSelf.css( "width", ( 100 * this.$innerSelf.width() / this.$self.width() ) + "%" );
@@ -210,44 +184,61 @@ define( [
 		}
 	};
 
-	Span.prototype.reveal = function () {
-		var currentText;
+	Span.prototype.getCharacterList = function () {
+		var currentChar = 0,
+			totalChars = 0,
+			absChars = 0,
+			currentFullText = this.fullTextContent,
+			characterCount = currentFullText.length + ( this.characterThatNeedToBeRemoved || 0 ),
+			childList = [],
+			delayEnd = this.$self.data( "delayend" );
 
-		if ( this.currentChar < this.characterCount ) {
-			var removesChar;
-			// check if there is a list of characters that should be removed and then check if this character should be removed
-			if ( this.removeCharList ) {
-				removesChar = this.removeCharList[ this.currentChar ] < 0;
+		function getDelay() {
+			var delay;
+
+			if ( delayEnd && currentChar === characterCount ) {
+				delay = delayEnd;
+			} else if ( this.delayList && this.delayList.length > totalChars ) {
+				delay = this.delayList[ totalChars ] || this.delay;
+			} else {
+				delay = this.randomize( this.delay, 0.25, 4 );
 			}
 
-			if ( removesChar ) {
-				this.removeCharList[ this.currentChar ] += 1;
-				this.fullTextContent = this.fullTextContent.substr( 0, this.absChars - 1 ) + this.fullTextContent.substr( this.absChars );
-				this.absChars -= 1;
-			} else {
-				this.currentChar += 1;
-				this.absChars += 1;
+			return delay;
+		}
 
-				var nextChar = this.fullTextContent.substr( this.currentChar - 1, 1 );
+		while ( currentChar < characterCount ) {
+			// check if there is a list of characters that should be removed and then check if this character should be removed
+			if ( this.removeCharList && this.removeCharList[ currentChar ] < 0 ) {
+				this.removeCharList[ currentChar ] += 1;
+				currentFullText = currentFullText.substr( 0, absChars - 1 ) + currentFullText.substr( absChars );
+				absChars -= 1;
+			} else {
+				currentChar += 1;
+				absChars += 1;
+
+				var nextChar = currentFullText.substr( currentChar - 1, 1 );
 				if ( nextChar.search( /([\uD800-\uDBFF])/ ) >= 0 ) {
 					this.currentChar += 1;
-					this.absChars += 1;
+					absChars += 1;
 				}
 			}
 
-			this.totalChars += 1;
-			currentText = this.fullTextContent.substr( 0, this.absChars );
-			this.$currentCharWrapper.html( currentText );
-
-			// cursor.moveToElement( this.$currentCharWrapper, true );
-			// voices.refreshVoice( this.voice );
-
-			timerController.addTimeout( this.reveal.bind( this ), this.getDelay(), "reveal next char: " + currentText );
-		} else {
-			if ( this.parentCallbackAfterReveal ) {
-				this.parentCallbackAfterReveal();
-			}
+			totalChars += 1;
+			childList.push( {
+				text: currentFullText.substr( 0, absChars ),
+				delay: getDelay.bind( this )()
+			} );
 		}
+
+		return childList;
+	};
+
+	Span.prototype.revealChild = function ( nr ) {
+		var child = this.childList[ nr ];
+
+		this.$currentCharWrapper.html( child.text );
+		timerController.addTimeout( this.reveal.bind( this ), child.delay, "reveal next char" + child.text );
 	};
 
 	Span.prototype.convertToDelay = function ( nr ) {

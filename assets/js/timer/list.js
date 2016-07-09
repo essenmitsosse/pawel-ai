@@ -7,15 +7,11 @@ define( [], function () {
 
 	function removeFromList( item ) {
 		var pos = timeoutList.indexOf( item );
-
-		if ( pos > 0 ) {
-			timeoutList = timeoutList.splice( pos, 1 );
-		}
+		timeoutList.splice( pos, 1 );
 	}
 
 	function pauseTimeout( timeout ) {
 		timeout.pause();
-		console.log( timeoutList );
 	}
 
 	function resumeTimeout( timeout ) {
