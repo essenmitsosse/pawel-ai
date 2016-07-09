@@ -15,6 +15,7 @@ define( [], function () {
 
 	function pauseTimeout( timeout ) {
 		timeout.pause();
+		console.log( timeoutList );
 	}
 
 	function resumeTimeout( timeout ) {

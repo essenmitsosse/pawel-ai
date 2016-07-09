@@ -48,7 +48,7 @@ define( [ "helper/cache", "helper/const", "timer/controller" ], function ( _cach
 	Voice.prototype.refresh = function () {
 		this.$voiceWrap.addClass( "speaking" );
 		timerController.removeTimeout( this.currentTimeOut );
-		this.currentTimeOut = timerController.addTimeoutThatDoesntPause( this.silence.bind( this ), 500 );
+		this.currentTimeOut = timerController.addTimeoutThatDoesntPause( this.silence.bind( this ), 500, "silence voice" );
 	};
 
 	voices = [

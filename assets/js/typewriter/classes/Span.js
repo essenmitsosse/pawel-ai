@@ -59,7 +59,7 @@ define( [
 			this.$innerSelf.html( this.$currentCharWrapper );
 		}
 
-		cursor.moveToElement( this.$innerSelf, true );
+		// cursor.moveToElement( this.$innerSelf, true );
 	};
 
 	Span.prototype.getPosAndLength = function ( $element ) {
@@ -211,6 +211,8 @@ define( [
 	};
 
 	Span.prototype.reveal = function () {
+		var currentText;
+
 		if ( this.currentChar < this.characterCount ) {
 			var removesChar;
 			// check if there is a list of characters that should be removed and then check if this character should be removed
@@ -234,12 +236,13 @@ define( [
 			}
 
 			this.totalChars += 1;
-			this.$currentCharWrapper.html( this.fullTextContent.substr( 0, this.absChars ) );
+			currentText = this.fullTextContent.substr( 0, this.absChars );
+			this.$currentCharWrapper.html( currentText );
 
-			cursor.moveToElement( this.$currentCharWrapper, true );
-			voices.refreshVoice( this.voice );
+			// cursor.moveToElement( this.$currentCharWrapper, true );
+			// voices.refreshVoice( this.voice );
 
-			timerController.addTimeout( this.reveal.bind( this ), this.getDelay() );
+			timerController.addTimeout( this.reveal.bind( this ), this.getDelay(), "reveal next char: " + currentText );
 		} else {
 			if ( this.parentCallbackAfterReveal ) {
 				this.parentCallbackAfterReveal();

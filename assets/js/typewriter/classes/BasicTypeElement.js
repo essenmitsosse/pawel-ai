@@ -67,18 +67,19 @@ define( [
 		this.$self.addClass( "s" )
 			.removeClass( "ns" );
 
-		if ( this.beforeRevealCountdown ) {
-			this.beforeRevealCountdown();
-		}
-
 		delay = delay || this.getDelay() || 0;
 
 		if ( this.scrollDelay ) {
 			delay += this.scrollDelay;
 		}
 
+		if ( this.beforeRevealCountdown ) {
+			this.beforeRevealCountdown();
+		}
+
 		if ( delay > 0 ) {
-			timerController.addTimeout( this.reveal.bind( this ), delay );
+			console.log( delay );
+			timerController.addTimeout( this.reveal.bind( this ), delay, "reveal next basic element" );
 		} else {
 			this.reveal();
 		}
@@ -86,7 +87,7 @@ define( [
 
 	BasicTypeElement.prototype.afterReveal = function () {
 		if ( this.afterDelay > 0 ) {
-			timerController.addTimeout( this.finish.bind( this ), this.afterDelay );
+			timerController.addTimeout( this.finish.bind( this ), this.afterDelay, "finish current element" );
 		} else {
 			this.finish();
 		}

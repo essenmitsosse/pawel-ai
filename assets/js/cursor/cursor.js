@@ -25,7 +25,7 @@ define( [ "helper/cache", "helper/const", "timer/controller" ], function ( _cach
 		this.$outerCursor.removeClass( "idle" );
 
 		timerController.removeTimeout( this.currentTimeOut );
-		this.currentTimeOut = timerController.addTimeoutThatDoesntPause( this.setToIdle.bind( this ), 100 );
+		this.currentTimeOut = timerController.addTimeoutThatDoesntPause( this.setToIdle.bind( this ), 100, "start cursor blink" );
 	};
 
 	Cursor.prototype.moveToPosition = function ( left, top, height ) {

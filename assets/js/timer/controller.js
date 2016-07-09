@@ -9,9 +9,9 @@ define( [
 	var toggleGlobalPause = globalSetter.getGlobalToggler( "isPaused" ),
 		isPlaying = false;
 
-	function addTimeout( callback, delay, noPause ) {
+	function addTimeout( callback, delay, desc ) {
 		if ( delay > 0 ) {
-			return new Timeout( callback, delay, noPause );
+			return new Timeout( callback, delay, desc );
 		} else {
 			callback();
 		}
