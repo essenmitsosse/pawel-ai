@@ -21,29 +21,51 @@
 		}
 	}
 
+	li {
+		list-style: none;
+	}
+
 	&.show {
 		left: 0;
 	}
 }
 
-#menuIconWrapper {
-	height  : $menu-icon-size;
-	position: fixed;
-	left    : $menu-icon-left;
-	bottom  : $menu-icon-bottom;
-	z-index : 10000;
-	@include transition( margin-left 1s );
+.chapters-menu {
+	left : auto;
+	right: -$menu-width;
+	@include transition( right 1s );
 
-	.showMenu & {
-		margin-left: $menu-width;
+	&.show {
+		left : auto;
+		right: 0;
 	}
 }
 
 .menuIcon {
-	width           : $menu-icon-size;
-	height          : $menu-icon-size;
-	margin-right    : $menu-icon-margin;
-	float           : left;
-	background-color: $font-color;
-	cursor          : pointer;
+	bottom         : $menu-icon-bottom;
+	z-index        : 10000;
+	width          : $menu-icon-size;
+	height         : $menu-icon-size;
+	cursor         : pointer;
+	position       : fixed;
+	@include transition( margin 1s );
+	background-size: 100%;
+}
+
+.icon-about {
+	left            : $menu-icon-left;
+	background-image: url('../imgs/icons/about.png');
+
+	[data-menu='about'] & {
+		margin-left: $menu-width;
+	}
+}
+
+.icon-chapters {
+	right           : $menu-icon-left;
+	background-image: url('../imgs/icons/hashtag.png');
+
+	[data-menu='chapters'] & {
+		margin-right: $menu-width;
+	}
 }

@@ -24,10 +24,12 @@ define( [
 		menuList.forEach( hideOrShowElement );
 
 		if ( except && except.name ) { // if menu item is being shown
-			_cache.$body.addClass( "showMenu" );
+			_cache.$body.attr( "data-menu", except.name )
+				.addClass( "showMenu" );
 			timerController.pauseAllTimeouts();
 		} else { // if NO menu item is being shown
-			_cache.$body.removeClass( "showMenu" );
+			_cache.$body.removeAttr( "data-menu" )
+				.removeClass( "showMenu" );
 			timerController.resumeAllTimeouts();
 		}
 	}

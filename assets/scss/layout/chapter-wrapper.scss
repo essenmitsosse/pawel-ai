@@ -1,14 +1,23 @@
 #chapters-wrapper {
-	position: relative;
-	z-index : 1000;
-	width   : 100%;
-	@include transition( -webkit-filter 1s );
+	position  : relative;
+	z-index   : 1000;
+	width     : 100%;
+	left      : 0;
+	transition: left 1s, right 1s, -webkit-filter 1s;
 
 	.grid & {
 		background-color: $grid-line-color;
 	}
 
 	.showMenu & {
-		@include filter( blur( 2px) brightness( 50% ) )
+		@include filter( blur( 1px) brightness( 50% ) );
+	}
+
+	[data-menu='about'] & {
+		left: 10vw;
+	}
+
+	[data-menu='chapters'] & {
+		left: -10vw;
 	}
 }

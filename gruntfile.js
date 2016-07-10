@@ -77,7 +77,7 @@ module.exports = function ( grunt ) {
 				"files": [ {
 					"expand": true,
 					"cwd": "assets/imgs/",
-					"src": [ "*" ],
+					"src": [ "**" ],
 					"dest": "dist/imgs"
 				} ]
 			},

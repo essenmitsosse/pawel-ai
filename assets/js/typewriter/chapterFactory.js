@@ -1,4 +1,9 @@
-define( [ "helper/cache", "helper/globals", "typewriter/classes/Chapter" ], function ( _cache, _globals, Chapter ) {
+define( [
+	"helper/cache",
+	"helper/globals",
+	"menu/chapterMenu",
+	"typewriter/classes/Chapter"
+], function ( _cache, _globals, chapterMenu, Chapter ) {
 	var chapterList = [],
 		chapterNameList = {},
 		currentChapter = 0,
@@ -17,6 +22,7 @@ define( [ "helper/cache", "helper/globals", "typewriter/classes/Chapter" ], func
 		chapterNameList[ newElement.ID ] = nr;
 
 		chapterList.push( newElement );
+		chapterMenu.addMenu( newElement );
 	}
 
 	showNextChapter = function ( delay ) {
@@ -49,17 +55,21 @@ define( [ "helper/cache", "helper/globals", "typewriter/classes/Chapter" ], func
 		showNextChapter( 0 );
 	}
 
-	window.jumpToChapter = function jumpToChapter( chapterID ) {
+	function jumpToChapter( chapterID ) {
 		var chapterNr = chapterNameList[ chapterID ];
 
 		currentChapter = chapterNr;
 		showNextChapter();
-	};
+	}
 
 	if ( document.fonts && document.fonts.ready ) { // Chrome and Firefox
 		document.fonts.ready.then( whenFontsHaveLoaded );
 	} else {
 		whenFontsHaveLoaded();
 	}
+
+	return {
+		jumpToChapter: jumpToChapter
+	};
 
 } );
