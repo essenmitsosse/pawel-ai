@@ -283,7 +283,11 @@ define( [
 	};
 
 	Span.prototype.resetChildren = function () {
+		this.currentChildNr = 0;
 
+		if ( !_globals.noAnimation ) {
+			this.$currentCharWrapper.html( "" );
+		}
 	};
 
 	return Span;
