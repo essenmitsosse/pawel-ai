@@ -9,6 +9,7 @@ define( [
 
 		this.getMargin();
 		this.scrollDelay = 250 + this.topMargin * 250;
+		this.afterDelay = this.$self.data( "delayend" );
 	}
 
 	Figure.prototype = Object.create( ParentTypeElement.prototype );
