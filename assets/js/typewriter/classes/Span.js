@@ -231,11 +231,12 @@ define( [
 				}
 			}
 
-			totalChars += 1;
 			childList.push( {
 				text: currentFullText.substr( 0, absChars ),
 				delay: getDelay.bind( this )()
 			} );
+
+			totalChars += 1;
 		}
 
 		return childList;
@@ -244,9 +245,15 @@ define( [
 	Span.prototype.revealChild = function ( nr ) {
 		var child = this.childList[ nr ];
 
-		this.$currentCharWrapper.html( child.text );
 		cursor.moveToElement( this.$currentCharWrapper, true );
-		timerController.addTimeout( this.reveal.bind( this ), child.delay, "reveal next char" + child.text );
+
+		timerController.addTimeout( function () {
+			this.$currentCharWrapper.html( child.text );
+			this.reveal();
+			cursor.moveToElement( this.$currentCharWrapper, true );
+		}.bind( this ), child.delay, "reveal next char" + child.text );
+
+		// timerController.addTimeout( this.reveal.bind( this ), child.delay, "reveal next char" + child.text );
 	};
 
 	Span.prototype.convertToDelay = function ( nr ) {
