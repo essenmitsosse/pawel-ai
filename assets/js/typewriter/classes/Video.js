@@ -46,6 +46,7 @@ define( [
 	Video.prototype.specialReset = function () {
 		this.self.currentTime = 0;
 		this.isFinished = false;
+		this.self.pause();
 	};
 
 	return Video;
