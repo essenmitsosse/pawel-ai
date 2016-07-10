@@ -7,6 +7,7 @@ define( [], function () {
 		defaultDelay: 40,
 		typeSpeedMultiplyer: 1,
 		isPaused: false,
+		noMenu: true,
 		start: ""
 	};
 } );

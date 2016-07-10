@@ -54,6 +54,10 @@
 	position       : fixed;
 	@include transition( margin 1s );
 	background-size: 100%;
+
+	.noMenu & {
+		display: none;
+	}
 }
 
 .icon-about {
