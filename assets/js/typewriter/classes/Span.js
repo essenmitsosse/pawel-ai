@@ -177,6 +177,10 @@ define( [
 
 		this.childList = this.getCharacterList();
 
+		if ( this.delayList[ this.childList.length ] ) {
+			this.afterDelay = this.delayList[ this.childList.length ];
+		}
+
 		this.$currentCharWrapper.html( this.childList[ this.childList.length - 1 ].text );
 
 		if ( this.rightJustified ) {
