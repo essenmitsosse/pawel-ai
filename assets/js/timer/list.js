@@ -18,6 +18,10 @@ define( [], function () {
 		timeout.resume();
 	}
 
+	function stopTimeout( timeout ) {
+		timeout.stop();
+	}
+
 	function pauseAllTimeouts() {
 		timeoutList.forEach( pauseTimeout );
 	}
@@ -26,10 +30,14 @@ define( [], function () {
 		timeoutList.forEach( resumeTimeout );
 	}
 
+	function stopAllTimeouts() {
+		timeoutList.forEach( stopTimeout );
+	}
 	return {
 		addToList: addToList,
 		removeFromList: removeFromList,
 		pauseAllTimeouts: pauseAllTimeouts,
-		resumeAllTimeouts: resumeAllTimeouts
+		resumeAllTimeouts: resumeAllTimeouts,
+		stopAllTimeouts: stopAllTimeouts
 	};
 } );

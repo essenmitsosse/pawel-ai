@@ -45,6 +45,10 @@ define( [
 		setTimeout( resumeAllTimeoutsAfterScroll, 700 );
 	}
 
+	function stopAll() {
+		timeoutList.stopAllTimeouts();
+	}
+
 	function toggleAllTimeouts() {
 		if ( !getGlobalPause() ) {
 			pauseAllTimeouts( true );
@@ -59,7 +63,8 @@ define( [
 		removeTimeout: removeTimeout,
 		toggleAllTimeouts: toggleAllTimeouts,
 		pauseAllTimeouts: pauseAllTimeouts,
-		resumeAllTimeouts: resumeAllTimeouts
+		resumeAllTimeouts: resumeAllTimeouts,
+		stopAll: stopAll
 
 	};
 } );

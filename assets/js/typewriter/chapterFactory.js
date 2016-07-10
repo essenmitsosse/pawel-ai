@@ -2,8 +2,9 @@ define( [
 	"helper/cache",
 	"helper/globals",
 	"menu/chapterMenu",
-	"typewriter/classes/Chapter"
-], function ( _cache, _globals, chapterMenu, Chapter ) {
+	"typewriter/classes/Chapter",
+	"timer/controller"
+], function ( _cache, _globals, chapterMenu, Chapter, timerController ) {
 	var chapterList = [],
 		chapterNameList = {},
 		currentChapter = 0,
@@ -58,6 +59,7 @@ define( [
 	function jumpToChapter( chapterID ) {
 		var chapterNr = chapterNameList[ chapterID ];
 
+		timerController.stopAll();
 		currentChapter = chapterNr;
 		showNextChapter();
 	}
