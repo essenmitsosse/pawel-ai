@@ -6,6 +6,7 @@ define( [], function () {
 		$window: $window,
 		$document: $( document ),
 		$main: $( "#main-content" ),
-		$chaptersWrapper: $( "#chapters-wrapper" )
+		$chaptersWrapper: $( "#chapters-wrapper" ),
+		$menuWrapper: $( "#menu-wrapper" )
 	};
 } );

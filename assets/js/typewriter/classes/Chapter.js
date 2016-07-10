@@ -6,9 +6,9 @@ define( [
 	"typewriter/classes/Header",
 	"typewriter/classes/Paragraph",
 	"typewriter/classes/Figure",
-	"cursor/cursor",
-	"helper/errorMessenger"
-	], function ( _chache, _const, _globals, ParentTypeElement, Header, Paragraph, Figure, cursor ) {
+	"menu/chapterTitle",
+	"cursor/cursor"
+], function ( _chache, _const, _globals, ParentTypeElement, Header, Paragraph, Figure, chapterTitle, cursor ) {
 
 	function Chapter( args ) {
 		this.basicSetup( args );
@@ -16,6 +16,10 @@ define( [
 		this.ID = this.$self.attr( "id" );
 		this.name = this.$self.data( "name" ) || this.$self.find( "header h1" )
 			.html() || "KEIN NAME";
+		this.$about = this.$self.find( "aside" );
+		this.aboutContent = this.$about.html() || " ";
+
+		this.$about.remove();
 
 		this.$self.css( {
 			"z-index": ( _chache.chapterLength - args.nr ) * 1000
@@ -41,6 +45,9 @@ define( [
 		{
 			elementName: "header",
 			ClassConstructor: Header
+		},
+		{
+			elementName: "aside"
 		}
 	];
 
@@ -55,6 +62,10 @@ define( [
 		cursor.remove();
 
 		return transitionTime;
+	};
+
+	Chapter.prototype.beforeRevealCountdown = function () {
+		chapterTitle.updateChapterTitle( this );
 	};
 
 	return Chapter;

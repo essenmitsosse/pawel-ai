@@ -2,9 +2,10 @@ define( [
 	"helper/cache",
 	"helper/globals",
 	"menu/MenuObject",
+	"menu/chapterTitle",
 	"timer/controller"
-], function ( _cache, _globals, MenuObject, timerController ) {
-	var $menuWrapper = $( "#menu-wrapper" ),
+], function ( _cache, _globals, MenuObject, chapterTitle, timerController ) {
+	var $menuWrapper = _cache.$menuWrapper,
 		$menus = $menuWrapper.children(),
 		$menuIconWrapper = $( "<ul/>", {
 			"id": "menuIconWrapper"
@@ -39,6 +40,7 @@ define( [
 	}
 
 	$menus.each( prepareMenu );
+	menuList.push( chapterTitle );
 	$menuWrapper.append( $menuIconWrapper );
 
 	return {

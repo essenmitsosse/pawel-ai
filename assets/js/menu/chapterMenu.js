@@ -20,7 +20,10 @@ define( [], function () {
 		$list.append( this.$listItem );
 	}
 
-	ChapterListItem.prototype.chapterClick = function () {
+	ChapterListItem.prototype.chapterClick = function ( event ) {
+		event.preventDefault();
+		require( "menu/menuFactory" )
+			.hideAllMenuItems();
 		require( "typewriter/chapterFactory" )
 			.jumpToChapter( this.ID );
 	};

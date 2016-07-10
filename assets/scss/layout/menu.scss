@@ -73,3 +73,40 @@
 		margin-right: $chapters-menu-width - 2.5em;
 	}
 }
+
+#menuTitle {
+	position        : fixed;
+	top             : $menu-title-top;
+	left            : 0;
+	right           : 0;
+	margin          : auto;
+	width           : 12em;
+	z-index         : 10000;
+	background-color: $background-color;
+	border          : 2px solid $font-color;
+	text-align      : center;
+	@include sans-serif-font;
+	font-weight     : bold;
+	@include transition( width 1s );
+	overflow        : hidden;
+
+	h1 {
+		line-height: 1.6em;
+		font-weight: bold;
+		cursor     : help;
+	}
+
+	&.show {
+		width: 24em;
+
+		h1 {
+			cursor: pointer;
+		}
+	}
+}
+
+.menuTitleContent {
+	width  : 24em;
+	margin : auto;
+	padding: .6em;
+}

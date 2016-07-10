@@ -48,7 +48,9 @@ define( [ "typewriter/classes/BasicTypeElement", "helper/errorMessenger" ], func
 			ClassConstructor = this.checkIfElementIsPossibleChildElement( $childElement );
 
 		if ( ClassConstructor ) {
-			this.addNewChild( ClassConstructor, nr, childElement );
+			if ( ClassConstructor !== "noconstructorneeded" ) {
+				this.addNewChild( ClassConstructor, nr, childElement );
+			}
 		} else {
 			this.displayChildrenError( nr, $childElement );
 		}
@@ -60,7 +62,7 @@ define( [ "typewriter/classes/BasicTypeElement", "helper/errorMessenger" ], func
 	ParentTypeElement.prototype.checkIfElementIsPossibleChildElement = function ( $childElement ) {
 		return this.possibleChildElements.reduce( function ( prevElement, currentElement ) {
 			return $childElement.is( currentElement.elementName ) ?
-				currentElement.ClassConstructor :
+				( currentElement.ClassConstructor || "noconstructorneeded" ) :
 				prevElement;
 		}, false );
 	};

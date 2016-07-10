@@ -54,8 +54,8 @@ define( [ "helper/globals", "helper/cache", "helper/errorMessenger" ], function 
 		};
 	}
 
-	function getGlobalChanger( name ) {
-		return function ( value ) {
+	function getGlobalChanger( name, value ) {
+		return function () {
 			changeGlobal( name, value, true );
 		};
 	}
