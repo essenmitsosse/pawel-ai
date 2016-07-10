@@ -30,10 +30,14 @@ define( [
 		if ( currentChapter < chapterList.length ) {
 			if ( !_globals.noAnimation ) {
 				chapterList[ currentChapter ].reset()
-					.startReveal( removeCurrentChapter, first ? 0 : delay );
+					.startReveal( afterChapterFinished, first ? 0 : delay );
 				first = false;
 			}
 		}
+	};
+
+	afterChapterFinished = function () {
+		removeCurrentChapter();
 	};
 
 	removeCurrentChapter = function () {

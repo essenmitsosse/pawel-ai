@@ -72,6 +72,7 @@ define( [
 
 		// if this is the last element of its kind, add class "last"
 		if ( !this.next ) {
+			this.last = true;
 			this.$self.addClass( "last" );
 		}
 
