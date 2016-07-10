@@ -65,11 +65,15 @@ define( [
 	};
 
 	BasicTypeElement.prototype.startReveal = function ( parentCallback, delay ) {
-
 		this.parentCallbackAfterReveal = parentCallback;
 
 		this.$self.addClass( "s" )
 			.removeClass( "ns" );
+
+		// if this is the last element of its kind, add class "last"
+		if ( !this.next ) {
+			this.$self.addClass( "last" );
+		}
 
 		delay = delay || this.getDelay() || 0;
 

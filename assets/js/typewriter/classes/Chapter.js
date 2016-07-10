@@ -56,9 +56,9 @@ define( [
 	Chapter.prototype.removeChapter = function () {
 		var transitionTime = this.chapterTransition;
 		this.$self.css( {
-				"transition": "bottom " + ( transitionTime / ( _globals.typeSpeedMultiplyer || 1 ) ) + "ms"
-			} )
-			.addClass( "done" );
+			"transition": "bottom " + ( transitionTime / ( _globals.typeSpeedMultiplyer || 1 ) ) + "ms"
+		} );
+
 		cursor.remove();
 
 		return transitionTime;

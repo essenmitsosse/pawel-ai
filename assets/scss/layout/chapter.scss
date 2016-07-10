@@ -33,7 +33,7 @@
 	}
 
 	body:not(.noAnimation) & {
-		&.done {
+		&.done:not(.last) {
 			position  : fixed;
 			bottom    : 100%;
 			z-index   : 3000;
