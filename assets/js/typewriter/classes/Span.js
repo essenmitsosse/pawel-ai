@@ -10,6 +10,7 @@ define( [
 		this.basicSetup( nr, self, prev, parent );
 
 		this.voice = this.parent.$self.hasClass( "v2" ) ? 1 : 0;
+		this.afterDelay = this.$self.data( "delayend" );
 	}
 
 	Span.prototype = Object.create( ParentTypeElement.prototype );
@@ -201,15 +202,12 @@ define( [
 			absChars = 0,
 			currentFullText = this.fullTextContent,
 			characterCount = currentFullText.length + ( this.characterThatNeedToBeRemoved || 0 ),
-			childList = [],
-			delayEnd = this.$self.data( "delayend" );
+			childList = [];
 
 		function getDelay() {
 			var delay;
 
-			if ( delayEnd && currentChar === characterCount ) {
-				delay = delayEnd;
-			} else if ( this.delayList && this.delayList.length > totalChars ) {
+			if ( this.delayList && this.delayList.length > totalChars ) {
 				delay = this.delayList[ totalChars ] || this.delay;
 			} else {
 				delay = this.randomize( this.delay, 0.25, 4 );
