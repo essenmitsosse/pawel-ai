@@ -10,28 +10,9 @@
 }
 
 html {
-	font-size : $base-font-size;
-	overflow-x: hidden;
-	overflow-y: scroll;
-	width     : 100vw * $viewport-width;
-
-	&::-webkit-scrollbar {
-		-webkit-appearance: none;
-	}
-
-	&::-webkit-scrollbar:vertical {
-		width: 100vw * ( 1 - $viewport-width );
-	}
-
-	&::-webkit-scrollbar-thumb {
-		background-color: $font-color;
-		border-left     : .3vw solid $background-color;
-		border-right    : .3vw solid $background-color;
-	}
-
-	&::-webkit-scrollbar-track {
-		background-color: $background-color;
-	}
+	font-size: $base-font-size;
+	width    : 100vw * $viewport-width;
+	@include pawel-scroll-bar;
 }
 
 body {

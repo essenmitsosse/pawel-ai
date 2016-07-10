@@ -7,11 +7,12 @@
 	z-index     : 10000;
 	width       : $menu-width;
 	@include transition( left 1s );
-	padding     : $menu-icon-left $menu-icon-bottom;
+	padding     : $menu-icon-bottom $menu-icon-left;
 	@include sans-serif-font;
 	font-weight : bold;
 	overflow    : scroll;
 	border-right: 2px solid $font-color;
+	@include pawel-scroll-bar;
 
 	h1 {
 		font-weight: bold;
