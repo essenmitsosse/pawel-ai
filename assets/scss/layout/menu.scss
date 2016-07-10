@@ -44,6 +44,16 @@
 		left : auto;
 		right: 0;
 	}
+
+	a {
+		display: block;
+		@include transition( padding-left .5s );
+
+		&:hover {
+			@include transition( padding-left .1s );
+			padding-left: .5em;
+		}
+	}
 }
 
 .menuIcon {
