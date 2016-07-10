@@ -61,6 +61,7 @@ define( [
 	}
 
 	function jumpToChapter( chapterID ) {
+		window.jump = true;
 		var chapterNr;
 
 		chapterList[ currentChapter ].reset();
