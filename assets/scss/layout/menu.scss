@@ -1,16 +1,17 @@
 .menu {
-	position   : fixed;
-	top        : 0;
-	left       : -$menu-width;
-	height     : 100%;
-	background : $background-color;
-	z-index    : 10000;
-	width      : $menu-width;
+	position    : fixed;
+	top         : 0;
+	left        : -$menu-width;
+	height      : 100%;
+	background  : $background-color;
+	z-index     : 10000;
+	width       : $menu-width;
 	@include transition( left 1s );
-	padding    : $menu-icon-left $menu-icon-bottom;
+	padding     : $menu-icon-left $menu-icon-bottom;
 	@include sans-serif-font;
-	font-weight: bold;
-	overflow   : scroll;
+	font-weight : bold;
+	overflow    : scroll;
+	border-right: 2px solid $font-color;
 
 	h1 {
 		font-weight: bold;
@@ -31,9 +32,12 @@
 }
 
 .chapters-menu {
-	left : auto;
-	right: -$menu-width;
+	left        : auto;
+	width       : $chapters-menu-width;
+	right       : -$chapters-menu-width;
 	@include transition( right 1s );
+	border-right: none;
+	border-left : 2px solid $font-color;
 
 	&.show {
 		left : auto;
@@ -57,7 +61,7 @@
 	background-image: url('../imgs/icons/about.png');
 
 	[data-menu='about'] & {
-		margin-left: $menu-width;
+		margin-left: $menu-width - 2.5em;
 	}
 }
 
@@ -66,6 +70,6 @@
 	background-image: url('../imgs/icons/hashtag.png');
 
 	[data-menu='chapters'] & {
-		margin-right: $menu-width;
+		margin-right: $chapters-menu-width - 2.5em;
 	}
 }
