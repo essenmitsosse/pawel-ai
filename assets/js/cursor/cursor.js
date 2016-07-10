@@ -33,7 +33,7 @@ define( [ "helper/cache", "helper/const", "timer/controller" ], function ( _cach
 			left: left,
 			top: top,
 			height: height,
-			width: height * this.cursorRatio
+			width: "4px"
 		} );
 
 		if ( !( this.currentLeft === left && this.currentTop === top ) ) {
