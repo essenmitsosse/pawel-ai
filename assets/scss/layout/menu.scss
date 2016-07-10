@@ -23,6 +23,10 @@
 		}
 	}
 
+	p {
+		@include get-rem( "padding-bottom", 1 );
+	}
+
 	li {
 		list-style: none;
 	}
@@ -109,6 +113,10 @@
 		line-height: 1.6em;
 		font-weight: bold;
 		cursor     : help;
+	}
+
+	p {
+		@include get-rem( "padding-bottom", 1 );
 	}
 
 	&.show {
