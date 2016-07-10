@@ -43,9 +43,11 @@ define( [ "helper/cache", "helper/globals" ], function ( _cache, _globals ) {
 
 		isScrolling = true;
 
+		console.log( "scroll" );
+
 		currentPosition = _cache.$document.height() - _cache.$window.height();
 
-		checkForScrollAbort();
+		// checkForScrollAbort();
 		scrollToCurrentPosition( duration );
 	}
 

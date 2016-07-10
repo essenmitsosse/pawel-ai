@@ -57,6 +57,10 @@ define( [
 			this.resetChildren();
 		}
 
+		if ( this.specialReset ) {
+			this.specialReset();
+		}
+
 		return this;
 	};
 
@@ -98,6 +102,30 @@ define( [
 
 	BasicTypeElement.prototype.moveToStartFirst = function () {
 		this.notRevealedYet = true;
+	};
+
+	BasicTypeElement.prototype.getMargin = function () {
+		var i = 1;
+
+		this.topMargin = 0;
+
+		while ( i <= 15 ) {
+			if ( this.$self.hasClass( "m" + i ) ) {
+				this.topMargin = i;
+				break;
+			}
+			i += 1;
+		}
+
+		i = 0;
+
+		while ( i <= 15 ) {
+			if ( this.$self.hasClass( "h" + i ) ) {
+				this.topMargin += i;
+				break;
+			}
+			i += 1;
+		}
 	};
 
 	return BasicTypeElement;

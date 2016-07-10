@@ -57,7 +57,11 @@ define( [
 	}
 
 	function jumpToChapter( chapterID ) {
-		var chapterNr = chapterNameList[ chapterID ];
+		var chapterNr;
+
+		chapterList[ currentChapter ].reset();
+
+		chapterNr = chapterNameList[ chapterID ];
 
 		timerController.stopAll();
 		currentChapter = chapterNr;

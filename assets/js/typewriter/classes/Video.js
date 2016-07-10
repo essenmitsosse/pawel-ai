@@ -43,5 +43,9 @@ define( [
 		this.isFinished = true;
 	};
 
+	Video.prototype.specialReset = function () {
+		this.self.currentTime = 0;
+	};
+
 	return Video;
 } );

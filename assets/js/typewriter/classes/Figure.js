@@ -1,6 +1,14 @@
-define( [ "typewriter/classes/ParentTypeElement", "typewriter/classes/Video", "typewriter/classes/Image", "helper/errorMessenger" ], function ( ParentTypeElement, Video, Image, errorMessenger ) {
+define( [
+	"typewriter/classes/ParentTypeElement",
+	"typewriter/classes/Video",
+	"typewriter/classes/Image",
+	"scroller/scroller"
+], function ( ParentTypeElement, Video, Image, scroller ) {
 	function Figure( args ) {
 		this.basicSetup( args );
+
+		this.getMargin();
+		this.scrollDelay = 250 + this.topMargin * 250;
 	}
 
 	Figure.prototype = Object.create( ParentTypeElement.prototype );
@@ -16,6 +24,10 @@ define( [ "typewriter/classes/ParentTypeElement", "typewriter/classes/Video", "t
 		ClassConstructor: Video
 	} ];
 	Figure.prototype.isElement = true;
+
+	Figure.prototype.beforeRevealCountdown = function () {
+		scroller.scrollToBottom( this.scrollDelay );
+	};
 
 	return Figure;
 } );
