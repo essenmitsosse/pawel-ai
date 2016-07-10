@@ -18,10 +18,6 @@ define( [], function () {
 		timeout.resume();
 	}
 
-	function stopTimeout( timeout ) {
-		timeout.stop();
-	}
-
 	function pauseAllTimeouts() {
 		timeoutList.forEach( pauseTimeout );
 	}
@@ -31,8 +27,14 @@ define( [], function () {
 	}
 
 	function stopAllTimeouts() {
-		timeoutList.forEach( stopTimeout );
+		var i = timeoutList.length;
+		while ( i > 0 ) {
+			i -= 1;
+			timeoutList[ i ].stop();
+		}
+
 	}
+
 	return {
 		addToList: addToList,
 		removeFromList: removeFromList,
