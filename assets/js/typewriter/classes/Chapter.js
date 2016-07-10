@@ -66,6 +66,7 @@ define( [
 
 	Chapter.prototype.beforeRevealCountdown = function () {
 		chapterTitle.updateChapterTitle( this );
+		cursor.remove();
 	};
 
 	return Chapter;
