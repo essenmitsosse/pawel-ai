@@ -36,7 +36,10 @@ define( [
 	}
 
 	function prepareMenu( nr, menu ) {
-		menuList.push( new MenuObject( menu, $menuIconWrapper, hideAllMenuItems ) );
+		if ( $( menu )
+			.data( "name" ) ) {
+			menuList.push( new MenuObject( menu, $menuIconWrapper, hideAllMenuItems ) );
+		}
 	}
 
 	$menus.each( prepareMenu );
