@@ -27,24 +27,25 @@ define( [
 		this.self.playbackRate = _globals.typeSpeedMultiplyer;
 
 		if ( this.self.duration === this.self.currentTime ) {
-			this.finish();
+			this.finishVideo();
 		}
 	};
 
 	Video.prototype.pause = function () {
 		this.self.pause();
+		this.finishVideo();
+	};
 
+	Video.prototype.finishVideo = function () {
 		if ( !this.isFinished ) {
 			this.finish();
+			this.isFinished = true;
 		}
-	};
-
-	Video.prototype.parentCallbackAfterReveal = function () {
-		this.isFinished = true;
-	};
+	}
 
 	Video.prototype.specialReset = function () {
 		this.self.currentTime = 0;
+		this.isFinished = false;
 	};
 
 	return Video;
