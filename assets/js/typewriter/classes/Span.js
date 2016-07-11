@@ -247,12 +247,12 @@ define( [
 	Span.prototype.revealChild = function ( nr ) {
 		var child = this.childList[ nr ];
 
-		cursor.moveToElement( this.$currentCharWrapper, true );
+		cursor.moveToElement( this.$innerSelf, true );
 
 		timerController.addTimeout( function () {
 			this.$currentCharWrapper.html( child.text );
 			this.reveal();
-			cursor.moveToElement( this.$currentCharWrapper, true );
+			cursor.moveToElement( this.$innerSelf, true );
 		}.bind( this ), child.delay, "reveal next char" + child.text );
 
 		// timerController.addTimeout( this.reveal.bind( this ), child.delay, "reveal next char" + child.text );
