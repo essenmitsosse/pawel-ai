@@ -20,7 +20,31 @@ define( [ "helper/cache", "debug/KeyBoardShortCut" ], function ( _cache, KeyBoar
 
 	$window.keydown( checkAllShortCuts );
 
+	function PrevNextKeyboardShortcut() {
+		this.shortcut = new KeyBoardShortCut( {
+			key: 39
+		}, this.next.bind( this ) );
+
+		keyBoardShortCuts.push( this.shortcut );
+	}
+
+	PrevNextKeyboardShortcut.prototype.next = function () {
+		if ( this.nextCallback ) {
+			this.nextCallback();
+			this.removeNext();
+		}
+	};
+
+	PrevNextKeyboardShortcut.prototype.addNext = function ( callback ) {
+		this.nextCallback = callback;
+	};
+
+	PrevNextKeyboardShortcut.prototype.removeNext = function () {
+		this.nextCallback = false;
+	};
+
 	return {
-		addKeyboardShortcut: addKeyboardShortcut
+		addKeyboardShortcut: addKeyboardShortcut,
+		prevNextKeyboardShortcut: new PrevNextKeyboardShortcut()
 	};
 } );

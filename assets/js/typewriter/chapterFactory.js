@@ -10,7 +10,7 @@ define( [
 		currentChapter = 0,
 		first = true,
 		showNextChapter,
-		removeCurrentChapter;
+		afterChapterFinished;
 
 	function chapterFactory( nr, chapter ) {
 		var args = {
@@ -36,14 +36,14 @@ define( [
 		}
 	};
 
-	afterChapterFinished = function () {
-		removeCurrentChapter();
-	};
-
-	removeCurrentChapter = function () {
+	function removeCurrentChapter() {
 		var removingDuration = chapterList[ currentChapter ].removeChapter();
 		currentChapter += 1;
 		showNextChapter( removingDuration || 0 );
+	}
+
+	afterChapterFinished = function () {
+		removeCurrentChapter();
 	};
 
 	function whenFontsHaveLoaded() {

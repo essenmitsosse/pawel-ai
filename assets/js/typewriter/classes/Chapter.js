@@ -2,13 +2,14 @@ define( [
 	"helper/cache",
 	"helper/const",
 	"helper/globals",
+	"debug/keyboardHandler",
 	"typewriter/classes/ParentTypeElement",
 	"typewriter/classes/Header",
 	"typewriter/classes/Paragraph",
 	"typewriter/classes/Figure",
 	"menu/chapterTitle",
 	"cursor/cursor"
-], function ( _chache, _const, _globals, ParentTypeElement, Header, Paragraph, Figure, chapterTitle, cursor ) {
+], function ( _chache, _const, _globals, keyboardHandler, ParentTypeElement, Header, Paragraph, Figure, chapterTitle, cursor ) {
 
 	function Chapter( args ) {
 		this.basicSetup( args );
@@ -67,6 +68,14 @@ define( [
 	Chapter.prototype.beforeRevealCountdown = function () {
 		chapterTitle.updateChapterTitle( this );
 		cursor.remove();
+	};
+
+	Chapter.prototype.finish = function () {
+		if ( _globals.pauseAfterChapter ) {
+			keyboardHandler.prevNextKeyboardShortcut.addNext( ParentTypeElement.prototype.finish.bind( this ) );
+		} else {
+			ParentTypeElement.prototype.finish.bind( this )();
+		}
 	};
 
 	return Chapter;
