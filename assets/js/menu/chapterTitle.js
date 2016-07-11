@@ -53,9 +53,9 @@ define( [
 	}
 
 	function read() {
-		isRead = true;
-		if ( isChecked ) {
+		if ( isChecked && !isRead ) {
 			$menuTitleHeading.html( $menuTitleHeading.html() + "✓" );
+			isRead = true;
 		}
 	}
 
