@@ -14,7 +14,9 @@ define( [
 		.append( $menuTitleHeading )
 		.append( $menuTitleContent )
 		.appendTo( $menuWrapper ),
-		visible = false;
+		visible = false,
+		isChecked,
+		isRead;
 
 	function toggleVisibility() {
 		var hideAllMenuItems = require( "menu/menuFactory" )
@@ -33,6 +35,7 @@ define( [
 	function updateChapterTitle( chapter ) {
 		$menuTitleHeading.html( chapter.name );
 		$menuTitleContent.html( chapter.aboutContent );
+		reset();
 	}
 
 	function show() {
@@ -40,6 +43,7 @@ define( [
 		$menuTitleWrapper.addClass( "show" );
 		$menuTitleContent.slideDown( "fast" );
 		visible = true;
+		read();
 	}
 
 	function hide() {
@@ -48,10 +52,29 @@ define( [
 		visible = false;
 	}
 
+	function read() {
+		isRead = true;
+		if ( isChecked ) {
+			$menuTitleHeading.html( $menuTitleHeading.html() + "✓" );
+		}
+	}
+
+	function reset() {
+		isChecked = false;
+		isRead = false;
+	}
+
+	function check() {
+		isChecked = true;
+		isRead = false;
+		$menuTitleHeading.html( $menuTitleHeading.html() + " ✓" );
+	}
+
 	return {
 		name: "ChapterTitle",
 		updateChapterTitle: updateChapterTitle,
 		show: show,
-		hide: hide
+		hide: hide,
+		check: check
 	};
 } );

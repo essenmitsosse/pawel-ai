@@ -71,6 +71,7 @@ define( [
 	};
 
 	Chapter.prototype.finish = function () {
+		chapterTitle.check();
 		if ( _globals.pauseAfterChapter ) {
 			keyboardHandler.prevNextKeyboardShortcut.addNext( ParentTypeElement.prototype.finish.bind( this ) );
 		} else {
