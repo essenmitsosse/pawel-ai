@@ -8,7 +8,7 @@ define( [], function () {
 		typeSpeedMultiplyer: 1,
 		isPaused: false,
 		noMenu: false,
-		pauseAfterChapter: true,
+		pauseAfterChapter: false,
 		start: ""
 	};
 } );
