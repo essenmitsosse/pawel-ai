@@ -3,8 +3,8 @@ define( [
 	"helper/globals",
 	"menu/MenuObject",
 	"menu/chapterTitle",
-	"timer/controller"
-], function ( _cache, _globals, MenuObject, chapterTitle, timerController ) {
+	"menu/playPause",
+], function ( _cache, _globals, MenuObject, chapterTitle, PlayPause ) {
 	var $menuWrapper = _cache.$menuWrapper,
 		$menus = $menuWrapper.children(),
 		$menuIconWrapper = $( "<ul/>", {
@@ -16,22 +16,26 @@ define( [
 
 		function hideOrShowElement( element ) {
 			if ( !except || element.name !== except.name ) {
-				element.hide();
+				if ( typeof element.hide === "function" ) {
+					element.hide();
+				}
 			} else {
-				element.show();
+				if ( typeof element.show === "function" ) {
+					element.show();
+				}
 			}
 		}
 
 		menuList.forEach( hideOrShowElement );
 
 		if ( except && except.name ) { // if menu item is being shown
-			_cache.$body.attr( "data-menu", except.name )
-				.addClass( "showMenu" );
-			timerController.pauseAllTimeouts();
+			_cache.$body.attr( "data-menu", except.name );
+			require( "timer/controller" )
+				.pauseAllTimeouts( true ); // isMenu -> true
 		} else { // if NO menu item is being shown
-			_cache.$body.removeAttr( "data-menu" )
-				.removeClass( "showMenu" );
-			timerController.resumeAllTimeouts();
+			_cache.$body.removeAttr( "data-menu" );
+			require( "timer/controller" )
+				.resumeAllTimeouts( true );
 		}
 	}
 
@@ -44,6 +48,7 @@ define( [
 
 	$menus.each( prepareMenu );
 	menuList.push( chapterTitle );
+	menuList.push( new PlayPause( $menuIconWrapper ) );
 	$menuWrapper.append( $menuIconWrapper );
 
 	return {

@@ -1,13 +1,16 @@
 define( [
+	"helper/cache",
 	"helper/globalSetter",
 	"helper/errorMessenger",
 	"timer/Timeout",
 	"timer/list",
-	"scroller/scroller"
-	], function ( globalSetter, errorMessenger, Timeout, timeoutList, scroller ) {
+	"scroller/scroller",
+	"menu/menuFactory"
+], function ( _cache, globalSetter, errorMessenger, Timeout, timeoutList, scroller, menuFactory ) {
 
 	var getGlobalPause = globalSetter.getGlobalGetter( "isPaused" ),
 		setGlobalPause = globalSetter.getGlobalSetter( "isPaused" ),
+		setGlobalScroll = globalSetter.getGlobalSetter( "allowScroll" ),
 		isPlaying = false;
 
 	function addTimeout( callback, delay, desc ) {
@@ -28,10 +31,14 @@ define( [
 		}
 	}
 
-	function pauseAllTimeouts() {
+	function pauseAllTimeouts( isMenu ) {
 		setGlobalPause( true );
+		setGlobalScroll( !isMenu );
 		timeoutList.pauseAllTimeouts();
 		isPlaying = false;
+		if ( isMenu ) {
+			_cache.$body.addClass( "showMenu" );
+		}
 	}
 
 	function resumeAllTimeoutsAfterScroll() {
@@ -39,10 +46,15 @@ define( [
 		isPlaying = true;
 	}
 
-	function resumeAllTimeouts() {
+	function resumeAllTimeouts( isMenu ) {
 		setGlobalPause( false );
+		setGlobalScroll( false );
 		scroller.scrollToCurrentPosition( 500 );
 		setTimeout( resumeAllTimeoutsAfterScroll, 700 );
+		if ( !isMenu ) {
+			menuFactory.hideAllMenuItems();
+		}
+		_cache.$body.removeClass( "showMenu" );
 	}
 
 	function stopAll() {
@@ -51,9 +63,9 @@ define( [
 
 	function toggleAllTimeouts() {
 		if ( !getGlobalPause() ) {
-			pauseAllTimeouts( true );
+			pauseAllTimeouts();
 		} else {
-			resumeAllTimeouts( true );
+			resumeAllTimeouts();
 		}
 	}
 

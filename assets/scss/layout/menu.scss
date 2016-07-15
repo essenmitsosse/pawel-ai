@@ -24,7 +24,7 @@
 	}
 
 	p {
-		@include get-rem( "padding-bottom", 1 );
+		@include get-rem( 'padding-bottom', 1 );
 	}
 
 	li {
@@ -41,7 +41,7 @@
 	width       : $chapters-menu-width;
 	right       : -$chapters-menu-width;
 	@include transition( right 1s );
-	border-right: none;
+	border-right: 0;
 	border-left : 2px solid $font-color;
 
 	&.show {
@@ -93,6 +93,17 @@
 	}
 }
 
+.icon-playpause {
+	margin          : auto;
+	left            : 0;
+	right           : 0;
+	background-image: url('../imgs/icons/pause.png');
+
+	.isPaused & {
+		background-image: url('../imgs/icons/play.png');
+	}
+}
+
 #menuTitle {
 	position        : fixed;
 	top             : $menu-title-top;
@@ -116,7 +127,7 @@
 	}
 
 	p {
-		@include get-rem( "padding-bottom", 1 );
+		@include get-rem( 'padding-bottom', 1 );
 	}
 
 	&.show {
