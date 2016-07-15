@@ -33,6 +33,8 @@ define( [
 					.startReveal( afterChapterFinished, first ? 0 : delay );
 				first = false;
 			}
+		} else {
+			location.reload();
 		}
 	};
 
