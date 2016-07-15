@@ -2,23 +2,22 @@ define( [
 	"helper/cache"
 ], function ( _cache ) {
 	var $menuWrapper = _cache.$menuWrapper,
-		$menuTitleHeading = $( "<h1/>" )
-		.on( "click", toggleVisibility ),
-		$menuTitleContent = $( "<div/>", {
-			"class": "menuTitleContent"
-		} )
-		.hide(),
-		$menuTitleWrapper = $( "<div/>", {
-			"id": "menuTitle"
-		} )
-		.append( $menuTitleHeading )
-		.append( $menuTitleContent )
-		.appendTo( $menuWrapper ),
+		$menuTitleHeading,
+		$menuTitleContent,
+		$menuTitleWrapper,
 		visible = false,
 		isChecked,
-		isRead;
+		isRead,
 
-	function toggleVisibility() {
+		toggleVisibility,
+		updateChapterTitle,
+		show,
+		hide,
+		read,
+		reset,
+		check;
+
+	toggleVisibility = function () {
 		var hideAllMenuItems = require( "menu/menuFactory" )
 			.hideAllMenuItems;
 		if ( visible ) {
@@ -30,45 +29,60 @@ define( [
 				show: show
 			} );
 		}
-	}
+	};
 
-	function updateChapterTitle( chapter ) {
+	updateChapterTitle = function ( chapter ) {
 		$menuTitleHeading.html( chapter.name );
 		$menuTitleContent.html( chapter.aboutContent );
 		reset();
-	}
+	};
 
-	function show() {
+	show = function () {
 		console.log( "show" );
 		$menuTitleWrapper.addClass( "show" );
 		$menuTitleContent.slideDown( "fast" );
 		visible = true;
 		read();
-	}
+	};
 
-	function hide() {
+	hide = function () {
 		$menuTitleWrapper.removeClass( "show" );
 		$menuTitleContent.slideUp( "fast" );
 		visible = false;
-	}
+	};
 
-	function read() {
+	read = function () {
 		if ( isChecked && !isRead ) {
 			$menuTitleHeading.html( $menuTitleHeading.html() + "✓" );
 			isRead = true;
 		}
-	}
+	};
 
-	function reset() {
+	reset = function () {
 		isChecked = false;
 		isRead = false;
-	}
+	};
 
-	function check() {
+	check = function () {
 		isChecked = true;
 		isRead = false;
 		$menuTitleHeading.html( $menuTitleHeading.html() + " ✓" );
-	}
+	};
+
+	$menuTitleHeading = $( "<h1/>" )
+		.on( "click", toggleVisibility );
+
+	$menuTitleContent = $( "<div/>", {
+			"class": "menuTitleContent"
+		} )
+		.hide();
+
+	$menuTitleWrapper = $( "<div/>", {
+			"id": "menuTitle"
+		} )
+		.append( $menuTitleHeading )
+		.append( $menuTitleContent )
+		.appendTo( $menuWrapper );
 
 	return {
 		name: "ChapterTitle",
