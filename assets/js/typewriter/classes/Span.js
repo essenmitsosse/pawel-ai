@@ -162,7 +162,9 @@ define( [
 			class: innerClasses.join( " " )
 		} );
 
-		this.$currentCharWrapper = $( "<span>" );
+		this.$currentCharWrapper = $( "<span>", {
+			"class": "cWrap"
+		} );
 		this.$innerSelf.append( this.$currentCharWrapper );
 
 		// remove normal content and replace it with the new wrapped content
@@ -247,12 +249,14 @@ define( [
 	Span.prototype.revealChild = function ( nr ) {
 		var child = this.childList[ nr ];
 
-		cursor.moveToElement( this.$innerSelf, true );
+		cursor.moveToElement( this.$currentCharWrapper, true );
+
+		console.log( this.$currentCharWrapper );
 
 		timerController.addTimeout( function () {
 			this.$currentCharWrapper.html( child.text );
 			this.reveal();
-			cursor.moveToElement( this.$innerSelf, true );
+			cursor.moveToElement( this.$currentCharWrapper, true );
 		}.bind( this ), child.delay, "reveal next char" + child.text );
 
 		// timerController.addTimeout( this.reveal.bind( this ), child.delay, "reveal next char" + child.text );
