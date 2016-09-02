@@ -3,7 +3,7 @@
 	@include get-ai-rem( 'margin-bottom', $line-height-ai-small-rel );
 	overflow: hidden;
 
-	> * {
+	> *:not(iframe) {
 		width: 100%;
 		@include transform( scale( 1 ) );
 		@include transition( 2s all ease-out );
@@ -17,7 +17,8 @@
 
 	& > iframe,
 	& > video {
-		width: 100%;
+		width : 100%;
+		height: 100%;
 	}
 
 	// image width

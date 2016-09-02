@@ -4,6 +4,7 @@ requirejs.config( {
 		"debug/get-queries",
 		"debug/addKeyboardShortcuts",
 
+		"helper/youtubeApi",
 		"menu/menuFactory",
 		"typewriter/chapterFactory",
 

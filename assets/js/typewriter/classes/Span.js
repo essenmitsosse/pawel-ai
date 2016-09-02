@@ -251,8 +251,6 @@ define( [
 
 		cursor.moveToElement( this.$currentCharWrapper, true );
 
-		console.log( this.$currentCharWrapper );
-
 		timerController.addTimeout( function () {
 			this.$currentCharWrapper.html( child.text );
 			this.reveal();
